@@ -289,7 +289,8 @@ body { color: var(--ag-text); }
 @keyframes agFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
 :focus-visible { outline: 2px solid rgba(255,255,255,.7) !important; outline-offset: 2px; }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+/* Movimiento reducido: animaciones casi instantáneas, NO "none" (Jellyfin espera animationend para cerrar menús y diálogos) */
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transition-delay: 0s !important; } }
 @media (max-width: 600px) { :root { --ag-radius: 12px; } }
 .cardOverlayFab-primary { background: rgba(255,255,255,.92) !important; color: #000 !important; box-shadow: 0 8px 24px rgba(0,0,0,.45); }
 .cardOverlayContainer { background: linear-gradient(to top, rgba(0,0,0,.6), rgba(0,0,0,.08) 60%) !important; }

@@ -1,2 +1,3 @@
-/* Desactiva animaciones y transiciones (equipos lentos, TV, preferencia personal). */
-*, *::before, *::after { animation: none !important; transition: none !important; }
+/* Desactiva animaciones y transiciones (equipos lentos, TV, preferencia personal).
+   Se acortan a casi 0 en vez de "none": Jellyfin espera el fin de la animación para cerrar menús y diálogos. */
+*, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
