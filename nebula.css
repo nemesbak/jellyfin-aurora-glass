@@ -1186,3 +1186,23 @@ html.layout-desktop body:not(:has(.backdropImage.displayingBackdropImage)) .item
 .MuiCheckbox-root.Mui-checked, .MuiRadio-root.Mui-checked, .MuiSwitch-switchBase.Mui-checked { color: var(--nb-a1) !important; }
 .MuiCheckbox-root:not(.Mui-checked) { color: rgba(255,255,255,.45) !important; }
 .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track { background: var(--nb-a1) !important; opacity: .55 !important; }
+
+/* Póster de la ficha: no es una tarjeta para pulsar → sin elevación ni aro al pasar el ratón,
+   mismas esquinas en todas sus capas y un filo + sombra fijos para que no se funda con el fondo
+   (muchas pelis usan la misma imagen de póster y de fondo) */
+.itemDetailPage .detailImageContainer .cardScalable,
+.itemDetailPage .detailImageContainer .cardImageContainer,
+.itemDetailPage .detailImageContainer .cardPadder,
+.itemDetailPage .detailImageContainer .cardBox { border-radius: 20px !important; }
+.itemDetailPage .detailImageContainer .card:hover .cardScalable,
+.itemDetailPage .detailImageContainer .card .cardScalable { transform: none !important; }
+.itemDetailPage .detailImageContainer .cardScalable::after,
+.itemDetailPage .detailImageContainer .cardImageContainer::after { display: none !important; }
+.itemDetailPage .detailImageContainer .cardScalable {
+  box-shadow: 0 28px 70px rgba(0,0,0,.75), 0 0 0 1px rgba(255,255,255,.12) !important;
+}
+.itemDetailPage .detailImageContainer .cardPadder { box-shadow: none !important; }
+@media (max-width: 700px) {
+  .itemDetailPage .detailImageContainer .cardScalable, .itemDetailPage .detailImageContainer .cardImageContainer,
+  .itemDetailPage .detailImageContainer .cardPadder, .itemDetailPage .detailImageContainer .cardBox { border-radius: 12px !important; }
+}
