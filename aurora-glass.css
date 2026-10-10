@@ -1145,3 +1145,13 @@ html.layout-desktop body:not(:has(.backdropImage.displayingBackdropImage)) .item
 /* La portada no pinta las filas que están fuera de pantalla hasta acercarte */
 .homeSectionsContainer > .verticalSection:nth-child(n+4) { content-visibility: auto; contain-intrinsic-size: auto 420px; }
 .detailVerticalSection:nth-child(n+3) { content-visibility: auto; contain-intrinsic-size: auto 380px; }
+
+/* «Ver más» de la sinopsis: pegado al texto, no suelto al otro extremo */
+.itemDetailPage .overview-controls { justify-content: flex-start !important; margin-top: .4em; }
+.itemDetailPage .overview-expand { padding: .35em .9em !important; border-radius: 999px !important; font-size: .85em !important; font-weight: 600; color: var(--ag-a2) !important; background: rgba(var(--ag-a2-rgb),.08) !important; }
+.itemDetailPage .overview-expand:hover { background: rgba(var(--ag-a2-rgb),.16) !important; }
+
+/* Foco de teclado en menús: aro suave de acento en vez del recuadro blanco del navegador */
+.MuiMenuItem-root:focus-visible, .MuiMenuItem-root.Mui-focusVisible, .actionSheetMenuItem:focus-visible, .listItem:focus-visible {
+  outline: none !important; background: rgba(var(--ag-a1-rgb),.16) !important; box-shadow: inset 0 0 0 1px rgba(var(--ag-a1-rgb),.55) !important;
+}
