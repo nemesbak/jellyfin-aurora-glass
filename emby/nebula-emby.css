@@ -365,6 +365,45 @@ html {
 /* tarjetas: botón de reproducir del hover con resplandor */
 .cardOverlayFab-primary:hover, .cardOverlayButton-fab:hover { box-shadow: 0 8px 24px rgba(var(--nb-a1-rgb),.5) !important; }
 
+/* ===== móvil ===== */
+/* botones con texto debajo (Visto, Favorito…): sin caja; el icono va en un círculo de cristal */
+@media (max-width: 900px) {
+  .detailButton.fab.detailButton-autotext { background: transparent !important; border: 0 !important; box-shadow: none !important; border-radius: 14px !important; min-width: 4.4em; }
+  .detailButton.fab.detailButton-autotext .detailButton-autotext-icon {
+    width: 3rem; height: 3rem; font-size: 1.45rem !important; display: grid !important; place-items: center; border-radius: 50%;
+    background: rgba(255,255,255,.08); border: 1px solid var(--nb-line); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    transition: background-color .2s, border-color .2s, box-shadow .25s var(--nb-ease), transform .25s var(--nb-ease) !important;
+  }
+  .detailButton.fab.detailButton-autotext .detailButton-autotext-text { margin-top: .45em; font-size: .72em; opacity: .75; }
+  .detailButton.fab.btnUserRating:hover, .detailButton.fab.btnPlaystate:hover, .detailButton.fab.btnDeleteItem:hover, .detailButton.fab:hover { background: transparent !important; border: 0 !important; box-shadow: none !important; }
+  .btnUserRating .ratingbutton-icon-withrating { background: rgba(251,113,133,.16) !important; border-color: rgba(251,113,133,.45) !important; }
+  .btnPlaystate .playstatebutton-icon-played { background: rgba(52,211,153,.14) !important; border-color: rgba(52,211,153,.45) !important; }
+}
+/* móvil: los menús cortos (audio, subtítulos…) como hoja inferior ajustada al contenido, no estirada */
+.dialog-fullscreen-lowres:has(> .actionSheetScroller) {
+  min-height: 0 !important; height: auto !important; top: auto !important; bottom: 0 !important;
+  border-radius: 22px 22px 0 0 !important; padding: 14px 0 calc(8px + env(safe-area-inset-bottom, 0px)) !important;
+  box-shadow: 0 -12px 40px rgba(0,0,0,.55) !important;
+}
+.dialog-fullscreen-lowres:has(> .actionSheetScroller)::before {
+  content: ""; position: absolute; top: 6px; left: 50%; width: 38px; height: 4px; margin-left: -19px; border-radius: 4px; background: rgba(255,255,255,.22);
+}
+/* sin fondo oscuro detrás, el menú lateral y los menús flotantes se separan con sombra */
+.mainDrawer { box-shadow: 12px 0 40px rgba(0,0,0,.6) !important; }
+.actionSheet, .dialog:not(.dockedtabs):not(.dialog-fullscreen) { box-shadow: 0 18px 50px rgba(0,0,0,.55), 0 0 0 1px var(--nb-line) !important; }
+/* opción con foco (teclado/mando o la que Emby enfoca al abrir): tinte de acento, no el bloque blanco de Emby */
+.listItem:focus .listItem-content-bg, .listItem.show-focus:focus .listItem-content, .actionSheetMenuItem:focus .listItem-content {
+  background: linear-gradient(135deg, rgba(var(--nb-a1-rgb),.35), rgba(var(--nb-a2-rgb),.15)) !important; color: #fff !important; border-radius: 12px !important;
+}
+.listItem:focus .listItem-content-bg * { color: #fff !important; }
+/* pantallas táctiles: el «hover» se queda pegado tras tocar, así que nada de elevar ni girar; solo la pulsación */
+@media (hover: none) {
+  .card-hoverable:hover .cardBox, .detailButton:hover, .raised:hover, .nbHero-btn:hover, .detailButton.fab:hover .md-icon { transform: none !important; }
+  .card-hoverable:hover .cardContent::before { animation: none !important; }
+  .btnPlay.detailButton:hover::after, .btnResume.detailButton:hover::after { animation: none !important; }
+  .detailButton:active .detailButton-autotext-icon { transform: scale(.9); background: rgba(var(--nb-a1-rgb),.3) !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
 }
