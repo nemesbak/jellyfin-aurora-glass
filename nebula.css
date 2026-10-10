@@ -1198,10 +1198,13 @@ html.layout-desktop body:not(:has(.backdropImage.displayingBackdropImage)) .item
 .itemDetailPage .detailImageContainer .card .cardScalable { transform: none !important; }
 .itemDetailPage .detailImageContainer .cardScalable::after,
 .itemDetailPage .detailImageContainer .cardImageContainer::after { display: none !important; }
-.itemDetailPage .detailImageContainer .cardScalable {
-  box-shadow: 0 28px 70px rgba(0,0,0,.75), 0 0 0 1px rgba(255,255,255,.12) !important;
-}
+.itemDetailPage .detailImageContainer .cardScalable { box-shadow: 0 24px 60px rgba(0,0,0,.55) !important; background: transparent !important; }
 .itemDetailPage .detailImageContainer .cardPadder { box-shadow: none !important; }
+
+/* Relleno gris de Jellyfin bajo las imágenes: en los bordes redondeados asomaba un filo oscuro.
+   Si la tarjeta tiene imagen, el relleno se vuelve transparente (sin imagen se queda: es el fondo del icono). */
+.cardScalable:has(> .cardImageContainer[style*="url"]) > .cardPadder,
+.cardScalable:has(.cardImageContainer[style*="url"]) .cardPadder { background-color: transparent !important; box-shadow: none !important; }
 @media (max-width: 700px) {
   .itemDetailPage .detailImageContainer .cardScalable, .itemDetailPage .detailImageContainer .cardImageContainer,
   .itemDetailPage .detailImageContainer .cardPadder, .itemDetailPage .detailImageContainer .cardBox { border-radius: 12px !important; }
