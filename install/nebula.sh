@@ -12,7 +12,7 @@
 # Opcional:   JELLYFIN_API_KEY=… / EMBY_API_KEY=…  delante de «bash» para que ponga también el tema él solo.
 set -u
 REPO="https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main"
-INYECTOR="$REPO/install/inject-docker.sh"
+INYECTOR="${NEBULA_INYECTOR:-$REPO/install/inject-docker.sh}"
 MODO="${1:-}"
 
 if [ "$(id -u)" != 0 ]; then
