@@ -1,4 +1,4 @@
-# Odin Minimal · tema para Jellyfin 12
+# Aurora Glass · tema para Jellyfin 12
 
 Tema oscuro, minimalista y redondeado para la web de **Jellyfin 12.x**, con acento en degradado violeta → cian, efectos de cristal y animaciones suaves. Incluye un **carrusel destacado** opcional para la portada.
 
@@ -22,7 +22,7 @@ Tema oscuro, minimalista y redondeado para la web de **Jellyfin 12.x**, con acen
 *Panel de control → General → CSS personalizado*, pega:
 
 ```css
-@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-odin-minimal@main/odin-minimal.css');
+@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-aurora-glass@main/aurora-glass.css');
 ```
 
 Guarda y recarga la web con **Ctrl+F5**.
@@ -33,7 +33,7 @@ Añade debajo del `@import` del tema las líneas que quieras:
 
 | Opción | Línea |
 |---|---|
-| Barra superior mínima (solo logo, búsqueda y usuario) | `@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-odin-minimal@main/opciones/cabecera-minima.css');` |
+| Barra superior mínima (solo logo, búsqueda y usuario) | `@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-aurora-glass@main/opciones/cabecera-minima.css');` |
 | Ocultar bibliotecas de la barra superior | `…/opciones/ocultar-bibliotecas-cabecera.css` |
 | Ocultar «Favoritos» de la barra superior | `…/opciones/ocultar-favoritos-cabecera.css` |
 | Ocultar el menú «Más» de la barra superior | `…/opciones/ocultar-menu-mas.css` |
@@ -43,30 +43,30 @@ Añade debajo del `@import` del tema las líneas que quieras:
 | Ocultar el carrusel | `…/opciones/sin-carrusel.css` |
 | Acento coral / esmeralda / océano / rosa / oro / blanco | `…/opciones/acento-coral.css` (cambia el nombre) |
 
-(`…` = `https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-odin-minimal@main`)
+(`…` = `https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-aurora-glass@main`)
 
 Ejemplo completo:
 
 ```css
-@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-odin-minimal@main/odin-minimal.css');
-@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-odin-minimal@main/opciones/cabecera-minima.css');
-@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-odin-minimal@main/opciones/acento-coral.css');
+@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-aurora-glass@main/aurora-glass.css');
+@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-aurora-glass@main/opciones/cabecera-minima.css');
+@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-aurora-glass@main/opciones/acento-coral.css');
 ```
 
 También puedes cambiar el color tú mismo:
 
 ```css
-:root { --om-a1: #ff6b6b; --om-a1-rgb: 255,107,107; --om-a2: #ffa94d; --om-a2-rgb: 255,169,77; }
+:root { --ag-a1: #ff6b6b; --ag-a1-rgb: 255,107,107; --ag-a2: #ffa94d; --ag-a2-rgb: 255,169,77; }
 ```
 
 ### 3. Carrusel destacado y tema en el panel (opcional, requiere JavaScript)
 
-Jellyfin no permite JavaScript desde el CSS personalizado. El carrusel de la portada (títulos recientes no vistos con logo, autoavance, «Ver ahora» reproduce directamente) y aplicar el tema también al **panel de administración** (que en la 12.x ignora el CSS personalizado) los hace `odin-home.js`.
+Jellyfin no permite JavaScript desde el CSS personalizado. El carrusel de la portada (títulos recientes no vistos con logo, autoavance, «Ver ahora» reproduce directamente) y aplicar el tema también al **panel de administración** (que en la 12.x ignora el CSS personalizado) los hace `aurora-home.js`.
 
 **Docker:**
 
 ```bash
-curl -fsSLO https://raw.githubusercontent.com/nemesbak/jellyfin-odin-minimal/main/install/inject-docker.sh
+curl -fsSLO https://raw.githubusercontent.com/nemesbak/jellyfin-aurora-glass/main/install/inject-docker.sh
 chmod +x inject-docker.sh
 ./inject-docker.sh jellyfin      # nombre de tu contenedor
 ```
@@ -77,13 +77,13 @@ Las actualizaciones de la imagen de Jellyfin sobrescriben la web; programa el sc
 */10 * * * * /ruta/inject-docker.sh jellyfin >/dev/null 2>&1
 ```
 
-**Sin Docker:** copia `odin-home.js` a la carpeta `jellyfin-web` y añade antes de `</body>` en su `index.html`:
+**Sin Docker:** copia `aurora-home.js` a la carpeta `jellyfin-web` y añade antes de `</body>` en su `index.html`:
 
 ```html
-<script defer src="odin-home.js"></script>
+<script defer src="aurora-home.js"></script>
 ```
 
-Si ya usas un plugin de inyección de JavaScript (p. ej. *JavaScript Injector*), puedes pegar ahí el contenido de `odin-home.js`.
+Si ya usas un plugin de inyección de JavaScript (p. ej. *JavaScript Injector*), puedes pegar ahí el contenido de `aurora-home.js`.
 
 ## Compatibilidad
 
@@ -93,7 +93,7 @@ Si ya usas un plugin de inyección de JavaScript (p. ej. *JavaScript Injector*),
 
 ## Desinstalar
 
-Borra las líneas del CSS personalizado. Para el carrusel, quita la línea `<script … odin-home.js>` del `index.html` (o deja que la próxima actualización de la imagen lo haga) y elimina el cron.
+Borra las líneas del CSS personalizado. Para el carrusel, quita la línea `<script … aurora-home.js>` del `index.html` (o deja que la próxima actualización de la imagen lo haga) y elimina el cron.
 
 ## Licencia
 

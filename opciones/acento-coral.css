@@ -1,6 +1,6 @@
 /* Color de acento: coral. Cárgalo DESPUÉS del tema. */
 :root {
-  --om-a1: #ff6b6b; --om-a1-rgb: 255,107,107;
-  --om-a2: #ffa94d; --om-a2-rgb: 255,169,77;
-  --om-grad: linear-gradient(135deg, var(--om-a1), var(--om-a2));
+  --ag-a1: #ff6b6b; --ag-a1-rgb: 255,107,107;
+  --ag-a2: #ffa94d; --ag-a2-rgb: 255,169,77;
+  --ag-grad: linear-gradient(135deg, var(--ag-a1), var(--ag-a2));
 }

@@ -1,6 +1,6 @@
 /* Color de acento: esmeralda. Cárgalo DESPUÉS del tema. */
 :root {
-  --om-a1: #10b981; --om-a1-rgb: 16,185,129;
-  --om-a2: #a3e635; --om-a2-rgb: 163,230,53;
-  --om-grad: linear-gradient(135deg, var(--om-a1), var(--om-a2));
+  --ag-a1: #10b981; --ag-a1-rgb: 16,185,129;
+  --ag-a2: #a3e635; --ag-a2-rgb: 163,230,53;
+  --ag-grad: linear-gradient(135deg, var(--ag-a1), var(--ag-a2));
 }

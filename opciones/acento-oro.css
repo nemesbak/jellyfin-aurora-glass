@@ -1,6 +1,6 @@
 /* Color de acento: oro. Cárgalo DESPUÉS del tema. */
 :root {
-  --om-a1: #f59e0b; --om-a1-rgb: 245,158,11;
-  --om-a2: #fde047; --om-a2-rgb: 253,224,71;
-  --om-grad: linear-gradient(135deg, var(--om-a1), var(--om-a2));
+  --ag-a1: #f59e0b; --ag-a1-rgb: 245,158,11;
+  --ag-a2: #fde047; --ag-a2-rgb: 253,224,71;
+  --ag-grad: linear-gradient(135deg, var(--ag-a1), var(--ag-a2));
 }
