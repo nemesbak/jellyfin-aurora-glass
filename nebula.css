@@ -1206,6 +1206,9 @@ html.layout-desktop body:not(:has(.backdropImage.displayingBackdropImage)) .item
 }
 .itemDetailPage .detailImageContainer .cardScalable { box-shadow: none !important; background: transparent !important; }
 .itemDetailPage .detailImageContainer .cardPadder { box-shadow: none !important; }
+/* La tarjeta trae «contain: content» (recorta a su caja): al elevarse se cortaban los 6 px de arriba y la sombra.
+   En el póster de la ficha (uno solo, no afecta al rendimiento) se quita el recorte. */
+.itemDetailPage .detailImageContainer .card { contain: none !important; overflow: visible !important; }
 /* aro de acento dentro del borde, con las mismas esquinas */
 .itemDetailPage .detailImageContainer .cardScalable::after {
   display: block !important; border-radius: inherit !important; inset: 0 !important;
@@ -1226,3 +1229,8 @@ html.layout-desktop body:not(:has(.backdropImage.displayingBackdropImage)) .item
   .itemDetailPage .detailImageContainer .cardScalable, .itemDetailPage .detailImageContainer .cardImageContainer,
   .itemDetailPage .detailImageContainer .cardPadder, .itemDetailPage .detailImageContainer .cardBox { border-radius: 12px !important; }
 }
+
+/* Las tarjetas de Jellyfin traen «contain: content» (= layout + style + PAINT): el «paint» recorta todo a la caja
+   de la tarjeta, así que al elevarse 4 px al pasar el ratón se cortaba el borde superior y la sombra.
+   Se mantiene la contención de layout/estilo (rendimiento) y se quita solo el recorte. */
+.card { contain: layout style !important; }
