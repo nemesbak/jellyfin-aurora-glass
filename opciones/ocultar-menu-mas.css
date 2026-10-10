@@ -1,0 +1,2 @@
+/* Oculta el desplegable "Más" de la barra superior (bibliotecas que no caben). */
+[aria-controls="user-view-overflow-menu"] { display: none !important; }

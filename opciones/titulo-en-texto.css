@@ -1,0 +1,4 @@
+/* Muestra siempre el título en texto en la ficha, en lugar del logo de la película. */
+.layout-desktop .itemDetailPage .detailLogo { display: none !important; }
+.layout-desktop .itemDetailPage .detailRibbon h1.itemName,
+.layout-desktop .itemDetailPage .detailRibbon h1.parentName { display: block !important; }

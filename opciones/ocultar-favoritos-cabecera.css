@@ -1,0 +1,2 @@
+/* Oculta el botón "Favoritos" de la barra superior. */
+.MuiAppBar-root [href^="#/home?tab=1"] { display: none !important; }

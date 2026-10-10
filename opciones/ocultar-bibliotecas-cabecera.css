@@ -1,0 +1,10 @@
+/* Oculta los accesos a bibliotecas de la barra superior de Jellyfin 12
+   (solo en la cabecera: las tarjetas de "Mis contenidos" siguen visibles). */
+.MuiAppBar-root [href^="#/movies"],
+.MuiAppBar-root [href^="#/tv"],
+.MuiAppBar-root [href^="#/homevideos"],
+.MuiAppBar-root [href^="#/music"],
+.MuiAppBar-root [href^="#/boxsets"],
+.MuiAppBar-root [href^="#/mixed"],
+.MuiAppBar-root [href^="#/livetv"],
+.MuiAppBar-root [href^="#/list"] { display: none !important; }

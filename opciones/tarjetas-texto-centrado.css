@@ -1,0 +1,2 @@
+/* Título y año de las tarjetas centrados (como Jellyfin por defecto). */
+.cardBox > .cardText, .cardBox > .cardTextCentered { justify-content: center !important; text-align: center !important; }

@@ -1,0 +1,2 @@
+/* Oculta el carrusel destacado de la portada (si instalaste odin-home.js). */
+.omHero { display: none !important; }

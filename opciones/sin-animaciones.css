@@ -1,0 +1,2 @@
+/* Desactiva animaciones y transiciones (equipos lentos, TV, preferencia personal). */
+*, *::before, *::after { animation: none !important; transition: none !important; }

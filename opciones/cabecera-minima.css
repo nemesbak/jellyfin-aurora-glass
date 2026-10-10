@@ -1,0 +1,12 @@
+/* Barra superior mínima: solo logo, búsqueda y usuario.
+   Equivale a las tres opciones de ocultar juntas. */
+.MuiAppBar-root [href^="#/movies"],
+.MuiAppBar-root [href^="#/tv"],
+.MuiAppBar-root [href^="#/homevideos"],
+.MuiAppBar-root [href^="#/music"],
+.MuiAppBar-root [href^="#/boxsets"],
+.MuiAppBar-root [href^="#/mixed"],
+.MuiAppBar-root [href^="#/livetv"],
+.MuiAppBar-root [href^="#/list"],
+.MuiAppBar-root [href^="#/home?tab=1"],
+[aria-controls="user-view-overflow-menu"] { display: none !important; }
