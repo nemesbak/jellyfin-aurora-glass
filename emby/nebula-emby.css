@@ -1,0 +1,307 @@
+/* Nebula para Emby 4.9/4.10 — https://github.com/nemesbak/jellyfin-nebula · MIT
+   Tema oscuro, redondeado y con cristal, a juego con Nebula para Jellyfin. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ---------- Variables ---------- */
+:root {
+  --nb-bg: #0b0b0d;
+  --nb-surface: #141418;
+  --nb-surface-2: #1c1c22;
+  --nb-line: rgba(255,255,255,.07);
+  --nb-text: #ececf1;
+  --nb-muted: #8b8b96;
+  --nb-a1: #8b5cf6; --nb-a1-rgb: 139,92,246;
+  --nb-a2: #22d3ee; --nb-a2-rgb: 34,211,238;
+  --nb-grad: linear-gradient(135deg, var(--nb-a1), var(--nb-a2));
+  --nb-on-accent: #fff;
+  --nb-ease: cubic-bezier(.22,1,.36,1);
+  --nb-radius: 14px;
+
+  /* Variables propias de Emby: fondo casi negro y acento violeta */
+  --background-hue: 240 !important;
+  --background-saturation: 8% !important;
+  --background-lightness: 4.9% !important;
+  --theme-primary-color-hue: 258 !important;
+  --theme-primary-color-saturation: 90% !important;
+  --theme-primary-color-lightness: 66% !important;
+  --theme-accent-text-color: var(--nb-a2) !important;
+  --theme-accent-text-color-darkbg: var(--nb-a2) !important;
+  --header-background: rgba(11,11,13,.72) !important;
+  --header-blur-background: rgba(11,11,13,.72) !important;
+  --card-background-lightness: 9% !important;
+  --card-background-saturation: 6% !important;
+  --card-background-hue: 240 !important;
+  --input-background-lightness: 10% !important;
+  --line-background: rgba(255,255,255,.08) !important;
+}
+
+/* ---------- Base ---------- */
+html, body, .skinBody { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif !important; }
+/* Fondo con brillos de color directamente en <html>: en Emby el scroll va dentro de contenedores internos y la página
+   nunca se desplaza, así que no hace falta capa fija (una capa fija detrás de los scrollers bloqueaba el pintado). */
+html {
+  background:
+    radial-gradient(1100px 600px at 12% -10%, rgba(var(--nb-a1-rgb),.13), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(var(--nb-a2-rgb),.07), transparent 55%),
+    var(--nb-bg) !important;
+}
+::selection { background: rgba(var(--nb-a1-rgb),.45); }
+* { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.18) transparent; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,.16); border-radius: 99px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ---------- Cabecera de cristal ---------- */
+.skinHeader.skinHeader-withBackground, .skinHeader.headerTop-withSectionTabs {
+  background: rgba(11,11,13,.72) !important;
+  backdrop-filter: blur(12px) saturate(140%); -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border-bottom: 1px solid var(--nb-line);
+}
+.headerButton, .skinHeader .paper-icon-button-light { border-radius: 50% !important; transition: background .2s ease, transform .2s var(--nb-ease); }
+.headerButton:hover, .skinHeader .paper-icon-button-light:hover { background: rgba(255,255,255,.08) !important; }
+.headerUserButton img, .headerUserButton .headerUserButtonRound, .headerUserButton { border-radius: 50% !important; }
+.headerUserButton { box-shadow: 0 0 0 2px rgba(var(--nb-a1-rgb),.6); }
+
+/* Pestañas (Inicio / Favoritos / pestañas de biblioteca) como píldoras */
+.emby-tab-button { border-radius: 999px !important; font-weight: 600 !important; transition: color .2s ease, background .2s ease; }
+.emby-tab-button:hover { color: #fff !important; }
+.emby-tabs-selected-background { border-radius: 999px !important; background: var(--nb-grad) !important; box-shadow: 0 6px 18px rgba(var(--nb-a1-rgb),.4); }
+.emby-tab-button-active { color: var(--nb-on-accent) !important; }
+.tabs-viewmenubar-backgroundcontainer { background: rgba(255,255,255,.04) !important; border-radius: 999px !important; padding: 3px !important; }
+
+/* ---------- Títulos de sección ---------- */
+.sectionTitle { font-weight: 700 !important; letter-spacing: -.01em; }
+.sectionTitle-cards::before {
+  content: ""; display: inline-block; vertical-align: -.12em; height: 1em; width: 4px; margin-right: .55em; border-radius: 4px; background: var(--nb-grad);
+}
+.sectionTitleMoreIcon { color: var(--nb-a2) !important; transition: transform .2s var(--nb-ease); }
+.sectionTitleTextButton:hover .sectionTitleMoreIcon { transform: translateX(3px); }
+.emby-scrollbuttons-scrollbutton { background: rgba(20,20,26,.75) !important; border: 1px solid var(--nb-line) !important; border-radius: 50% !important;
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.emby-scrollbuttons-scrollbutton:hover { background: rgba(var(--nb-a1-rgb),.35) !important; }
+
+/* ---------- Tarjetas ---------- */
+.cardImageContainer, .cardContent, .cardImage, .cardOverlayContainer, .cardContent-background { border-radius: var(--nb-radius) !important; }
+.card .cardBox { transition: transform .35s var(--nb-ease) !important; }
+.card .cardContent { transition: box-shadow .35s ease !important; overflow: hidden; }
+.card-hoverable:hover .cardBox { transform: translateY(-4px) !important; }
+.card-hoverable:hover .cardContent {
+  box-shadow: 0 18px 34px -14px rgba(0,0,0,.85), 0 10px 30px -14px rgba(var(--nb-a1-rgb),.6), inset 0 0 0 1.5px rgba(var(--nb-a1-rgb),.75) !important;
+}
+/* aro: Emby pinta la imagen encima del contenedor → el aro va en un pseudo-elemento por encima */
+.card .cardContent::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 2;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); transition: box-shadow .3s ease;
+}
+.card-hoverable:hover .cardContent::after { box-shadow: inset 0 0 0 1.5px rgba(var(--nb-a1-rgb),.8); }
+/* reflejo diagonal al pasar el ratón */
+.card .cardContent::before {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: inherit;
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.14) 50%, transparent 65%);
+  transform: translateX(-120%); opacity: 0;
+}
+.card-hoverable:hover .cardContent::before { animation: nbShine .8s var(--nb-ease) forwards; }
+@keyframes nbShine { from { transform: translateX(-120%); opacity: 1; } to { transform: translateX(120%); opacity: 1; } }
+
+/* botones flotantes de la tarjeta */
+.cardOverlayButton-fab, .cardOverlayFab-primary {
+  background: rgba(15,15,20,.6) !important; border: 1px solid rgba(255,255,255,.14) !important; color: #fff !important;
+  transition: transform .2s var(--nb-ease), background .2s ease !important;
+}
+.cardOverlayFab-primary:hover, .cardOverlayButton-fab:hover { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; transform: scale(1.1); }
+
+/* texto de la tarjeta a la izquierda, título más marcado */
+.cardText { text-align: left !important; justify-content: flex-start !important; padding-left: .2em !important; }
+.cardText-first { font-weight: 600 !important; color: var(--nb-text) !important; }
+.cardText-secondary { color: var(--nb-muted) !important; }
+
+/* indicadores: visto, contador, progreso */
+.playedIndicator, .indicator.playedIndicator { background: #10b981 !important; border-radius: 50% !important; box-shadow: 0 4px 12px rgba(16,185,129,.45); }
+.countIndicator, .cardIndicators .countIndicator { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; border-radius: 999px !important; }
+.itemProgressBarForeground, .playbackProgress .itemProgressBarForeground { background: var(--nb-grad) !important; }
+.itemProgressBar { background: rgba(255,255,255,.15) !important; border-radius: 99px; overflow: hidden; }
+
+/* ---------- Botones ---------- */
+.raised, .emby-button.raised, .detailButton {
+  border-radius: 999px !important; font-weight: 600 !important;
+  background: rgba(255,255,255,.08) !important; border: 1px solid rgba(255,255,255,.1) !important;
+  transition: transform .2s var(--nb-ease), background .2s ease, box-shadow .2s ease !important;
+}
+.raised:hover, .detailButton:hover { background: rgba(255,255,255,.14) !important; transform: translateY(-1px); }
+.btnPlay.detailButton, .btnResume.detailButton, .button-submit, .raised.button-submit, .emby-button.button-submit {
+  background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; border: 0 !important;
+  box-shadow: 0 10px 28px rgba(var(--nb-a1-rgb),.45) !important;
+}
+.btnPlay.detailButton:hover, .btnResume.detailButton:hover, .button-submit:hover { box-shadow: 0 14px 34px rgba(var(--nb-a2-rgb),.4) !important; transform: translateY(-2px); }
+.paper-icon-button-light:not(.headerButton) { border-radius: 50% !important; }
+/* botones redondos de icono (visto, favorito, borrar, más…): cristal discreto; el color se reserva para Reproducir */
+.detailButton.fab, .fab.detailButton-autotext {
+  background: rgba(255,255,255,.08) !important; color: #fff !important; border: 1px solid rgba(255,255,255,.12) !important;
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: none !important;
+}
+.detailButton.fab:hover { background: rgba(var(--nb-a1-rgb),.28) !important; border-color: rgba(var(--nb-a1-rgb),.55) !important; transform: translateY(-2px); }
+.btnUserRating .md-icon[class*="fill"], .btnUserRating.ratingbutton-withrating .md-icon, .btnUserRating-active .md-icon, .btnUserRating[data-isfavorite="true"] .md-icon { color: #fb7185 !important; }
+.btnPlaystate.playstatebutton-played .md-icon, .btnPlaystate[data-played="true"] .md-icon, .btnPlaystate-played .md-icon { color: #34d399 !important; }
+.button-link, a { transition: color .15s ease; }
+
+/* ---------- Ficha (película / serie) ---------- */
+.itemBackdrop { filter: saturate(1.1); }
+.detailMainContainerParent-fade { -webkit-mask-image: none; }
+.detailImageContainer-main .cardContent, .detailImageContainer .cardContent, .detailImageContainer img {
+  border-radius: 20px !important; box-shadow: 0 30px 50px -22px rgba(0,0,0,.9) !important;
+}
+.detailImageContainer .card-hoverable:hover .cardBox { transform: translateY(-6px) !important; }
+.itemName, .detailTextContainer h1 { font-weight: 800 !important; letter-spacing: -.02em; }
+.mediaInfoItem { color: var(--nb-muted); }
+.mediaInfoText, .mediaInfoOfficialRating, .mediaInfoItem-border { border: 1px solid rgba(255,255,255,.18) !important; border-radius: 6px !important; padding: .05em .45em !important; }
+.starRatingContainer .md-icon, .mediaInfoCriticRating { color: #fbbf24; }
+.overview-text, .itemOverview { line-height: 1.65 !important; color: #c9c9d3 !important; }
+.overview-expand, .btnExpand, .overview-text .button-link { color: var(--nb-a2) !important; font-weight: 600; }
+
+/* pistas de vídeo / audio / subtítulos */
+.detailTrackSelect, .selectContainer-inline select, select.emby-select, .emby-select-withcolor {
+  border-radius: 999px !important; background-color: rgba(255,255,255,.07) !important; border: 1px solid rgba(255,255,255,.12) !important;
+  padding-left: 1em !important; font-weight: 600 !important; transition: background-color .2s ease, border-color .2s ease;
+}
+.detailTrackSelect:hover, select.emby-select:hover { background-color: rgba(var(--nb-a1-rgb),.18) !important; border-color: rgba(var(--nb-a1-rgb),.5) !important; }
+.trackSelectionFieldContainer .selectLabel, .trackSelectionFieldContainer label { color: var(--nb-muted) !important; font-size: .8em; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+
+/* reparto en círculos (Emby usa tarjetas verticales: se hacen cuadradas y redondas) */
+.peopleSection .cardContent.cardPadder-portrait, .peopleSection .cardOverlayContainer.cardPadder-portrait { padding-bottom: 100% !important; height: 0 !important; }
+.peopleSection .cardContent, .peopleSection .cardOverlayContainer, .peopleSection .cardImage { border-radius: 50% !important; }
+.peopleSection .card-hoverable:hover .cardBox { transform: translateY(-3px) !important; }
+.peopleSection .cardText { text-align: center !important; justify-content: center !important; padding-left: 0 !important; }
+
+/* chips de géneros / etiquetas / estudios */
+.itemGenres a, .itemTags a, .itemStudios a, .detailTextContainer .button-link.secondaryText {
+  border-radius: 999px; padding: .15em .7em; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+}
+
+/* lista de episodios / pistas */
+.listItem { border-radius: 14px !important; transition: background .15s ease; }
+.listItem:hover { background: rgba(255,255,255,.05) !important; }
+.listItemImage, .listItemImage img { border-radius: 10px !important; }
+
+/* ---------- Menús, diálogos y formularios ---------- */
+.actionSheet, .dialog, .formDialog, .dialog-fixedSize, .focuscontainer.dialog {
+  border-radius: 18px !important; border: 1px solid rgba(255,255,255,.08) !important;
+  background: rgba(18,18,24,.92) !important; box-shadow: 0 30px 80px rgba(0,0,0,.7) !important;
+  backdrop-filter: blur(22px) saturate(150%); -webkit-backdrop-filter: blur(22px) saturate(150%);
+}
+.dialogBackdropOpened { background: rgba(0,0,0,.55) !important; backdrop-filter: blur(6px); }
+.actionSheetMenuItem, .listItem-button { border-radius: 10px !important; }
+.actionSheetMenuItem:hover { background: rgba(var(--nb-a1-rgb),.18) !important; }
+.formDialogHeader { border-bottom: 1px solid var(--nb-line) !important; }
+.emby-input, .emby-textarea, .emby-select, input[is="emby-input"] {
+  border-radius: 12px !important; border: 1px solid rgba(255,255,255,.1) !important; transition: border-color .2s ease, box-shadow .2s ease;
+}
+.emby-input:focus, .emby-textarea:focus { border-color: rgba(var(--nb-a1-rgb),.7) !important; box-shadow: 0 0 0 4px rgba(var(--nb-a1-rgb),.18) !important; }
+.emby-checkbox:checked + .checkboxLabel::before, .emby-checkbox:checked + span::before { background: var(--nb-grad) !important; border-color: transparent !important; }
+
+/* menú lateral */
+.mainDrawer { background: rgba(14,14,18,.94) !important; backdrop-filter: blur(20px); border-right: 1px solid var(--nb-line); }
+.navMenuOption { border-radius: 12px !important; margin: 1px 8px !important; }
+.navMenuOption:hover { background: rgba(255,255,255,.06) !important; }
+.navMenuOption-selected { background: linear-gradient(135deg, rgba(var(--nb-a1-rgb),.3), rgba(var(--nb-a2-rgb),.14)) !important; }
+
+/* ---------- Reproductor ---------- */
+.videoOsdBottom .btnPause, .osdPlayPauseButton { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; border-radius: 50% !important; }
+.emby-slider-background-lower, .mdl-slider-background-lower { background: var(--nb-grad) !important; }
+
+/* ---------- Login ---------- */
+.loginPage, .view-startup-login { background: radial-gradient(900px 500px at 15% 10%, rgba(var(--nb-a1-rgb),.22), transparent 60%), radial-gradient(800px 500px at 90% 90%, rgba(var(--nb-a2-rgb),.14), transparent 60%), var(--nb-bg) !important; }
+
+/* ---------- Carrusel destacado (nebula-home.js) ---------- */
+.nbHero {
+  position: relative; margin-top: .8em !important; height: var(--nb-hero-height, min(68vh, 640px)); min-height: 380px; margin: 0 3.3% 1.6em; border-radius: 24px; overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.06); isolation: isolate;
+  animation: nbRise .7s var(--nb-ease) backwards;
+}
+.nbHero-slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .9s ease, visibility 0s linear .9s; }
+.nbHero-slide.is-active { opacity: 1; visibility: visible; transition: opacity .9s ease; z-index: 1; }
+.nbHero-bg { position: absolute; inset: 0; background-size: cover; background-position: center 25%; transform: scale(1.08); transition: transform 9s linear; }
+.nbHero-slide.is-active .nbHero-bg { transform: scale(1); }
+.nbHero-shade { position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(11,11,13,.92) 0%, rgba(11,11,13,.65) 32%, rgba(11,11,13,.1) 65%, transparent 100%),
+    linear-gradient(0deg, rgba(11,11,13,.85) 0%, transparent 40%); }
+.nbHero-body { position: absolute; left: 4%; bottom: 13%; width: min(46%, 620px); z-index: 2; }
+.nbHero-slide > .nbHero-body > * { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s var(--nb-ease); }
+.nbHero-slide.is-active > .nbHero-body > * { opacity: 1; transform: none; }
+.nbHero-slide.is-active .nbHero-meta { transition-delay: .12s; }
+.nbHero-slide.is-active .nbHero-genres { transition-delay: .18s; }
+.nbHero-slide.is-active .nbHero-overview { transition-delay: .24s; }
+.nbHero-slide.is-active .nbHero-actions { transition-delay: .3s; }
+.nbHero-title { margin: 0 0 .5em; font-size: clamp(1.8em, 4vw, 3.2em); font-weight: 800; letter-spacing: -.02em; line-height: 1.05; text-shadow: 0 4px 24px rgba(0,0,0,.6); }
+.nbHero.is-static .nbHero-dot.is-active i { animation: none; width: 100%; }
+.nbHero-logo { display: block; max-width: 100%; max-height: 22vh; width: auto; margin-bottom: 1.1em; object-fit: contain; object-position: left bottom;
+  filter: drop-shadow(0 0 1px rgba(255,255,255,.5)) drop-shadow(0 8px 24px rgba(0,0,0,.7)); }
+.nbHero-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .55em; font-size: .92em; color: #d4d4dc; font-weight: 500; }
+.nbHero-meta span + span::before { content: "•"; margin-right: .55em; color: rgba(255,255,255,.3); }
+.nbHero-star { color: #fbbf24; font-weight: 700; }
+.nbHero-genres { display: flex; flex-wrap: wrap; gap: .4em; margin: .8em 0; }
+.nbHero-chip { font-size: .78em; padding: .25em .8em; border-radius: 999px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(8px); }
+.nbHero-overview { margin: 0 0 1.3em; color: #cfcfd8; line-height: 1.6; font-size: .95em;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.nbHero-actions { display: flex; gap: .7em; flex-wrap: wrap; }
+.nbHero-btn { display: inline-flex; align-items: center; gap: .4em; padding: .75em 1.4em .75em 1.1em; border-radius: 999px; font-weight: 600;
+  color: #fff !important; text-decoration: none !important; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: transform .2s var(--nb-ease), background .2s ease, box-shadow .2s ease; }
+.nbHero-btn:hover { transform: translateY(-2px); background: rgba(255,255,255,.2); }
+.nbHero-btn--main { background: var(--nb-grad); color: var(--nb-on-accent) !important; border-color: transparent; box-shadow: 0 10px 30px rgba(var(--nb-a1-rgb),.45); }
+.nbHero-btn--main:hover { background: var(--nb-grad); box-shadow: 0 12px 38px rgba(var(--nb-a2-rgb),.45); }
+.nbHero-btn .material-icons { font-size: 1.4em; }
+.nbHero-nav { position: absolute; top: 50%; z-index: 3; width: 3em; height: 3em; margin-top: -1.5em; border-radius: 50%; border: 1px solid rgba(255,255,255,.15);
+  background: rgba(20,20,26,.45); color: #fff; backdrop-filter: blur(12px); cursor: pointer; display: grid; place-items: center;
+  opacity: 0; transition: opacity .25s ease, background .2s ease, transform .2s var(--nb-ease); }
+.nbHero:hover .nbHero-nav { opacity: 1; }
+.nbHero-nav:hover { background: rgba(var(--nb-a1-rgb),.55); transform: scale(1.08); }
+.nbHero-prev { left: 1.2em; } .nbHero-next { right: 1.2em; }
+.nbHero-dots { position: absolute; right: 4%; bottom: 7%; z-index: 3; display: flex; gap: .45em; }
+.nbHero-dot { width: 26px; height: 5px; padding: 0; border: 0; border-radius: 99px; background: rgba(255,255,255,.25); overflow: hidden; cursor: pointer; transition: width .3s var(--nb-ease), background .2s; }
+.nbHero-dot:hover { background: rgba(255,255,255,.45); }
+.nbHero-dot.is-active { width: 46px; }
+.nbHero-dot i { display: block; height: 100%; width: 0; background: var(--nb-grad); border-radius: inherit; }
+.nbHero-dot.is-active i { animation: nbDot var(--nb-int, 8s) linear forwards; }
+.nbHero.is-paused .nbHero-dot.is-active i { animation-play-state: paused; }
+@keyframes nbDot { to { width: 100%; } }
+@media (max-width: 800px) {
+  .nbHero { height: var(--nb-hero-height-mobile, 62vh); margin: 0 4% 1.2em; border-radius: 18px; }
+  .nbHero-body { left: 6%; right: 6%; width: auto; bottom: 14%; }
+  .nbHero-shade { background: linear-gradient(0deg, rgba(11,11,13,.95) 10%, rgba(11,11,13,.4) 60%, transparent); }
+  .nbHero-overview { -webkit-line-clamp: 2; font-size: .88em; }
+  .nbHero-logo { max-height: 14vh; }
+  .nbHero-nav { display: none; }
+  .nbHero-dots { left: 0; right: 0; justify-content: center; bottom: 4%; }
+}
+.trackSelections select { width: 100% !important; min-width: 0; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 3.2em), transparent calc(100% - 1.6em)); mask-image: linear-gradient(to right, #000 calc(100% - 3.2em), transparent calc(100% - 1.6em)); }
+.trackSelections select::picker(select) { position-area: block-end span-inline-end; position-try-fallbacks: flip-block; }
+.videoOsdBottom :focus-visible, .osdHeader :focus-visible { outline: none !important; box-shadow: 0 0 0 2px rgba(var(--nb-a2-rgb),.7) !important; }
+.videoOsdBottom :focus:not(:focus-visible) { outline: none !important; }
+
+/* ====================== v6: episodios, login, móvil ====================== */
+
+/* Ficha de temporada/episodio: si hay logo, se oculta también el nombre de la serie */
+@media (min-width: 901px) { .layout-desktop .itemDetailPage:has(.detailLogo:not(.hide)[style*="url"]) .detailRibbon h1.parentName { display: none !important; } }
+.layout-desktop .itemDetailPage:has(.detailLogo:not(.hide)[style*="url"]) .detailRibbon h3.itemName { font-size: 1.25em !important; font-weight: 700 !important; color: var(--nb-text) !important; }
+
+
+/* ajustes del carrusel para Emby: iconos de Emby y márgenes como las secciones.
+   Sin backdrop-filter dentro del carrusel: en el contenedor de scroll de Emby el desenfoque sobre el fondo animado
+   bloqueaba el pintado (se congelaba). Fondos semitransparentes en su lugar. */
+.nbHero--emby, .nbHero--emby * { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+.nbHero--emby .nbHero-btn:not(.nbHero-btn--main) { background: rgba(20,20,26,.6) !important; }
+.nbHero--emby .nbHero-nav { background: rgba(20,20,26,.7) !important; }
+.nbHero--emby .nbHero-chip { background: rgba(20,20,26,.55) !important; }
+/* sin zoom lento del fondo (Ken Burns): en el scroller de Emby esa transformación larga sobre una imagen grande atascaba el pintado */
+.nbHero--emby .nbHero-bg, .nbHero--emby .nbHero-slide.is-active .nbHero-bg { transform: none !important; transition: none !important; }
+.nbHero--emby { margin-left: 0 !important; margin-right: 0 !important; }
+.nbHero--emby .nbHero-ico { font-size: 1.35em; line-height: 1; }
+.nbHero--emby .nbHero-nav .nbHero-ico { font-size: 1.8em; }
+.view-home-home .sections > .nbHero { margin: .4em var(--nb-hero-side, 3.3%) 1.4em !important; }
+
+/* ---------- Movimiento reducido: casi instantáneo, NUNCA «none» (Emby espera el fin de las animaciones) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
+}

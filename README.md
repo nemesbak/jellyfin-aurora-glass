@@ -2,11 +2,12 @@
 
 # 🌌 Nebula
 
-**Un tema oscuro, redondeado y elegante para Jellyfin 12**
+**Un tema oscuro, redondeado y elegante para Jellyfin 12 y Emby**
 
 Efecto cristal · degradado violeta → cian · animaciones suaves · carrusel de portada
 
 ![Jellyfin 12](https://img.shields.io/badge/Jellyfin-12.x-8b5cf6?style=for-the-badge&logo=jellyfin&logoColor=white)
+![Emby 4.9+](https://img.shields.io/badge/Emby-4.9+-52b54b?style=for-the-badge&logo=emby&logoColor=white)
 ![Instalación](https://img.shields.io/badge/instalación-1_minuto-22d3ee?style=for-the-badge)
 ![Licencia MIT](https://img.shields.io/badge/licencia-MIT-555?style=for-the-badge)
 
@@ -155,6 +156,36 @@ Así quedaría el cuadro con el tema + color coral + barra mínima:
 
 ---
 
+## 📺 Nebula para Emby
+
+¿Usas **Emby**? Nebula también está para Emby 4.9 / 4.10, con la misma estética y el mismo carrusel.
+
+<table>
+<tr>
+<td width="50%"><img src="screenshots/emby-inicio.jpg" alt="Emby: portada con carrusel"><br><b>Portada</b> con el carrusel destacado y pestañas en píldora.</td>
+<td width="50%"><img src="screenshots/emby-ficha.jpg" alt="Emby: ficha"><br><b>Ficha</b> con botones de cristal, pistas en píldora y reparto en círculos.</td>
+</tr>
+</table>
+
+**1. El tema (1 minuto):** en Emby pulsa el engranaje **⚙ (Gestionar Emby Server) → Panel de control → General**, y en **«Personalizar CSS»** pega:
+
+```css
+@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/emby/nebula-emby.css');
+```
+
+Guarda y recarga con **Ctrl + F5**.
+
+**2. El carrusel (opcional):** exactamente igual que en Jellyfin ([ver abajo](#-carrusel-destacado-opcional)), solo cambia el nombre del contenedor por el de Emby. El instalador detecta solo si es Jellyfin o Emby:
+
+```bash
+docker run -d --name nebula-emby --restart unless-stopped -v /var/run/docker.sock:/var/run/docker.sock -e JELLYFIN_CONTAINER=emby docker:cli sh -c 'apk add -q --no-cache bash curl && curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/inject-docker.sh | bash -s -- "$JELLYFIN_CONTAINER" --watch'
+```
+
+> En Emby el carrusel admite los mismos ajustes `--nb-hero-*` (pégalos en «Personalizar CSS» debajo del `@import`). Las opciones de la carpeta `opciones/` son para la barra superior de Jellyfin 12 y no se aplican a Emby.
+> Si tienes **Jellyfin y Emby en el mismo servidor**, puedes tener los dos contenedores (`nebula` y `nebula-emby`) a la vez.
+
+---
+
 ## ❓ Preguntas frecuentes
 
 <details>
@@ -203,7 +234,7 @@ Elige **una** de estas formas, de la más fácil a la más manual:
 
 ### 🥇 Opción A — Una línea en Docker (recomendada)
 
-Si tu Jellyfin está en **Docker** (Unraid, Synology, Portainer, un servidor Linux…), abre la **terminal** de ese equipo y pega:
+Si tu Jellyfin (o Emby) está en **Docker** (Unraid, Synology, Portainer, un servidor Linux…), abre la **terminal** de ese equipo y pega:
 
 ```bash
 docker run -d --name nebula --restart unless-stopped -v /var/run/docker.sock:/var/run/docker.sock -e JELLYFIN_CONTAINER=jellyfin docker:cli sh -c 'apk add -q --no-cache bash curl && curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/inject-docker.sh | bash -s -- "$JELLYFIN_CONTAINER" --watch'
