@@ -36,7 +36,7 @@ nombre() { if [ "$T" = host ]; then echo "este equipo"; else echo "el contenedor
 detectar() {
   local d; WEB=""
   for d in ${NEBULA_WEB:-} $WEBS; do
-    if x test -f "$d/index.html" 2>/dev/null; then WEB="$d"; break; fi
+    if x test -f "$d/index.html" >/dev/null 2>&1; then WEB="$d"; break; fi
   done
   [ -n "$WEB" ] || return 1
   case "$WEB" in
@@ -109,10 +109,10 @@ destinos() {
       if [ "$HAY_DOCKER" = 1 ]; then
         docker ps --format '{{.Names}}' | while read -r c; do
           [ "$c" = nebula ] && continue
-          T="$c"; detectar && echo "$c"
+          T="$c"; detectar >/dev/null 2>&1 && echo "$c"
         done
       fi
-      if [ ! -f /.dockerenv ]; then T=host; detectar && echo host; fi ;;
+      if [ ! -f /.dockerenv ]; then T=host; detectar >/dev/null 2>&1 && echo host; fi ;;
     *) echo "$ARG" ;;
   esac
 }
