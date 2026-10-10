@@ -1232,5 +1232,6 @@ html.layout-desktop body:not(:has(.backdropImage.displayingBackdropImage)) .item
 
 /* Las tarjetas de Jellyfin traen «contain: content» (= layout + style + PAINT): el «paint» recorta todo a la caja
    de la tarjeta, así que al elevarse 4 px al pasar el ratón se cortaba el borde superior y la sombra.
-   Se mantiene la contención de layout/estilo (rendimiento) y se quita solo el recorte. */
-.card { contain: layout style !important; }
+   Se mantiene la contención completa en reposo (rendimiento) y se quita solo el recorte en la tarjeta activa. */
+/* Solo la tarjeta bajo el ratón pierde el recorte (todas a la vez hacían el scroll pesado en bibliotecas grandes). */
+.card:hover, .card:focus-within { contain: layout style !important; z-index: 2; }
