@@ -1187,19 +1187,36 @@ html.layout-desktop body:not(:has(.backdropImage.displayingBackdropImage)) .item
 .MuiCheckbox-root:not(.Mui-checked) { color: rgba(255,255,255,.45) !important; }
 .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track { background: var(--nb-a1) !important; opacity: .55 !important; }
 
-/* Póster de la ficha: no es una tarjeta para pulsar → sin elevación ni aro al pasar el ratón,
-   mismas esquinas en todas sus capas y un filo + sombra fijos para que no se funda con el fondo
-   (muchas pelis usan la misma imagen de póster y de fondo) */
+/* Póster de la ficha: efecto al pasar el ratón SIN cortes.
+   Se eleva la tarjeta entera (no solo la imagen), así no queda ninguna capa quieta detrás que parezca un margen cortado.
+   Mismas esquinas en todas las capas y sombra con extensión negativa (queda debajo, no oscurece las esquinas). */
 .itemDetailPage .detailImageContainer .cardScalable,
 .itemDetailPage .detailImageContainer .cardImageContainer,
 .itemDetailPage .detailImageContainer .cardPadder,
 .itemDetailPage .detailImageContainer .cardBox { border-radius: 20px !important; }
-.itemDetailPage .detailImageContainer .card:hover .cardScalable,
-.itemDetailPage .detailImageContainer .card .cardScalable { transform: none !important; }
-.itemDetailPage .detailImageContainer .cardScalable::after,
-.itemDetailPage .detailImageContainer .cardImageContainer::after { display: none !important; }
-.itemDetailPage .detailImageContainer .cardScalable { box-shadow: 0 24px 60px rgba(0,0,0,.55) !important; background: transparent !important; }
+.itemDetailPage .detailImageContainer .card .cardScalable,
+.itemDetailPage .detailImageContainer .card:hover .cardScalable { transform: none !important; }
+.itemDetailPage .detailImageContainer .cardBox {
+  transition: transform .45s var(--nb-ease), box-shadow .45s ease !important;
+  box-shadow: 0 30px 50px -22px rgba(0,0,0,.85) !important;
+}
+.itemDetailPage .detailImageContainer .card:hover .cardBox {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 40px 60px -24px rgba(0,0,0,.9), 0 18px 50px -18px rgba(var(--nb-a1-rgb),.55) !important;
+}
+.itemDetailPage .detailImageContainer .cardScalable { box-shadow: none !important; background: transparent !important; }
 .itemDetailPage .detailImageContainer .cardPadder { box-shadow: none !important; }
+/* aro de acento dentro del borde, con las mismas esquinas */
+.itemDetailPage .detailImageContainer .cardScalable::after {
+  display: block !important; border-radius: inherit !important; inset: 0 !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.1) !important; transition: box-shadow .35s ease !important;
+}
+.itemDetailPage .detailImageContainer .card:hover .cardScalable::after { box-shadow: inset 0 0 0 1.5px rgba(var(--nb-a1-rgb),.75) !important; }
+@media (max-width: 700px) {
+  .itemDetailPage .detailImageContainer .cardScalable, .itemDetailPage .detailImageContainer .cardImageContainer,
+  .itemDetailPage .detailImageContainer .cardPadder, .itemDetailPage .detailImageContainer .cardBox { border-radius: 12px !important; }
+  .itemDetailPage .detailImageContainer .card:hover .cardBox { transform: none !important; }
+}
 
 /* Relleno gris de Jellyfin bajo las imágenes: en los bordes redondeados asomaba un filo oscuro.
    Si la tarjeta tiene imagen, el relleno se vuelve transparente (sin imagen se queda: es el fondo del icono). */
