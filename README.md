@@ -165,6 +165,10 @@ Así quedaría el cuadro con el tema + color coral + barra mínima:
 <td width="50%"><img src="screenshots/emby-inicio.jpg" alt="Emby: portada con carrusel"><br><b>Portada</b> con el carrusel destacado y pestañas en píldora.</td>
 <td width="50%"><img src="screenshots/emby-ficha.jpg" alt="Emby: ficha"><br><b>Ficha</b> con botones de cristal, pistas en píldora y reparto en círculos.</td>
 </tr>
+<tr>
+<td width="50%"><img src="screenshots/emby-reproductor.jpg" alt="Emby: reproductor"><br><b>Reproductor</b> con el botón central en degradado, la barra de progreso violeta→cian y controles más legibles.</td>
+<td width="50%"><img src="screenshots/emby-capitulos.jpg" alt="Emby: capítulos en el reproductor"><br><b>Capítulos</b> y demás pestañas del reproductor en píldora.</td>
+</tr>
 </table>
 
 **1. El tema (1 minuto):** en Emby pulsa el engranaje **⚙ (Gestionar Emby Server) → Panel de control → General**, y en **«Personalizar CSS»** pega:
