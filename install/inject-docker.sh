@@ -21,7 +21,7 @@ C="${1:-${JELLYFIN_CONTAINER:-jellyfin}}"; MODO="${2:-}"
 WEB="${WEB:-/jellyfin/jellyfin-web}"
 CDN="https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-aurora-glass@main"
 REPO="https://raw.githubusercontent.com/nemesbak/jellyfin-aurora-glass/main"
-JS_URL="${JS_URL:-$CDN/aurora-home.js}"
+JS_URL="${JS_URL:-$REPO/aurora-home.js}"   # GitHub directo: se actualiza en minutos (jsDelivr @main tarda horas)
 DIR="${AURORA_DIR:-$HOME/.aurora-glass}"
 
 corriendo() { docker inspect -f '{{.State.Running}}' "$C" 2>/dev/null | grep -q true; }
