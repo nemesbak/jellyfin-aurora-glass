@@ -1155,3 +1155,31 @@ html.layout-desktop body:not(:has(.backdropImage.displayingBackdropImage)) .item
 .MuiMenuItem-root:focus-visible, .MuiMenuItem-root.Mui-focusVisible, .actionSheetMenuItem:focus-visible, .listItem:focus-visible {
   outline: none !important; background: rgba(var(--nb-a1-rgb),.16) !important; box-shadow: inset 0 0 0 1px rgba(var(--nb-a1-rgb),.55) !important;
 }
+
+/* Paneles anidados dentro de menús/desplegables (Filtro, Ordenar, Ajustes de vista…):
+   la regla general de .MuiPaper-root les daba fondo, borde y esquinas a cada opción → «cajas» sueltas */
+.MuiPopover-paper .MuiPaper-root, .MuiMenu-paper .MuiPaper-root, .MuiDrawer-paper .MuiPaper-root, .MuiDialog-paper .MuiAccordion-root {
+  background: transparent !important; border: 0 !important; box-shadow: none !important; border-radius: 10px !important; margin: 0 !important;
+}
+.MuiPopover-paper .MuiAccordion-root::before, .MuiMenu-paper .MuiAccordion-root::before, .MuiDialog-paper .MuiAccordion-root::before { display: none !important; }
+.MuiPopover-paper .MuiAccordionSummary-root, .MuiDialog-paper .MuiAccordionSummary-root {
+  background: transparent !important; border-radius: 10px !important; min-height: 44px !important; transition: background .15s ease;
+}
+.MuiPopover-paper .MuiAccordionSummary-root:hover, .MuiDialog-paper .MuiAccordionSummary-root:hover { background: rgba(255,255,255,.06) !important; }
+.MuiPopover-paper .MuiAccordion-root.Mui-expanded, .MuiDialog-paper .MuiAccordion-root.Mui-expanded { background: rgba(255,255,255,.035) !important; }
+.MuiPopover-paper .MuiAccordion-root.Mui-expanded > .MuiAccordion-heading .MuiAccordionSummary-root,
+.MuiPopover-paper .MuiAccordion-root.Mui-expanded > .MuiAccordionSummary-root { color: var(--nb-a2) !important; }
+.MuiPopover-paper .MuiAccordionDetails-root { padding: 0 8px 8px !important; }
+.MuiPopover-paper .MuiAccordionSummary-content { margin: 10px 0 10px 4px !important; }
+
+/* Opción activa en menús (orden elegido con su flecha, vista marcada con ✓) */
+.MuiMenu-paper .MuiMenuItem-root:has(svg[data-testid="ArrowUpwardIcon"], svg[data-testid="ArrowDownwardIcon"], svg[data-testid="CheckIcon"]),
+.MuiMenu-paper .MuiMenuItem-root.Mui-selected {
+  background: rgba(var(--nb-a1-rgb),.16) !important; color: #fff !important; font-weight: 600;
+}
+.MuiMenu-paper .MuiMenuItem-root svg[data-testid="ArrowUpwardIcon"], .MuiMenu-paper .MuiMenuItem-root svg[data-testid="ArrowDownwardIcon"],
+.MuiMenu-paper .MuiMenuItem-root svg[data-testid="CheckIcon"] { color: var(--nb-a2) !important; }
+/* Casillas y radios de MUI con el acento */
+.MuiCheckbox-root.Mui-checked, .MuiRadio-root.Mui-checked, .MuiSwitch-switchBase.Mui-checked { color: var(--nb-a1) !important; }
+.MuiCheckbox-root:not(.Mui-checked) { color: rgba(255,255,255,.45) !important; }
+.MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track { background: var(--nb-a1) !important; opacity: .55 !important; }
