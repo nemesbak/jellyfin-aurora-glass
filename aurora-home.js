@@ -187,10 +187,24 @@
     }, 500);
   }, true);
 
+  // Fallo de Jellyfin 12: los menús nuevos (MUI: «Más», usuario, panel…) no se cierran con el botón Atrás.
+  // Al navegar se cambiaba de página pero el menú seguía montado con una capa invisible que bloqueaba todos
+  // los toques (muy típico con el Atrás de Android). Al cambiar de página, los cerramos como si se tocara fuera.
+  function cerrarMenusMui() {
+    Array.prototype.forEach.call(document.querySelectorAll('.MuiModal-root:not(.MuiModal-hidden)'), function (m) {
+      var b = m.querySelector('.MuiBackdrop-root');
+      if (!b) return;
+      ['mousedown', 'mouseup', 'click'].forEach(function (t) { b.dispatchEvent(new MouseEvent(t, { bubbles: true, cancelable: true })); });
+    });
+  }
+  window.addEventListener('popstate', function () { setTimeout(cerrarMenusMui, 0); });
+  window.addEventListener('hashchange', function () { setTimeout(cerrarMenusMui, 0); });
+
   var pend = false;
   new MutationObserver(function () {
     if (pend) return; pend = true;
-    requestAnimationFrame(function () { pend = false; cssPanel(); if (enHome()) montar(); else autoplay(); });
+    // en segundo plano no hay fotogramas (rAF congelado): usamos un temporizador
+    (document.hidden ? function (f) { setTimeout(f, 50); } : requestAnimationFrame)(function () { pend = false; cssPanel(); if (enHome()) montar(); else autoplay(); });
   }).observe(document.documentElement, { childList: true, subtree: true });
-  window.addEventListener('hashchange', montar);
+  window.addEventListener('hashchange', function () { cssPanel(); montar(); });
 })();
