@@ -337,10 +337,11 @@ body { color: var(--ag-text); }
 }
 
 /* Fondo con un leve resplandor de color */
-html { background:
-  radial-gradient(1200px 600px at 10% -10%, rgba(var(--ag-a1-rgb),.10), transparent 60%),
-  radial-gradient(1000px 500px at 100% 0%, rgba(var(--ag-a2-rgb),.07), transparent 60%),
-  var(--ag-bg) !important; background-attachment: fixed !important; }
+html { background: var(--ag-bg) !important; }
+body::before { content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(var(--ag-a1-rgb),.10), transparent 60%),
+    radial-gradient(1000px 500px at 100% 0%, rgba(var(--ag-a2-rgb),.07), transparent 60%); }
 
 /* ---------- Botones con acento ---------- */
 .detailButton.btnPlay, .cardOverlayFab-primary, .button-submit, .emby-button.button-submit, .MuiButton-containedPrimary {
@@ -1041,7 +1042,7 @@ html.layout-desktop body:not(:has(.backdropImage.displayingBackdropImage)) .item
 .alphaPickerButton { font-size: .72em !important; font-weight: 600; width: 1.9em; height: 1.9em; padding: 0 !important; display: grid !important; place-items: center; border-radius: 50% !important; }
 
 /* Tarjetas: recorte limpio de las esquinas (sin que el color/imagen asome por fuera) */
-.cardScalable { isolation: isolate; -webkit-backface-visibility: hidden; backface-visibility: hidden; transform: translateZ(0); }
+.cardScalable { contain: paint; }
 .card:hover .cardImageContainer { transform: none !important; }                 /* sin zoom interno: era lo que se salía */
 .cardScalable::after { box-shadow: inset 0 0 0 1px rgba(255,255,255,.06) !important; z-index: 3; }
 .card:hover .cardScalable { box-shadow: 0 12px 26px -10px rgba(0,0,0,.7), 0 0 26px rgba(var(--ag-a1-rgb),.28) !important; }
@@ -1097,3 +1098,47 @@ html.layout-desktop body:not(:has(.backdropImage.displayingBackdropImage)) .item
 .MuiButtonGroup-text, .MuiButtonGroup-root:not(.MuiButtonGroup-contained) { gap: 2px; }
 .MuiAppBar-root .MuiButtonGroup-root .MuiButton-text { min-width: 2.5em !important; height: 2.5em; padding: 0 .6em !important; border-radius: 999px !important; }
 .MuiAppBar-root .MuiButtonGroup-root .MuiButton-text:hover { background: rgba(255,255,255,.08) !important; color: var(--ag-text) !important; }
+
+/* ====================== Rendimiento ====================== */
+/* Desenfoque solo donde aporta (cabecera, menús, diálogos, reproductor). En elementos pequeños, color sólido. */
+.cardOverlayButton, .cardOverlayFab-primary, .detailButton:not(.btnPlay), .agHero-chip, .agHero-btn, .agHero-nav,
+.trackSelections .selectContainer, .emby-scrollbuttons .paper-icon-button-light, .alphaPicker.alphaPicker-vertical, .alphaPicker-fixed,
+.sliderBubble, .skip-button, .upNextContainer, #searchTextInput, .searchFields .emby-input {
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+}
+.cardOverlayButton { background: rgba(24,24,30,.82) !important; }
+.detailButton:not(.btnPlay) { background: rgba(30,30,38,.78) !important; }
+.agHero-chip { background: rgba(20,20,26,.6) !important; }
+.agHero-btn:not(.agHero-btn--main) { background: rgba(30,30,38,.72) !important; }
+.agHero-nav { background: rgba(20,20,26,.7) !important; }
+.alphaPicker.alphaPicker-vertical, .alphaPicker-fixed { background: rgba(20,20,26,.85) !important; }
+.skip-button, button.skip-button, #skipIntro { background: rgba(20,20,26,.88) !important; }
+.skinHeader, .MuiAppBar-root { -webkit-backdrop-filter: blur(12px) !important; backdrop-filter: blur(12px) !important; }
+
+/* Reflejo diagonal: solo existe mientras pasas el ratón (antes: un pseudo-elemento por tarjeta siempre) */
+.cardImageContainer::after { content: none !important; }
+.card:hover .cardImageContainer::after { content: "" !important; animation: agShine .8s var(--ag-ease) forwards; transform: translateX(-120%); transition: none !important; }
+@keyframes agShine { to { transform: translateX(120%); } }
+
+/* Entradas más rápidas: la navegación no espera a las animaciones */
+.homeSectionsContainer { animation: agFade .25s ease both !important; }
+.itemsContainer.vertical-wrap { animation: none !important; }
+.searchResults .verticalSection { animation-duration: .25s !important; animation-delay: 0s !important; }
+.itemDetailPage:not(.hide) .itemBackdrop { animation: agFade .45s ease both !important; }
+.itemDetailPage:not(.hide) .detailLogo,
+.itemDetailPage:not(.hide) .detailImageContainer,
+.itemDetailPage:not(.hide) .infoWrapper,
+.itemDetailPage:not(.hide) .mainDetailButtons,
+.itemDetailPage:not(.hide) .detailPagePrimaryContent .detailSection > * { animation-duration: .35s !important; animation-delay: 0s !important; }
+.itemDetailPage:not(.hide) .detailVerticalSection { animation: agFade .3s ease .05s both !important; }
+.itemDetailPage:not(.hide) .mainDetailButtons > .detailButton:not(.hide) { animation-duration: .3s !important; }
+.mainDetailButtons > .detailButton:nth-child(n) { animation-delay: 0s !important; }
+.mainDetailButtons > .detailButton:nth-child(2) { animation-delay: .03s !important; }
+.mainDetailButtons > .detailButton:nth-child(3) { animation-delay: .06s !important; }
+.mainDetailButtons > .detailButton:nth-child(4) { animation-delay: .09s !important; }
+.mainDetailButtons > .detailButton:nth-child(n+5) { animation-delay: .12s !important; }
+.agHero { animation-duration: .35s !important; }
+
+/* La portada no pinta las filas que están fuera de pantalla hasta acercarte */
+.homeSectionsContainer > .verticalSection:nth-child(n+4) { content-visibility: auto; contain-intrinsic-size: auto 420px; }
+.detailVerticalSection:nth-child(n+3) { content-visibility: auto; contain-intrinsic-size: auto 380px; }
