@@ -59,31 +59,67 @@ También puedes cambiar el color tú mismo:
 :root { --ag-a1: #ff6b6b; --ag-a1-rgb: 255,107,107; --ag-a2: #ffa94d; --ag-a2-rgb: 255,169,77; }
 ```
 
-### 3. Carrusel destacado y tema en el panel (opcional, requiere JavaScript)
+### 3. Carrusel destacado (opcional)
 
-Jellyfin no permite JavaScript desde el CSS personalizado. El carrusel de la portada (títulos recientes no vistos con logo, autoavance, «Ver ahora» reproduce directamente) y aplicar el tema también al **panel de administración** (que en la 12.x ignora el CSS personalizado) los hace `aurora-home.js`.
+Carrusel a pantalla completa en la portada: fondo, logo de la película/serie, año, duración, nota, géneros, sinopsis y botones «Ver ahora» (reproduce directamente) y «Más info». Avanza solo, se pausa al pasar el ratón y en el móvil se desliza con el dedo. De paso aplica el tema también al **panel de administración** (la 12.x ignora ahí el CSS personalizado).
 
-**Docker:**
+Jellyfin no deja meter JavaScript desde el CSS personalizado, así que elige **una** de estas formas:
+
+**A) Docker — una línea** (en el servidor, cambia `jellyfin` por el nombre de tu contenedor):
 
 ```bash
-curl -fsSLO https://raw.githubusercontent.com/nemesbak/jellyfin-aurora-glass/main/install/inject-docker.sh
-chmod +x inject-docker.sh
-./inject-docker.sh jellyfin      # nombre de tu contenedor
+curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-aurora-glass/main/install/inject-docker.sh | bash -s -- jellyfin --cron
 ```
 
-Las actualizaciones de la imagen de Jellyfin sobrescriben la web; programa el script en cron (p. ej. cada 10 min) y se vuelve a enganchar solo:
+Lo instala y, con `--cron`, lo vuelve a enganchar cada 10 min (las actualizaciones de la imagen de Jellyfin borran la web). Sin `--cron` solo lo instala una vez.
+En **Unraid** el crontab se borra al reiniciar: pon la misma línea en *User Scripts* («At Startup of Array») o en `/boot/config/go`.
 
-```
-*/10 * * * * /ruta/inject-docker.sh jellyfin >/dev/null 2>&1
-```
+**B) Plugin *JavaScript Injector*** (sin tocar el servidor): instala el plugin desde el catálogo, crea un script nuevo y pega el contenido de [`install/cargador.js`](install/cargador.js). Carga siempre la última versión.
 
-**Sin Docker:** copia `aurora-home.js` a la carpeta `jellyfin-web` y añade antes de `</body>` en su `index.html`:
+**C) A mano:** copia `aurora-home.js` a la carpeta `jellyfin-web` y añade antes de `</body>` en su `index.html`:
 
 ```html
 <script defer src="aurora-home.js"></script>
 ```
 
-Si ya usas un plugin de inyección de JavaScript (p. ej. *JavaScript Injector*), puedes pegar ahí el contenido de `aurora-home.js`.
+#### Personalizar el carrusel
+
+Todo se ajusta desde el mismo **CSS personalizado**, debajo del `@import` del tema. Pon solo lo que quieras cambiar:
+
+```css
+:root {
+  --ag-hero-count: 8;              /* nº de títulos (0 = sin carrusel) */
+  --ag-hero-interval: 8;           /* segundos por diapositiva (0 = no avanza solo) */
+  --ag-hero-source: recent;        /* recent · toprated · random · favorites */
+  --ag-hero-types: "Movie,Series"; /* "Movie", "Series" o ambos */
+  --ag-hero-library: "";           /* biblioteca(s) por nombre: "Películas" o "Películas,Anime"; vacío = todas */
+  --ag-hero-days: 120;             /* con recent: añadidos en los últimos N días (0 = sin límite) */
+  --ag-hero-unwatched: 1;          /* 1 = solo no vistos */
+  --ag-hero-logo: 1;               /* 1 = solo títulos con logo · 0 = también sin logo (muestra el nombre) */
+  --ag-hero-overview: 1;           /* sinopsis */
+  --ag-hero-genres: 1;             /* géneros */
+  --ag-hero-rating: 1;             /* nota ★ */
+  --ag-hero-buttons: 1;            /* botones «Ver ahora» / «Más info» */
+  --ag-hero-play: 1;               /* 1 = «Ver ahora» reproduce; 0 = solo abre la ficha */
+  --ag-hero-height: min(68vh, 640px);  /* alto en ordenador */
+  --ag-hero-height-mobile: 62vh;       /* alto en móvil */
+}
+```
+
+Ejemplos:
+
+```css
+/* Las 10 mejor valoradas de la biblioteca «Películas», cambiando cada 12 s */
+:root { --ag-hero-count: 10; --ag-hero-source: toprated; --ag-hero-library: "Películas"; --ag-hero-interval: 12; }
+
+/* Solo series al azar, sin sinopsis y más bajo */
+:root { --ag-hero-types: "Series"; --ag-hero-source: random; --ag-hero-overview: 0; --ag-hero-height: 50vh; }
+
+/* Los favoritos de cada usuario */
+:root { --ag-hero-source: favorites; --ag-hero-unwatched: 0; }
+```
+
+Guarda y recarga con **Ctrl+F5**. Los colores del carrusel siguen al acento del tema (opciones `acento-*.css`).
 
 ## Compatibilidad
 
@@ -93,7 +129,13 @@ Si ya usas un plugin de inyección de JavaScript (p. ej. *JavaScript Injector*),
 
 ## Desinstalar
 
-Borra las líneas del CSS personalizado. Para el carrusel, quita la línea `<script … aurora-home.js>` del `index.html` (o deja que la próxima actualización de la imagen lo haga) y elimina el cron.
+Borra las líneas del CSS personalizado. Carrusel en Docker:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-aurora-glass/main/install/inject-docker.sh | bash -s -- jellyfin --uninstall
+```
+
+Con *JavaScript Injector*, borra el script del plugin.
 
 ## Licencia
 
