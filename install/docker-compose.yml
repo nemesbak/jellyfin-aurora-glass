@@ -1,0 +1,15 @@
+# Aurora Glass — añade este servicio al docker-compose.yml donde tengas Jellyfin.
+# Pone el carrusel, lo vuelve a poner tras cada actualización de Jellyfin y, si le das una
+# clave de API, también el tema en «CSS personalizado». Sin tocar nada más.
+services:
+  aurora-glass:
+    image: docker:cli
+    container_name: aurora-glass
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - JELLYFIN_CONTAINER=jellyfin   # nombre de tu contenedor de Jellyfin
+      - JELLYFIN_API_KEY=             # opcional: Panel → Claves de API (pone el tema en CSS personalizado)
+      - AURORA_OPTIONS=               # opcional: p. ej. cabecera-minima,acento-coral
+    entrypoint: ["sh", "-c", "apk add -q --no-cache bash curl && curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-aurora-glass/main/install/inject-docker.sh | bash -s -- \"$$JELLYFIN_CONTAINER\" --watch"]

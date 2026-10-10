@@ -15,7 +15,40 @@ Tema oscuro, minimalista y redondeado para la web de **Jellyfin 12.x**, con acen
 - **Login** de cristal, **búsqueda** grande, **guía de TV** con celdas redondeadas, **favoritos vacíos** con aviso, **panel de administración** a juego.
 - **Móvil / pantallas estrechas** adaptado.
 
-## Instalación
+## Instalación rápida (Docker) — todo en una línea
+
+Instala **tema + carrusel**, y los vuelve a poner solos cada vez que se actualiza Jellyfin. Necesitas una clave de API (*Panel de control → Claves de API → +*). Cambia `jellyfin` si tu contenedor se llama de otra forma.
+
+**Docker Compose:** añade este servicio a tu `docker-compose.yml` (o copia [`install/docker-compose.yml`](install/docker-compose.yml)) y haz `docker compose up -d`:
+
+```yaml
+  aurora-glass:
+    image: docker:cli
+    container_name: aurora-glass
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - JELLYFIN_CONTAINER=jellyfin
+      - JELLYFIN_API_KEY=tu_clave_de_api
+      - AURORA_OPTIONS=               # opcional: cabecera-minima,acento-coral…
+    entrypoint: ["sh", "-c", "apk add -q --no-cache bash curl && curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-aurora-glass/main/install/inject-docker.sh | bash -s -- \"$$JELLYFIN_CONTAINER\" --watch"]
+```
+
+**Docker (una línea):**
+
+```bash
+docker run -d --name aurora-glass --restart unless-stopped -v /var/run/docker.sock:/var/run/docker.sock -e JELLYFIN_CONTAINER=jellyfin -e JELLYFIN_API_KEY=tu_clave_de_api docker:cli sh -c 'apk add -q --no-cache bash curl && curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-aurora-glass/main/install/inject-docker.sh | bash -s -- "$JELLYFIN_CONTAINER" --watch'
+```
+
+Funciona igual en **Unraid**: pégala en la terminal (sobrevive a reinicios gracias a `--restart unless-stopped`).
+
+Recarga la web con **Ctrl+F5** y listo. Notas:
+- El tema solo se escribe en *CSS personalizado* si **aún no tiene** Aurora Glass; si ya tenías CSS propio, se conserva debajo. A partir de ahí lo editas tú a mano (opciones, colores, carrusel…) y nunca se sobrescribe.
+- Sin `JELLYFIN_API_KEY` instala solo el carrusel; el tema lo pegas tú (paso 1 de abajo).
+- Desinstalar: `docker rm -f aurora-glass` y luego la línea de [Desinstalar](#desinstalar).
+
+## Instalación manual
 
 ### 1. El tema (solo CSS)
 
@@ -65,7 +98,7 @@ Carrusel a pantalla completa en la portada: fondo, logo de la película/serie, a
 
 Jellyfin no deja meter JavaScript desde el CSS personalizado, así que elige **una** de estas formas:
 
-**A) Docker — una línea** (en el servidor, cambia `jellyfin` por el nombre de tu contenedor):
+**A) Docker — una línea** (si no usas la [instalación rápida](#instalación-rápida-docker--todo-en-una-línea); en el servidor, cambia `jellyfin` por el nombre de tu contenedor):
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-aurora-glass/main/install/inject-docker.sh | bash -s -- jellyfin --cron

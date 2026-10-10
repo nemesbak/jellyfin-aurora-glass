@@ -176,6 +176,17 @@
     }).catch(function () { cssPedido = false; });
   }
 
+  // Red de seguridad: Jellyfin cierra menús y diálogos al terminar su animación de salida («animationend»).
+  // Si esa animación no llega a terminar (movimiento reducido, ahorro de energía, otro CSS…), el menú
+  // se quedaba abierto tapando todo. Si medio segundo después de empezar a cerrarse sigue ahí, lo rematamos.
+  document.addEventListener('closing', function (e) {
+    var d = e.target;
+    if (!d || !d.classList || !d.classList.contains('dialog')) return;
+    setTimeout(function () {
+      if (d.isConnected && !d.classList.contains('hide')) d.dispatchEvent(new Event('animationend'));
+    }, 500);
+  }, true);
+
   var pend = false;
   new MutationObserver(function () {
     if (pend) return; pend = true;
