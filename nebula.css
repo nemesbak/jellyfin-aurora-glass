@@ -286,7 +286,7 @@ body { color: var(--nb-text); }
 .skip-button, button.skip-button { border-radius: 999px !important; background: rgba(255,255,255,.92) !important; color: #000 !important; }
 
 /* Entrada suave */
-.homeSectionsContainer, .itemsContainer.vertical-wrap { animation: nbFade .4s ease both; }
+.homeSectionsContainer, .itemsContainer.vertical-wrap { animation: nbFade .4s ease backwards; }
 @keyframes nbFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
 :focus-visible { outline: 2px solid rgba(255,255,255,.7) !important; outline-offset: 2px; }
@@ -473,18 +473,18 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -2; pointer-even
 @media (min-width: 901px) { .layout-desktop .itemDetailPage:has(.detailLogo:not(.hide)[style*="url"]) .detailRibbon h1.itemName { display: none !important; } }
 
 /* ---------- Animación de entrada de la ficha ---------- */
-.itemDetailPage:not(.hide) .itemBackdrop { animation: nbZoomOut 1.2s var(--nb-ease) both; }
-.itemDetailPage:not(.hide) .detailLogo { animation: nbRise .7s var(--nb-ease) .15s both; }
-.itemDetailPage:not(.hide) .detailImageContainer { animation: nbRise .7s var(--nb-ease) .05s both; }
-.itemDetailPage:not(.hide) .infoWrapper { animation: nbRise .6s var(--nb-ease) .22s both; }
-.itemDetailPage:not(.hide) .mainDetailButtons { animation: nbRise .6s var(--nb-ease) .3s both; }
-.itemDetailPage:not(.hide) .detailPagePrimaryContent .detailSection > * { animation: nbRise .6s var(--nb-ease) .38s both; }
-.itemDetailPage:not(.hide) .detailVerticalSection { animation: nbFade .6s ease .5s both; }
+.itemDetailPage:not(.hide) .itemBackdrop { animation: nbZoomOut 1.2s var(--nb-ease) backwards; }
+.itemDetailPage:not(.hide) .detailLogo { animation: nbRise .7s var(--nb-ease) .15s backwards; }
+.itemDetailPage:not(.hide) .detailImageContainer { animation: nbRise .7s var(--nb-ease) .05s backwards; }
+.itemDetailPage:not(.hide) .infoWrapper { animation: nbRise .6s var(--nb-ease) .22s backwards; }
+.itemDetailPage:not(.hide) .mainDetailButtons { animation: nbRise .6s var(--nb-ease) .3s backwards; }
+.itemDetailPage:not(.hide) .detailPagePrimaryContent .detailSection > * { animation: nbRise .6s var(--nb-ease) .38s backwards; }
+.itemDetailPage:not(.hide) .detailVerticalSection { animation: nbFade .6s ease .5s backwards; }
 @keyframes nbZoomOut { from { transform: scale(1.08); opacity: .4; } to { transform: none; opacity: 1; } }
 @keyframes nbRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 
 /* Botones principales: aparecen uno detrás de otro */
-.itemDetailPage:not(.hide) .mainDetailButtons > .detailButton:not(.hide) { animation: nbPopIn .45s var(--nb-ease) both; }
+.itemDetailPage:not(.hide) .mainDetailButtons > .detailButton:not(.hide) { animation: nbPopIn .45s var(--nb-ease) backwards; }
 .mainDetailButtons > .detailButton:nth-child(1) { animation-delay: .32s !important; }
 .mainDetailButtons > .detailButton:nth-child(2) { animation-delay: .37s !important; }
 .mainDetailButtons > .detailButton:nth-child(3) { animation-delay: .42s !important; }
@@ -700,7 +700,7 @@ select { color-scheme: dark; }
 .nbHero {
   position: relative; margin-top: .8em !important; height: var(--nb-hero-height, min(68vh, 640px)); min-height: 380px; margin: 0 3.3% 1.6em; border-radius: 24px; overflow: hidden;
   box-shadow: 0 30px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.06); isolation: isolate;
-  animation: nbRise .7s var(--nb-ease) both;
+  animation: nbRise .7s var(--nb-ease) backwards;
 }
 .nbHero-slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .9s ease, visibility 0s linear .9s; }
 .nbHero-slide.is-active { opacity: 1; visibility: visible; transition: opacity .9s ease; z-index: 1; }
@@ -837,7 +837,7 @@ select { color-scheme: dark; }
 #loginPage .manualLoginForm {
   background: rgba(22,22,28,.7); backdrop-filter: blur(22px) saturate(150%); -webkit-backdrop-filter: blur(22px) saturate(150%);
   border: 1px solid rgba(255,255,255,.09); border-radius: 22px; padding: 1.8em 1.8em 1.4em !important;
-  box-shadow: 0 30px 80px rgba(0,0,0,.55); animation: nbRise .6s var(--nb-ease) both;
+  box-shadow: 0 30px 80px rgba(0,0,0,.55); animation: nbRise .6s var(--nb-ease) backwards;
 }
 #loginPage h1, #loginPage .sectionTitle { font-weight: 700 !important; letter-spacing: -.02em; text-align: center; }
 #loginPage .inputContainer { margin-bottom: 1.1em !important; }
@@ -923,7 +923,7 @@ select { color-scheme: dark; }
 }
 #searchTextInput:focus, .searchFields .emby-input:focus { background: rgba(255,255,255,.08) !important; border-color: rgba(var(--nb-a1-rgb),.7) !important; box-shadow: 0 0 0 4px rgba(var(--nb-a1-rgb),.18), 0 10px 30px rgba(0,0,0,.35) !important; }
 .searchFieldsInner:focus-within .searchfields-icon { color: var(--nb-a2); }
-.searchResults .verticalSection { animation: nbRise .45s var(--nb-ease) both; }
+.searchResults .verticalSection { animation: nbRise .45s var(--nb-ease) backwards; }
 .searchResults .verticalSection:nth-child(2) { animation-delay: .06s; }
 .searchResults .verticalSection:nth-child(3) { animation-delay: .12s; }
 .searchResults .verticalSection:nth-child(4) { animation-delay: .18s; }
@@ -1124,17 +1124,19 @@ html.layout-desktop body:not(:has(.backdropImage.displayingBackdropImage)) .item
 .card:hover .cardImageContainer::after { content: "" !important; animation: nbShine .8s var(--nb-ease) forwards; transform: translateX(-120%); transition: none !important; }
 @keyframes nbShine { to { transform: translateX(120%); } }
 
-/* Entradas más rápidas: la navegación no espera a las animaciones */
-.homeSectionsContainer { animation: nbFade .25s ease both !important; }
+/* Entradas más rápidas: la navegación no espera a las animaciones.
+   Todas con fill «backwards»: al acabar no dejan transform puesto (un transform, aunque sea identidad,
+   cambia la referencia de los position:absolute/fixed de dentro → el póster de la ficha en móvil se descolocaba) */
+.homeSectionsContainer { animation: nbFade .25s ease backwards !important; }
 .itemsContainer.vertical-wrap { animation: none !important; }
 .searchResults .verticalSection { animation-duration: .25s !important; animation-delay: 0s !important; }
-.itemDetailPage:not(.hide) .itemBackdrop { animation: nbFade .45s ease both !important; }
+.itemDetailPage:not(.hide) .itemBackdrop { animation: nbFade .45s ease backwards !important; }
 .itemDetailPage:not(.hide) .detailLogo,
 .itemDetailPage:not(.hide) .detailImageContainer,
 .itemDetailPage:not(.hide) .infoWrapper,
 .itemDetailPage:not(.hide) .mainDetailButtons,
 .itemDetailPage:not(.hide) .detailPagePrimaryContent .detailSection > * { animation-duration: .35s !important; animation-delay: 0s !important; }
-.itemDetailPage:not(.hide) .detailVerticalSection { animation: nbFade .3s ease .05s both !important; }
+.itemDetailPage:not(.hide) .detailVerticalSection { animation: nbFade .3s ease .05s backwards !important; }
 .itemDetailPage:not(.hide) .mainDetailButtons > .detailButton:not(.hide) { animation-duration: .3s !important; }
 .mainDetailButtons > .detailButton:nth-child(n) { animation-delay: 0s !important; }
 .mainDetailButtons > .detailButton:nth-child(2) { animation-delay: .03s !important; }
