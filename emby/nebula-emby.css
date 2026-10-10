@@ -379,13 +379,15 @@ html {
   .btnUserRating .ratingbutton-icon-withrating { background: rgba(251,113,133,.16) !important; border-color: rgba(251,113,133,.45) !important; }
   .btnPlaystate .playstatebutton-icon-played { background: rgba(52,211,153,.14) !important; border-color: rgba(52,211,153,.45) !important; }
 }
-/* móvil: los menús cortos (audio, subtítulos…) como hoja inferior ajustada al contenido, no estirada */
-.dialog-fullscreen-lowres:has(> .actionSheetScroller) {
+/* móvil: menús sin botón de anclaje como hoja inferior ajustada al contenido; los anclados (audio, subtítulos…)
+   flotan junto al botón como en el ordenador (clase nbPop, la pone nebula-emby-home.js) */
+.dialog-fullscreen-lowres.nbPop { border-radius: 16px !important; padding: 6px 0 !important; box-shadow: 0 18px 50px rgba(0,0,0,.55), 0 0 0 1px var(--nb-line) !important; }
+.dialog-fullscreen-lowres:has(> .actionSheetScroller):not(.nbPop) {
   min-height: 0 !important; height: auto !important; top: auto !important; bottom: 0 !important;
   border-radius: 22px 22px 0 0 !important; padding: 14px 0 calc(8px + env(safe-area-inset-bottom, 0px)) !important;
   box-shadow: 0 -12px 40px rgba(0,0,0,.55) !important;
 }
-.dialog-fullscreen-lowres:has(> .actionSheetScroller)::before {
+.dialog-fullscreen-lowres:has(> .actionSheetScroller):not(.nbPop)::before {
   content: ""; position: absolute; top: 6px; left: 50%; width: 38px; height: 4px; margin-left: -19px; border-radius: 4px; background: rgba(255,255,255,.22);
 }
 /* sin fondo oscuro detrás, el menú lateral y los menús flotantes se separan con sombra */
@@ -396,6 +398,12 @@ html {
   background: linear-gradient(135deg, rgba(var(--nb-a1-rgb),.35), rgba(var(--nb-a2-rgb),.15)) !important; color: #fff !important; border-radius: 12px !important;
 }
 .listItem:focus .listItem-content-bg * { color: #fff !important; }
+/* móvil: pestañas del reproductor en una sola fila deslizable, no en tres líneas */
+@media (max-width: 600px) {
+  .videoosd-tabsslider { flex-wrap: nowrap !important; overflow-x: auto !important; scrollbar-width: none; gap: .2em; }
+  .videoosd-tabsslider::-webkit-scrollbar { display: none; }
+  .videoosd-tabsslider .videoosd-tab-button { flex-shrink: 0 !important; white-space: nowrap !important; padding: .4em .85em !important; margin: 0 !important; }
+}
 /* pantallas táctiles: el «hover» se queda pegado tras tocar, así que nada de elevar ni girar; solo la pulsación */
 @media (hover: none) {
   .card-hoverable:hover .cardBox, .detailButton:hover, .raised:hover, .nbHero-btn:hover, .detailButton.fab:hover .md-icon { transform: none !important; }

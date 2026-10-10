@@ -158,8 +158,41 @@
     setTimeout(function () { b.click(); }, 350);
   }
 
+  // Móvil: Emby convierte los menús de audio, subtítulos… en una hoja a pantalla completa (con !important).
+  // Se dejan flotando junto al botón que los abrió, como en el ordenador.
+  var tocado = null, tocadoEn = 0;
+  document.addEventListener('pointerdown', function (e) {
+    var b = e.target.closest && e.target.closest('button, select, .selectContainer');
+    if (b) { tocado = b.getBoundingClientRect(); tocadoEn = Date.now(); }
+  }, true);
+
+  function colocar(d) {
+    var s = d.style, ancla = tocado;
+    [['bottom', 'auto'], ['right', 'auto'], ['min-height', '0'], ['height', 'auto'], ['width', 'auto'],
+     ['max-width', 'calc(100vw - 20px)'], ['max-height', '70vh'], ['animation', 'none']].forEach(function (p) { s.setProperty(p[0], p[1], 'important'); });
+    var h = d.offsetHeight, w = d.offsetWidth, vh = window.innerHeight, vw = window.innerWidth;
+    var top = ancla.bottom + 6 + h <= vh - 8 ? ancla.bottom + 6 : Math.max(8, ancla.top - 6 - h);   // debajo si cabe; si no, encima
+    var left = Math.min(Math.max(10, ancla.left), vw - 10 - w);
+    s.setProperty('top', top + 'px', 'important');
+    s.setProperty('left', Math.max(10, left) + 'px', 'important');
+  }
+
+  function menusFlotantes() {
+    if (window.innerWidth >= 600 || !tocado || Date.now() - tocadoEn > 1500) return;   // sin botón tocado: se queda como hoja
+    Array.prototype.forEach.call(document.querySelectorAll('.dialog-fullscreen-lowres:not(.nbPop)'), function (d) {
+      if (!d.querySelector(':scope > .actionSheetScroller')) return;
+      d.classList.add('nbPop');
+      // Emby reescribe el estilo al terminar de abrirlo: se coloca después y otra vez si lo vuelve a tocar
+      requestAnimationFrame(function () { colocar(d); });
+      var n = 0;
+      new MutationObserver(function (m, o) { if (++n > 6) return o.disconnect(); if (!/bottom: auto !important/.test(d.getAttribute('style') || '')) colocar(d); })
+        .observe(d, { attributes: true, attributeFilter: ['style'] });
+    });
+  }
+
   var pend = false;
   new MutationObserver(function () {
+    menusFlotantes();
     if (pend) return; pend = true;
     (document.hidden ? function (f) { setTimeout(f, 50); } : requestAnimationFrame)(function () { pend = false; if (enHome()) montar(); else autoplay(); });
   }).observe(document.documentElement, { childList: true, subtree: true });
