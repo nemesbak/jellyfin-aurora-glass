@@ -1047,3 +1047,29 @@ html.layout-desktop body:not(:has(.backdropImage.displayingBackdropImage)) .item
 .card:hover .cardScalable { box-shadow: 0 12px 26px -10px rgba(0,0,0,.7), 0 0 26px rgba(var(--ag-a1-rgb),.28) !important; }
 .card:hover .cardScalable::after { box-shadow: inset 0 0 0 1.5px rgba(var(--ag-a1-rgb),.75) !important; }
 .cardOverlayContainer { border-radius: inherit !important; overflow: hidden; }
+
+/* Créditos: sin huecos por filas vacías */
+.itemDetailsGroup { display: flex !important; flex-direction: column; gap: 0 !important; }
+.itemDetailsGroup .detailsGroupItem:not(.hide) { margin: .22em 0 !important; }
+
+/* Colecciones: películas alineadas con el texto y algo más grandes */
+.collectionItems .verticalSection, .collectionItems .sectionTitleContainer, .collectionItems .sectionTitle { padding-left: 0 !important; margin-left: 0 !important; }
+.collectionItems .itemsContainer.collectionItemsContainer { padding-left: 0 !important; padding-right: 0 !important; gap: 4px; }
+.collectionItemsContainer .portraitCard { width: clamp(150px, 11vw, 200px) !important; }
+.collectionItemsContainer .backdropCard, .collectionItemsContainer .overflowBackdropCard { width: clamp(240px, 18vw, 320px) !important; }
+
+/* Panel → Usuarios / tarjetas visuales del panel */
+.visualCardBox { background: rgba(255,255,255,.03) !important; border: 1px solid var(--ag-line) !important; border-radius: 18px !important; overflow: hidden;
+  transition: transform .25s var(--ag-ease), border-color .25s ease, box-shadow .25s ease; }
+.card:hover .visualCardBox { transform: translateY(-3px); border-color: rgba(var(--ag-a1-rgb),.5) !important; box-shadow: 0 14px 34px rgba(0,0,0,.45); }
+.visualCardBox .cardScalable { border-radius: 0 !important; box-shadow: none !important; transform: none !important; }
+.visualCardBox .cardScalable::after { display: none; }
+.squareCard .visualCardBox .cardImage.defaultCardBackground, .squareCard .visualCardBox .cardContent .cardImage {
+  margin: 14%; width: 72% !important; height: 72% !important; inset: auto !important; border-radius: 50% !important;
+  background-color: rgba(255,255,255,.06) !important; box-shadow: 0 0 0 2px rgba(var(--ag-a1-rgb),.35);
+}
+.squareCard .visualCardBox .cardContent { display: grid; place-items: center; background: radial-gradient(circle at 50% 40%, rgba(var(--ag-a1-rgb),.14), transparent 70%) !important; }
+.visualCardBox-cardFooter { padding: .7em .8em .8em !important; }
+.visualCardBox-cardFooter .cardText:not(.cardText-secondary) { font-weight: 600; }
+.fab, .fab.submit { background: var(--ag-grad) !important; color: #fff !important; box-shadow: 0 8px 22px rgba(var(--ag-a1-rgb),.45) !important; border-radius: 50% !important; }
+.fab:hover { filter: brightness(1.12); transform: scale(1.06); }
