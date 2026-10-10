@@ -1,6 +1,6 @@
-# Nebula — añade este servicio al docker-compose.yml donde tengas Jellyfin.
-# Pone el carrusel, lo vuelve a poner tras cada actualización de Jellyfin y, si le das una
-# clave de API, también el tema en «CSS personalizado». Sin tocar nada más.
+# Nebula — añade este servicio al docker-compose.yml donde tengas Jellyfin y/o Emby.
+# Busca solo todos los Jellyfin y Emby del equipo, les pone el carrusel y lo vuelve a poner tras
+# cada actualización. No hace falta cambiar nada: copia, pega y «docker compose up -d».
 services:
   nebula:
     image: docker:cli
@@ -9,7 +9,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - JELLYFIN_CONTAINER=jellyfin   # nombre de tu contenedor de Jellyfin
-      - JELLYFIN_API_KEY=             # opcional: Panel → Claves de API (pone el tema en CSS personalizado)
-      - NEBULA_OPTIONS=               # opcional: p. ej. cabecera-minima,acento-coral
-    entrypoint: ["sh", "-c", "apk add -q --no-cache bash curl && curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/inject-docker.sh | bash -s -- \"$$JELLYFIN_CONTAINER\" --watch"]
+      - JELLYFIN_API_KEY=   # opcional: clave de API de Jellyfin → pone también el tema en «CSS personalizado»
+      - EMBY_API_KEY=       # opcional: lo mismo para Emby
+      - NEBULA_OPTIONS=     # opcional (Jellyfin): p. ej. cabecera-minima,acento-coral
+    entrypoint: ["sh", "-c", "apk add -q --no-cache bash curl && curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/inject-docker.sh | bash -s -- auto --watch"]

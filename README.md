@@ -179,14 +179,9 @@ Así quedaría el cuadro con el tema + color coral + barra mínima:
 
 Guarda y recarga con **Ctrl + F5**.
 
-**2. El carrusel (opcional):** exactamente igual que en Jellyfin ([ver abajo](#-carrusel-destacado-opcional)), solo cambia el nombre del contenedor por el de Emby. El instalador detecta solo si es Jellyfin o Emby:
-
-```bash
-docker run -d --name nebula-emby --restart unless-stopped -v /var/run/docker.sock:/var/run/docker.sock -e JELLYFIN_CONTAINER=emby docker:cli sh -c 'apk add -q --no-cache bash curl && curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/inject-docker.sh | bash -s -- "$JELLYFIN_CONTAINER" --watch'
-```
+**2. El carrusel (opcional):** se instala con el **mismo comando** que en Jellyfin ([ver abajo](#-carrusel-destacado-opcional)). El instalador encuentra solo tu Emby (y tu Jellyfin, si tienes los dos).
 
 > En Emby el carrusel admite los mismos ajustes `--nb-hero-*` (pégalos en «Personalizar CSS» debajo del `@import`). Las opciones de la carpeta `opciones/` son para la barra superior de Jellyfin 12 y no se aplican a Emby.
-> Si tienes **Jellyfin y Emby en el mismo servidor**, puedes tener los dos contenedores (`nebula` y `nebula-emby`) a la vez.
 
 ---
 
@@ -234,80 +229,83 @@ El carrusel es la **imagen grande de la portada** que va pasando sola: títulos 
 
 > 🤔 **¿Por qué es aparte?** Jellyfin solo deja poner CSS (colores y formas). El carrusel es un pequeño programa (JavaScript), y para añadirlo hay que darle permiso a Jellyfin una vez. De paso, también aplica el tema al **panel de administración**, que en Jellyfin 12 ignora el CSS personalizado.
 
-Elige **una** de estas formas, de la más fácil a la más manual:
+### ⚡ Instalación: un solo comando
 
-### 🥇 Opción A — Una línea en Docker (recomendada)
-
-Si tu Jellyfin (o Emby) está en **Docker** (Unraid, Synology, Portainer, un servidor Linux…), abre la **terminal** de ese equipo y pega:
+Abre la **terminal del equipo donde está Jellyfin o Emby**, pega esto y pulsa Enter:
 
 ```bash
-docker run -d --name nebula --restart unless-stopped -v /var/run/docker.sock:/var/run/docker.sock -e JELLYFIN_CONTAINER=jellyfin docker:cli sh -c 'apk add -q --no-cache bash curl && curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/inject-docker.sh | bash -s -- "$JELLYFIN_CONTAINER" --watch'
+curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/nebula.sh | bash
 ```
 
-Recarga Jellyfin con **Ctrl + F5** y ya tienes el carrusel. Esto crea un contenedor pequeñito llamado `nebula` que:
-- ✅ instala el carrusel en tu Jellyfin,
-- ✅ lo **vuelve a poner solo** cada vez que actualices Jellyfin (las actualizaciones lo borran),
-- ✅ sobrevive a los reinicios del servidor.
+Recarga Jellyfin/Emby con **Ctrl + F5**. ¡Ya está! 🎉
+
+El instalador lo hace todo solo:
+- 🔍 **Encuentra** todos tus Jellyfin y Emby, estén en Docker o instalados directamente. No tienes que saber cómo se llama nada.
+- 🎠 **Pone** el carrusel en cada uno.
+- 🔁 **Lo vuelve a poner** solo cuando actualizas Jellyfin/Emby (las actualizaciones lo borran) y tras reiniciar el servidor.
+
+#### 📍 ¿Dónde pego el comando?
+
+| Tengo… | Dónde está la terminal |
+|---|---|
+| 🟠 **Unraid** | Arriba a la derecha, el icono **`>_`** (Terminal). Pega y listo. |
+| 🟤 **Proxmox** (LXC o VM) | Pégalo **dentro** del LXC o la VM donde está Jellyfin/Emby: selecciónalo en la lista de la izquierda → **Console**. *No* en la consola del propio Proxmox. |
+| 🐳 **Docker en Linux** (Ubuntu, Debian, Raspberry Pi…) | Cualquier terminal o SSH. Si pide permisos, usa `… \| sudo bash`. |
+| 🔵 **Synology / QNAP** | Activa **SSH** (Synology: *Panel de control → Terminal y SNMP*), entra con PuTTY o la terminal, escribe `sudo -i` y pega. |
+| 🐧 **Jellyfin/Emby instalado sin Docker** (Debian, Ubuntu, LXC de *helper-scripts*…) | La terminal de ese equipo, con `sudo` si no eres root: `curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/nebula.sh \| sudo bash` |
 
 <details>
-<summary>📍 ¿Dónde está la terminal? ¿Cómo se llama mi contenedor?</summary>
+<summary>🐳 Uso Docker Compose o Portainer (Stacks)</summary>
 
-- **Unraid**: arriba a la derecha, el icono **`>_`** (Terminal).
-- **Synology**: activa SSH en *Panel de control → Terminal y SNMP* y conéctate con PuTTY, o usa *Container Manager*.
-- **Portainer**: mejor usa la opción B (Compose) creando un *Stack*.
-- **Linux**: cualquier terminal (si da error de permisos, pon `sudo` delante).
-
-**Nombre del contenedor:** la línea supone que se llama `jellyfin`. Para comprobarlo, escribe `docker ps` y busca el de Jellyfin en la última columna (*NAMES*). Si se llama distinto (por ejemplo `Jellyfin` o `jellyfin-server`), cambia `JELLYFIN_CONTAINER=jellyfin` por ese nombre.
-</details>
-
-<details>
-<summary>🎁 Extra: que ponga también el tema él solo</summary>
-
-Si añades tu clave de API, el contenedor también pega la línea del tema en «CSS personalizado» por ti (solo si aún no está; nunca borra lo que tengas):
-
-1. En Jellyfin: **Panel de control → Claves API → ＋**, ponle un nombre (`nebula`) y copia la clave.
-2. Añade `-e JELLYFIN_API_KEY=tu_clave` a la línea de arriba, justo después de `-e JELLYFIN_CONTAINER=jellyfin`.
-3. Opcional: `-e NEBULA_OPTIONS=acento-coral,cabecera-minima` para añadir opciones.
-</details>
-
-### 🥈 Opción B — Docker Compose
-
-Si usas un archivo `docker-compose.yml` (o *Stacks* de Portainer), añade este servicio junto al de Jellyfin y ejecuta `docker compose up -d`:
+Añade este servicio a tu `docker-compose.yml` (o crea un *Stack* en Portainer con él) y ejecuta `docker compose up -d`. No hay que cambiar nada:
 
 ```yaml
+services:
   nebula:
     image: docker:cli
     container_name: nebula
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      - JELLYFIN_CONTAINER=jellyfin   # nombre de tu contenedor de Jellyfin
-      - JELLYFIN_API_KEY=             # opcional: también pone el tema en «CSS personalizado»
-      - NEBULA_OPTIONS=               # opcional: p. ej. acento-coral,cabecera-minima
-    entrypoint: ["sh", "-c", "apk add -q --no-cache bash curl && curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/inject-docker.sh | bash -s -- \"$$JELLYFIN_CONTAINER\" --watch"]
+    entrypoint: ["sh", "-c", "apk add -q --no-cache bash curl && curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/inject-docker.sh | bash -s -- auto --watch"]
 ```
 
-(También lo tienes listo en [`install/docker-compose.yml`](install/docker-compose.yml).)
+(Con las variables opcionales comentadas lo tienes en [`install/docker-compose.yml`](install/docker-compose.yml).)
+</details>
 
-### 🥉 Opción C — Plugin «JavaScript Injector» (sin terminal)
+<details>
+<summary>🎁 Extra: que ponga también el tema él solo</summary>
 
-Si no usas Docker o no quieres tocar la terminal:
+Con tu clave de API, el instalador pega también la línea del tema en «CSS personalizado» (solo si aún no está; nunca borra lo que tengas):
+
+1. Crea una clave: Jellyfin → *Panel de control → Claves API → ＋* · Emby → *Panel de control → Claves API → Nueva*.
+2. Pega el comando así, con tu clave (pon solo la del servidor que tengas):
+   ```bash
+   curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/nebula.sh | JELLYFIN_API_KEY=tu_clave EMBY_API_KEY=tu_clave bash
+   ```
+3. Opcional, solo Jellyfin: añade `NEBULA_OPTIONS=acento-coral,cabecera-minima` antes de `bash`.
+</details>
+
+<details>
+<summary>🧩 Sin terminal: plugin «JavaScript Injector» (solo Jellyfin)</summary>
 
 1. Instala un plugin de inyección de JavaScript para Jellyfin (por ejemplo **JavaScript Injector**) desde *Panel de control → Complementos → Catálogo*. Si no aparece, añade antes su repositorio siguiendo las instrucciones del propio plugin.
 2. Reinicia Jellyfin.
 3. En la página del plugin, crea un script nuevo y pega el contenido de [`install/cargador.js`](install/cargador.js).
 4. Guarda y recarga con **Ctrl + F5**.
+</details>
 
-### 🛠️ Opción D — A mano (avanzado)
+<details>
+<summary>🛠️ A mano (avanzado)</summary>
 
-Copia [`nebula-home.js`](nebula-home.js) dentro de la carpeta `jellyfin-web` de tu instalación y añade esta línea justo antes de `</body>` en su `index.html`:
+Copia [`nebula-home.js`](nebula-home.js) (Emby: [`emby/nebula-emby-home.js`](emby/nebula-emby-home.js)) dentro de la carpeta web (Jellyfin: `jellyfin-web` · Emby: `dashboard-ui`) y añade justo antes de `</body>` en su `index.html`:
 
 ```html
 <script defer src="nebula-home.js"></script>
 ```
 
-> Las actualizaciones de Jellyfin sobrescriben `index.html`: tendrás que repetirlo tras cada actualización (por eso la opción A lo hace sola).
+> Las actualizaciones sobrescriben `index.html`: tendrás que repetirlo tras cada una (el comando de arriba lo hace solo).
+</details>
 
 ### 🎛️ Personalizar el carrusel
 
@@ -350,13 +348,13 @@ Se ajusta desde el **mismo cuadro de «Código CSS personalizado»**, debajo de 
 
 ### 🧹 Quitar el carrusel
 
-- **Opción A o B (Docker):** borra el contenedor y limpia Jellyfin con estas dos líneas:
-  ```bash
-  docker rm -f nebula
-  curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/inject-docker.sh | bash -s -- jellyfin --uninstall
-  ```
-- **Opción C:** borra el script en la página del plugin.
-- **Opción D:** quita la línea `<script … nebula-home.js>` de `index.html` (o espera a la próxima actualización de Jellyfin, que la borra).
+Pega en la misma terminal donde lo instalaste:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/nebula.sh | bash -s -- --uninstall
+```
+
+Quita el carrusel de todos tus Jellyfin/Emby y el contenedor o la tarea que lo vigilaba. El tema (CSS) no se toca. Si lo instalaste con **Compose**, borra además el servicio `nebula` de tu archivo. Si usaste el plugin, borra allí el script.
 
 ---
 
