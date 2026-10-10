@@ -169,7 +169,7 @@
   function colocar(d) {
     var s = d.style, ancla = tocado;
     [['bottom', 'auto'], ['right', 'auto'], ['min-height', '0'], ['height', 'auto'], ['width', 'auto'],
-     ['max-width', 'calc(100vw - 20px)'], ['max-height', '70vh'], ['animation', 'none']].forEach(function (p) { s.setProperty(p[0], p[1], 'important'); });
+     ['max-width', 'calc(100vw - 20px)'], ['max-height', '70vh']].forEach(function (p) { s.setProperty(p[0], p[1], 'important'); });
     var h = d.offsetHeight, w = d.offsetWidth, vh = window.innerHeight, vw = window.innerWidth;
     var top = ancla.bottom + 6 + h <= vh - 8 ? ancla.bottom + 6 : Math.max(8, ancla.top - 6 - h);   // debajo si cabe; si no, encima
     var left = Math.min(Math.max(10, ancla.left), vw - 10 - w);

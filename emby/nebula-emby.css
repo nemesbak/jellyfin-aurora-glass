@@ -191,7 +191,6 @@ html {
 /* menús y diálogos sin oscurecer ni desenfocar la página: el fondo sigue igual */
 .dialogBackdropOpened { background: transparent !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
 .actionSheetMenuItem, .listItem-button { border-radius: 10px !important; }
-.actionSheetMenuItem:hover { background: rgba(var(--nb-a1-rgb),.18) !important; }
 .formDialogHeader { border-bottom: 1px solid var(--nb-line) !important; }
 .emby-input, .emby-textarea, .emby-select, input[is="emby-input"] {
   border-radius: 12px !important; border: 1px solid rgba(255,255,255,.1) !important; transition: border-color .2s ease, box-shadow .2s ease;
@@ -403,7 +402,19 @@ html {
 .trackSelections .selectLabel-inline:hover::before { color: #fff; }
 .trackSelections select.detailTrackSelect { font-size: .92rem !important; }
 /* listas (tareas, ajustes, búsquedas): un solo recuadro al pasar, con tinte de acento */
-.listItem-hoverable:not(.navMenuOption):hover .listItem-content-bg { background: rgba(var(--nb-a1-rgb),.12) !important; border-radius: 12px !important; }
+/* resaltado de listas y menús: Emby lo pinta en ::before; se tiñe ese mismo para que haya un solo recuadro */
+.listItem-content-bg, .listItem.listItem:focus .listItem-content-bg, .listItem.listItem:focus-visible .listItem-content-bg { background: transparent !important; }
+.listItem-content-bg::before { border-radius: 12px !important; inset: 0 !important; }
+.listItem-hoverable:not(.navMenuOption):hover .listItem-content-bg::before { background: rgba(var(--nb-a1-rgb),.14) !important; opacity: 1 !important; }
+.listItem:not(.navMenuOption):focus .listItem-content-bg::before, .listItem:not(.navMenuOption):focus-visible .listItem-content-bg::before {
+  background: linear-gradient(135deg, rgba(var(--nb-a1-rgb),.35), rgba(var(--nb-a2-rgb),.15)) !important; border-color: transparent !important; opacity: 1 !important;
+}
+.listItem:not(.navMenuOption):focus .listItem-content-bg, .listItem:not(.navMenuOption):focus .listItem-content-bg * { color: #fff !important; }
+/* menús anclados (nbPop): animación propia corta; Emby espera a que termine la de cierre para quitar el menú */
+@keyframes nbPopIn { from { opacity: 0; transform: translateY(-6px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes nbPopOut { to { opacity: 0; transform: translateY(-4px) scale(.98); } }
+.dialog.nbPop { animation: nbPopIn .16s var(--nb-ease) both !important; transform-origin: top left !important; }
+.dialog.nbPop.dialog-close { animation: nbPopOut .12s ease-in both !important; }
 /* ===== móvil ===== */
 /* botones con texto debajo (Visto, Favorito…): sin caja; el icono va en un círculo de cristal */
 @media (max-width: 900px) {
@@ -432,11 +443,6 @@ html {
 /* sin fondo oscuro detrás, el menú lateral y los menús flotantes se separan con sombra */
 .mainDrawer { box-shadow: 12px 0 40px rgba(0,0,0,.6) !important; }
 .actionSheet, .dialog:not(.dockedtabs):not(.dialog-fullscreen) { box-shadow: 0 18px 50px rgba(0,0,0,.55), 0 0 0 1px var(--nb-line) !important; }
-/* opción con foco (teclado/mando o la que Emby enfoca al abrir): tinte de acento, no el bloque blanco de Emby */
-.listItem:focus .listItem-content-bg, .listItem.show-focus:focus .listItem-content, .actionSheetMenuItem:focus .listItem-content {
-  background: linear-gradient(135deg, rgba(var(--nb-a1-rgb),.35), rgba(var(--nb-a2-rgb),.15)) !important; color: #fff !important; border-radius: 12px !important;
-}
-.listItem:focus .listItem-content-bg * { color: #fff !important; }
 /* móvil: pestañas del reproductor en una sola fila deslizable, no en tres líneas */
 @media (max-width: 600px) {
   .videoosd-tabsslider { flex-wrap: nowrap !important; overflow-x: auto !important; scrollbar-width: none; gap: .2em; }
