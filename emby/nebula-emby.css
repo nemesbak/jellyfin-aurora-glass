@@ -180,7 +180,6 @@ html {
 
 /* lista de episodios / pistas */
 .listItem { border-radius: 14px !important; transition: background .15s ease; }
-.listItem:hover { background: rgba(255,255,255,.05) !important; }
 .listItemImage, .listItemImage img { border-radius: 10px !important; }
 
 /* ---------- Menús, diálogos y formularios ---------- */
@@ -276,7 +275,6 @@ html {
   .nbHero-nav { display: none; }
   .nbHero-dots { left: 0; right: 0; justify-content: center; bottom: 4%; }
 }
-.trackSelections select { width: 100% !important; min-width: 0; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 3.2em), transparent calc(100% - 1.6em)); mask-image: linear-gradient(to right, #000 calc(100% - 3.2em), transparent calc(100% - 1.6em)); }
 .trackSelections select::picker(select) { position-area: block-end span-inline-end; position-try-fallbacks: flip-block; }
 .videoOsdBottom :focus-visible, .osdHeader :focus-visible { outline: none !important; box-shadow: 0 0 0 2px rgba(var(--nb-a2-rgb),.7) !important; }
 .videoOsdBottom :focus:not(:focus-visible) { outline: none !important; }
@@ -360,11 +358,39 @@ html {
 /* interruptores y casillas con el degradado */
 .emby-toggle:checked ~ .toggleSwitch { background: var(--nb-grad) !important; box-shadow: 0 0 12px rgba(var(--nb-a1-rgb),.4) !important; }
 .emby-select:focus, .emby-input:focus { box-shadow: 0 0 0 2px rgba(var(--nb-a1-rgb),.55) !important; }
-/* listas (búsquedas, ajustes): leve desplazamiento */
-.listItem-hoverable:not(.navMenuOption):hover .listItem-content { background: rgba(255,255,255,.05) !important; }
 /* tarjetas: botón de reproducir del hover con resplandor */
 .cardOverlayFab-primary:hover, .cardOverlayButton-fab:hover { box-shadow: 0 8px 24px rgba(var(--nb-a1-rgb),.5) !important; }
 
+/* selectores de pista de la ficha (Vídeo, Audio, Subtítulos): píldora de cristal con el nombre pequeño y el valor entero */
+.trackSelections { gap: .5em .55em !important; }
+.trackSelections .selectContainer-inline { margin: 0 !important; max-width: 100%; }
+.trackSelections .selectLabel-inline {
+  display: inline-flex !important; align-items: center; gap: .55em; max-width: 100%;
+  padding: .42rem .55rem .42rem .95rem !important; border-radius: 999px !important;
+  background: rgba(255,255,255,.07); border: 1px solid var(--nb-line);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  transition: background-color .2s, border-color .2s, box-shadow .25s var(--nb-ease);
+  text-transform: none !important; letter-spacing: 0 !important; font-weight: 400 !important;
+}
+.trackSelections .selectLabelText-inline { font-size: .66rem !important; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--nb-muted) !important; margin: 0 !important; flex-shrink: 0; }
+.trackSelections .emby-select-wrapper-inline { display: inline-flex; align-items: center; min-width: 0; position: relative; }
+.trackSelections select.detailTrackSelect {
+  background: transparent !important; border: 0 !important; box-shadow: none !important; border-radius: 0 !important;
+  padding: 0 !important; margin: 0 !important; height: auto !important; min-height: 0 !important;
+  width: auto !important; max-width: 17em; field-sizing: content; text-overflow: ellipsis;
+  font-size: .9rem !important; font-weight: 600 !important; color: #fff !important;
+  -webkit-mask-image: none !important; mask-image: none !important;
+}
+.trackSelections .selectArrowContainer-inline { position: static !important; transform: none !important; margin-left: .3rem; display: inline-flex; pointer-events: none; color: var(--nb-muted); font-size: 1.1rem; }
+.trackSelections .selectLabel-inline:hover { background: rgba(var(--nb-a1-rgb),.16); border-color: rgba(var(--nb-a1-rgb),.5); box-shadow: 0 6px 18px rgba(var(--nb-a1-rgb),.22); }
+.trackSelections .selectLabel-inline:hover .selectArrowContainer-inline { color: #fff; }
+.trackSelections .emby-select-wrapper-inline-disabled ~ *, .trackSelections .emby-select-wrapper-inline-disabled .selectArrowContainer-inline { display: none !important; }
+.trackSelections .selectLabel-inline:has(.emby-select-wrapper-inline-disabled) { padding-right: .9em !important; }
+.trackSelections .selectLabel-inline:has(.emby-select-wrapper-inline-disabled):hover { background: rgba(255,255,255,.07); border-color: var(--nb-line); box-shadow: none; }
+.trackSelections .emby-select-wrapper-inline-disabled select.detailTrackSelect { padding-right: 0 !important; color: var(--nb-muted) !important; }
+.trackSelections .selectLabel-inline:focus-within { box-shadow: 0 0 0 2px rgba(var(--nb-a1-rgb),.55); }
+/* listas (tareas, ajustes, búsquedas): un solo recuadro al pasar, con tinte de acento */
+.listItem-hoverable:not(.navMenuOption):hover .listItem-content-bg { background: rgba(var(--nb-a1-rgb),.12) !important; border-radius: 12px !important; }
 /* ===== móvil ===== */
 /* botones con texto debajo (Visto, Favorito…): sin caja; el icono va en un círculo de cristal */
 @media (max-width: 900px) {
