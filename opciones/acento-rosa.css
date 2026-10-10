@@ -1,6 +1,6 @@
 /* Color de acento: rosa. Cárgalo DESPUÉS del tema. */
 :root {
-  --ag-a1: #ec4899; --ag-a1-rgb: 236,72,153;
-  --ag-a2: #a855f7; --ag-a2-rgb: 168,85,247;
-  --ag-grad: linear-gradient(135deg, var(--ag-a1), var(--ag-a2));
+  --nb-a1: #ec4899; --nb-a1-rgb: 236,72,153;
+  --nb-a2: #a855f7; --nb-a2-rgb: 168,85,247;
+  --nb-grad: linear-gradient(135deg, var(--nb-a1), var(--nb-a2));
 }

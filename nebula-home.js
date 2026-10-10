@@ -1,9 +1,9 @@
-/* Aurora Glass — carrusel destacado en la portada de Jellyfin.
+/* Nebula — carrusel destacado en la portada de Jellyfin.
    Se carga desde index.html (ver install/inject-docker.sh). Solo lee la API con la sesión del usuario. */
 (function () {
   'use strict';
-  /* Ajustes: se leen de variables CSS (ponlas en «CSS personalizado», ver README) o de window.AuroraHero.
-     Ejemplo:  :root { --ag-hero-count: 10; --ag-hero-source: toprated; --ag-hero-library: "Películas"; } */
+  /* Ajustes: se leen de variables CSS (ponlas en «CSS personalizado», ver README) o de window.NebulaHero.
+     Ejemplo:  :root { --nb-hero-count: 10; --nb-hero-source: toprated; --nb-hero-library: "Películas"; } */
   var DEF = {
     count: 8,                 // títulos en el carrusel (0 = sin carrusel)
     interval: 8,              // segundos entre diapositivas (0 = sin autoavance)
@@ -20,9 +20,9 @@
   var cache = null, cacheKey = null, cacheAt = 0;
 
   function cfg() {
-    var c = {}, st = getComputedStyle(document.documentElement), ext = window.AuroraHero || {};
+    var c = {}, st = getComputedStyle(document.documentElement), ext = window.NebulaHero || {};
     Object.keys(DEF).forEach(function (k) {
-      var v = ext[k] != null ? String(ext[k]) : st.getPropertyValue('--ag-hero-' + k).trim().replace(/^["']|["']$/g, '');
+      var v = ext[k] != null ? String(ext[k]) : st.getPropertyValue('--nb-hero-' + k).trim().replace(/^["']|["']$/g, '');
       if (v === '') { c[k] = DEF[k]; return; }
       c[k] = typeof DEF[k] === 'number' ? (parseFloat(v) || 0) : v;
     });
@@ -41,7 +41,7 @@
     var want = c.library.split(',').map(function (x) { return x.trim().toLowerCase(); });
     return api().getJSON(api().getUrl('Users/' + uid + '/Views')).then(function (r) {
       var ids = (r.Items || []).filter(function (v) { return want.indexOf((v.Name || '').toLowerCase()) >= 0; }).map(function (v) { return v.Id; });
-      if (!ids.length) console.warn('[AuroraHero] no encuentro la biblioteca', c.library);
+      if (!ids.length) console.warn('[NebulaHero] no encuentro la biblioteca', c.library);
       return ids.length ? ids : [null];
     });
   }
@@ -85,33 +85,33 @@
   function construir(items, c) {
     var sid = api().serverId();
     var el = document.createElement('section');
-    el.className = 'agHero';
+    el.className = 'nbHero';
     el.innerHTML =
-      '<div class="agHero-slides">' + items.map(function (i, n) {
+      '<div class="nbHero-slides">' + items.map(function (i, n) {
         var meta = [i.ProductionYear, i.Type === 'Series' ? (i.ChildCount ? i.ChildCount + (i.ChildCount === 1 ? ' temporada' : ' temporadas') : 'Serie') : dur(i.RunTimeTicks), i.OfficialRating]
           .filter(Boolean).map(function (x) { return '<span>' + esc(x) + '</span>'; }).join('');
-        if (c.rating && i.CommunityRating) meta += '<span class="agHero-star">★ ' + i.CommunityRating.toFixed(1) + '</span>';
-        var gen = (c.genres ? i.Genres || [] : []).slice(0, 3).map(function (g) { return '<span class="agHero-chip">' + esc(g) + '</span>'; }).join('');
+        if (c.rating && i.CommunityRating) meta += '<span class="nbHero-star">★ ' + i.CommunityRating.toFixed(1) + '</span>';
+        var gen = (c.genres ? i.Genres || [] : []).slice(0, 3).map(function (g) { return '<span class="nbHero-chip">' + esc(g) + '</span>'; }).join('');
         var url = '#/details?id=' + i.Id + '&serverId=' + sid;
-        return '<article class="agHero-slide' + (n === 0 ? ' is-active' : '') + '" data-i="' + n + '">' +
-          '<div class="agHero-bg" style="background-image:url(\'' + img(i.Id, 'Backdrop', '/0') + '\')"></div>' +
-          '<div class="agHero-shade"></div>' +
-          '<div class="agHero-body">' +
-            (i.ImageTags && i.ImageTags.Logo ? '<img class="agHero-logo" alt="' + esc(i.Name) + '" src="' + img(i.Id, 'Logo') + '">' : '<h2 class="agHero-title">' + esc(i.Name) + '</h2>') +
-            '<div class="agHero-meta">' + meta + '</div>' +
-            '<div class="agHero-genres">' + gen + '</div>' +
-            (c.overview ? '<p class="agHero-overview">' + esc(i.Overview) + '</p>' : '') +
-            (!c.buttons ? '' : '<div class="agHero-actions">' +
-              '<a class="agHero-btn agHero-btn--main" data-play="' + i.Id + '" href="' + url + '"><span class="material-icons">play_arrow</span>Ver ahora</a>' +
-              '<a class="agHero-btn" href="' + url + '"><span class="material-icons">info_outline</span>Más info</a>' +
+        return '<article class="nbHero-slide' + (n === 0 ? ' is-active' : '') + '" data-i="' + n + '">' +
+          '<div class="nbHero-bg" style="background-image:url(\'' + img(i.Id, 'Backdrop', '/0') + '\')"></div>' +
+          '<div class="nbHero-shade"></div>' +
+          '<div class="nbHero-body">' +
+            (i.ImageTags && i.ImageTags.Logo ? '<img class="nbHero-logo" alt="' + esc(i.Name) + '" src="' + img(i.Id, 'Logo') + '">' : '<h2 class="nbHero-title">' + esc(i.Name) + '</h2>') +
+            '<div class="nbHero-meta">' + meta + '</div>' +
+            '<div class="nbHero-genres">' + gen + '</div>' +
+            (c.overview ? '<p class="nbHero-overview">' + esc(i.Overview) + '</p>' : '') +
+            (!c.buttons ? '' : '<div class="nbHero-actions">' +
+              '<a class="nbHero-btn nbHero-btn--main" data-play="' + i.Id + '" href="' + url + '"><span class="material-icons">play_arrow</span>Ver ahora</a>' +
+              '<a class="nbHero-btn" href="' + url + '"><span class="material-icons">info_outline</span>Más info</a>' +
             '</div>') +
           '</div></article>';
       }).join('') + '</div>' +
-      '<button class="agHero-nav agHero-prev" aria-label="Anterior"><span class="material-icons">chevron_left</span></button>' +
-      '<button class="agHero-nav agHero-next" aria-label="Siguiente"><span class="material-icons">chevron_right</span></button>' +
-      '<div class="agHero-dots">' + items.map(function (_, n) { return '<button class="agHero-dot' + (n === 0 ? ' is-active' : '') + '" data-i="' + n + '" aria-label="Ir a ' + (n + 1) + '"><i></i></button>'; }).join('') + '</div>';
+      '<button class="nbHero-nav nbHero-prev" aria-label="Anterior"><span class="material-icons">chevron_left</span></button>' +
+      '<button class="nbHero-nav nbHero-next" aria-label="Siguiente"><span class="material-icons">chevron_right</span></button>' +
+      '<div class="nbHero-dots">' + items.map(function (_, n) { return '<button class="nbHero-dot' + (n === 0 ? ' is-active' : '') + '" data-i="' + n + '" aria-label="Ir a ' + (n + 1) + '"><i></i></button>'; }).join('') + '</div>';
 
-    var actual = 0, timer = null, slides = el.querySelectorAll('.agHero-slide'), dots = el.querySelectorAll('.agHero-dot');
+    var actual = 0, timer = null, slides = el.querySelectorAll('.nbHero-slide'), dots = el.querySelectorAll('.nbHero-dot');
     function ir(n) {
       n = (n + slides.length) % slides.length;
       slides[actual].classList.remove('is-active'); dots[actual].classList.remove('is-active');
@@ -123,16 +123,16 @@
     if (!INTERVALO) el.classList.add('is-static');
     function play() { stop(); if (!INTERVALO) return; timer = setInterval(function () { if (!document.hidden && document.body.contains(el)) ir(actual + 1); else if (!document.body.contains(el)) stop(); }, INTERVALO); el.classList.remove('is-paused'); }
     function stop() { if (timer) clearInterval(timer); timer = null; }
-    el.querySelector('.agHero-prev').onclick = function () { ir(actual - 1); play(); };
-    el.querySelector('.agHero-next').onclick = function () { ir(actual + 1); play(); };
+    el.querySelector('.nbHero-prev').onclick = function () { ir(actual - 1); play(); };
+    el.querySelector('.nbHero-next').onclick = function () { ir(actual + 1); play(); };
     dots.forEach(function (d) { d.onclick = function () { ir(+d.dataset.i); play(); }; });
     el.addEventListener('mouseenter', function () { stop(); el.classList.add('is-paused'); });
     el.addEventListener('mouseleave', play);
     var x0 = null;
     el.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
     el.addEventListener('touchend', function (e) { if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) { ir(actual + (dx < 0 ? 1 : -1)); play(); } x0 = null; });
-    if (c.play) el.querySelectorAll('[data-play]').forEach(function (b) { b.addEventListener('click', function () { try { sessionStorage.setItem('agAutoplay', b.dataset.play); } catch (e) {} }); });
-    el.style.setProperty('--ag-int', INTERVALO + 'ms');
+    if (c.play) el.querySelectorAll('[data-play]').forEach(function (b) { b.addEventListener('click', function () { try { sessionStorage.setItem('nbAutoplay', b.dataset.play); } catch (e) {} }); });
+    el.style.setProperty('--nb-int', INTERVALO + 'ms');
     play();
     return el;
   }
@@ -142,24 +142,24 @@
     if (!enHome() || !api() || !api().getCurrentUserId || !api().getCurrentUserId()) return;
     var page = document.querySelector('.homePage:not(.hide)');
     var cont = page && page.querySelector('.homeSectionsContainer');
-    if (!cont || page.querySelector('.agHero') || montando) return;
+    if (!cont || page.querySelector('.nbHero') || montando) return;
     var c = cfg();
     if (c.count <= 0) return;
     montando = true;
     cargar(c).then(function (items) {
       montando = false;
-      if (!items.length || page.querySelector('.agHero')) return;
+      if (!items.length || page.querySelector('.nbHero')) return;
       cont.parentNode.insertBefore(construir(items, c), cont);
-    }).catch(function (e) { montando = false; console.warn('[AuroraHero]', e); });
+    }).catch(function (e) { montando = false; console.warn('[NebulaHero]', e); });
   }
 
   // «Ver ahora»: al llegar a la ficha pulsa su botón de reproducir una sola vez
   function autoplay() {
-    var id; try { id = sessionStorage.getItem('agAutoplay'); } catch (e) { return; }
+    var id; try { id = sessionStorage.getItem('nbAutoplay'); } catch (e) { return; }
     if (!id || location.hash.indexOf('id=' + id) < 0) return;
     var b = document.querySelector('.itemDetailPage:not(.hide) .mainDetailButtons .btnPlay:not(.hide)');
     if (!b) return;
-    try { sessionStorage.removeItem('agAutoplay'); } catch (e) {}
+    try { sessionStorage.removeItem('nbAutoplay'); } catch (e) {}
     setTimeout(function () { b.click(); }, 350);
   }
 
@@ -167,12 +167,12 @@
   var cssPedido = false;
   function cssPanel() {
     if (!/^#\/dashboard|^#\/(users|libraries|plugins|tasks|devices|activity|logs|playback|networking|branding|apikeys|livetv\/)/i.test(location.hash.replace('#!', '#'))) return;
-    if (cssPedido || document.getElementById('agPanelCss')) return;
-    var hay = Array.prototype.some.call(document.querySelectorAll('style'), function (s) { return s.id !== 'agPanelCss' && s.textContent.indexOf('Aurora Glass') >= 0; });
+    if (cssPedido || document.getElementById('nbPanelCss')) return;
+    var hay = Array.prototype.some.call(document.querySelectorAll('style'), function (s) { return s.id !== 'nbPanelCss' && s.textContent.indexOf('Nebula') >= 0; });
     if (hay) return;
     cssPedido = true;
     fetch(api().getUrl('Branding/Css')).then(function (r) { return r.text(); }).then(function (t) {
-      var st = document.createElement('style'); st.id = 'agPanelCss'; st.textContent = t; document.head.appendChild(st);
+      var st = document.createElement('style'); st.id = 'nbPanelCss'; st.textContent = t; document.head.appendChild(st);
     }).catch(function () { cssPedido = false; });
   }
 

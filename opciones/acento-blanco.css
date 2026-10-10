@@ -1,6 +1,6 @@
 /* Color de acento: blanco. Cárgalo DESPUÉS del tema. */
 :root {
-  --ag-a1: #e5e7eb; --ag-a1-rgb: 229,231,235;
-  --ag-a2: #ffffff; --ag-a2-rgb: 255,255,255;
-  --ag-grad: linear-gradient(135deg, var(--ag-a1), var(--ag-a2));
+  --nb-a1: #e5e7eb; --nb-a1-rgb: 229,231,235;
+  --nb-a2: #ffffff; --nb-a2-rgb: 255,255,255;
+  --nb-grad: linear-gradient(135deg, var(--nb-a1), var(--nb-a2));
 }

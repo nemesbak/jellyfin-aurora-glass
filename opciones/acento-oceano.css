@@ -1,6 +1,6 @@
 /* Color de acento: oceano. Cárgalo DESPUÉS del tema. */
 :root {
-  --ag-a1: #3b82f6; --ag-a1-rgb: 59,130,246;
-  --ag-a2: #22d3ee; --ag-a2-rgb: 34,211,238;
-  --ag-grad: linear-gradient(135deg, var(--ag-a1), var(--ag-a2));
+  --nb-a1: #3b82f6; --nb-a1-rgb: 59,130,246;
+  --nb-a2: #22d3ee; --nb-a2-rgb: 34,211,238;
+  --nb-grad: linear-gradient(135deg, var(--nb-a1), var(--nb-a2));
 }
