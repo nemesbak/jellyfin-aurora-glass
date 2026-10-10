@@ -389,6 +389,19 @@ html {
 .trackSelections .selectLabel-inline:has(.emby-select-wrapper-inline-disabled):hover { background: rgba(255,255,255,.07); border-color: var(--nb-line); box-shadow: none; }
 .trackSelections .emby-select-wrapper-inline-disabled select.detailTrackSelect { padding-right: 0 !important; color: var(--nb-muted) !important; }
 .trackSelections .selectLabel-inline:focus-within { box-shadow: 0 0 0 2px rgba(var(--nb-a1-rgb),.55); }
+/* selectores con icono en vez del nombre, a la altura de los botones de la ficha */
+.trackSelections .selectLabel-inline { min-height: 2.5rem; padding: .3rem .75rem .3rem .7rem !important; gap: .45rem; }
+.trackSelections .selectLabelText-inline { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.trackSelections .selectLabel-inline::before {
+  font-family: "Material Symbols Rounded", "Material Icons Round", "Material Icons"; font-size: 1.25rem; line-height: 1; font-weight: 400;
+  color: rgb(var(--nb-a2-rgb)); flex-shrink: 0; -webkit-font-feature-settings: "liga"; font-feature-settings: "liga";
+}
+.selectVideoContainer .selectLabel-inline::before { content: "hd"; color: var(--nb-muted); }
+.selectAudioContainer .selectLabel-inline::before { content: "volume_up"; }
+.selectSubtitlesContainer .selectLabel-inline::before { content: "subtitles"; }
+.selectSourceContainer .selectLabel-inline::before { content: "video_library"; }
+.trackSelections .selectLabel-inline:hover::before { color: #fff; }
+.trackSelections select.detailTrackSelect { font-size: .92rem !important; }
 /* listas (tareas, ajustes, búsquedas): un solo recuadro al pasar, con tinte de acento */
 .listItem-hoverable:not(.navMenuOption):hover .listItem-content-bg { background: rgba(var(--nb-a1-rgb),.12) !important; border-radius: 12px !important; }
 /* ===== móvil ===== */

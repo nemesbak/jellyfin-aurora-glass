@@ -158,7 +158,7 @@
     setTimeout(function () { b.click(); }, 350);
   }
 
-  // Móvil: Emby convierte los menús de audio, subtítulos… en una hoja a pantalla completa (con !important).
+  // En pantallas estrechas o bajas Emby convierte los menús de audio, subtítulos… en una hoja a pantalla completa (con !important).
   // Se dejan flotando junto al botón que los abrió, como en el ordenador.
   var tocado = null, tocadoEn = 0;
   document.addEventListener('pointerdown', function (e) {
@@ -178,7 +178,7 @@
   }
 
   function menusFlotantes() {
-    if (window.innerWidth >= 600 || !tocado || Date.now() - tocadoEn > 1500) return;   // sin botón tocado: se queda como hoja
+    if (!tocado || Date.now() - tocadoEn > 1500) return;   // sin botón tocado: se queda como hoja
     Array.prototype.forEach.call(document.querySelectorAll('.dialog-fullscreen-lowres:not(.nbPop)'), function (d) {
       if (!d.querySelector(':scope > .actionSheetScroller')) return;
       d.classList.add('nbPop');
