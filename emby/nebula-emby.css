@@ -206,7 +206,7 @@ html {
 .navMenuOption-selected { background: linear-gradient(135deg, rgba(var(--nb-a1-rgb),.3), rgba(var(--nb-a2-rgb),.14)) !important; }
 
 /* ---------- Reproductor ---------- */
-.videoOsdBottom .btnPause, .osdPlayPauseButton { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; border-radius: 50% !important; }
+.videoOsdBottom .btnPause, .osdPlayPauseButton, .videoOsd-btnPause { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; border-radius: 50% !important; }
 .emby-slider-background-lower, .mdl-slider-background-lower { background: var(--nb-grad) !important; }
 
 /* ---------- Login ---------- */
@@ -302,6 +302,22 @@ html {
 .view-home-home .sections > .nbHero { margin: .4em var(--nb-hero-side, 3.3%) 1.4em !important; }
 
 /* ---------- Movimiento reducido: casi instantáneo, NUNCA «none» (Emby espera el fin de las animaciones) ---------- */
+/* barra inferior del móvil: sin la píldora de degradado (tapaba el texto), activo en color de acento */
+.dockedtabs .emby-tabs-selected-background { display: none !important; }
+.dockedtabs-tab-button.emby-tab-button-active, .dockedtabs-tab-button.emby-tab-button-active * { color: var(--nb-a2) !important; }
+/* buscador: Emby lo sube con margen negativo y queda bajo la cabecera de cristal */
+.searchFields { margin-top: .75em !important; }
+/* reproductor: spinner, botón central, pestañas del OSD, barra */
+.mdl-spinner__circle { border-color: rgb(var(--nb-a1-rgb)) !important; border-bottom-color: transparent !important; border-right-color: transparent !important; }
+.videoOsd-btnPause { width: 3em !important; height: 3em !important; box-shadow: 0 6px 20px rgba(var(--nb-a1-rgb),.45) !important; }
+.videoOsd-btnPause .md-icon { color: var(--nb-on-accent) !important; }
+.videoOsdBottom-center-controls-button:not(.videoOsd-btnPause):hover, .btnSubtitles:hover, .btnAudio:hover, .btnPlaybackSpeed:hover { background: rgba(255,255,255,.12) !important; border-radius: 50% !important; }
+.videoosd-tab-button { border-radius: 999px !important; padding: .35em .9em !important; transition: background .2s, color .2s !important; }
+.videoosd-tab-button:hover { background: rgba(255,255,255,.1) !important; }
+.videoosd-tabsslider .emby-tab-button-active, .videoosd-tabsslider .emby-tabs-selected-background { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; border-radius: 999px !important; }
+.videoOsdPositionSlider + .emby-slider-background, .emby-slider-background { border-radius: 99px !important; }
+.videoOsdBottom-video { background: linear-gradient(to top, rgba(8,8,12,.9), rgba(8,8,12,.55) 60%, transparent) !important; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
 }
