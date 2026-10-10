@@ -10,6 +10,7 @@
   --nb-muted: #8b8b96;
   --nb-accent: #e8e8ec;
   --nb-radius: 10px;
+  --nb-on-accent: #fff;      /* color del texto/iconos sobre el acento (oscúrecelo si usas un acento claro) */
 }
 
 /* Base */
@@ -346,12 +347,12 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -2; pointer-even
 
 /* ---------- Botones con acento ---------- */
 .detailButton.btnPlay, .cardOverlayFab-primary, .button-submit, .emby-button.button-submit, .MuiButton-containedPrimary {
-  background: var(--nb-grad) !important; color: #fff !important; border: 0 !important;
+  background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; border: 0 !important;
 }
 .detailButton.btnPlay { box-shadow: 0 8px 28px rgba(var(--nb-a1-rgb),.45) !important; }
 .detailButton.btnPlay:hover { box-shadow: 0 10px 36px rgba(var(--nb-a2-rgb),.45) !important; }
 .cardOverlayFab-primary { box-shadow: 0 8px 26px rgba(var(--nb-a1-rgb),.5) !important; }
-.cardOverlayFab-primary:hover { background: var(--nb-grad) !important; color: #fff !important; transform: scale(1.12); }
+.cardOverlayFab-primary:hover { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; transform: scale(1.12); }
 .button-submit:hover, .MuiButton-containedPrimary:hover { filter: brightness(1.12) !important; }
 .detailButton:not(.btnPlay):hover { border-color: rgba(var(--nb-a1-rgb),.6) !important; color: #fff; }
 
@@ -369,14 +370,14 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -2; pointer-even
 
 /* Progreso, sliders, indicadores con degradado */
 .itemProgressBarForeground, .mdl-slider-background-lower { background: var(--nb-grad) !important; }
-.countIndicator { background: var(--nb-grad) !important; color: #fff !important; }
+.countIndicator { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; }
 .playedIndicator { background: rgba(16,185,129,.95) !important; color: #fff !important; }
 .MuiSlider-root { color: var(--nb-a1) !important; }
 .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track, .mdl-switch.is-checked .mdl-switch__track { background: var(--nb-a1) !important; opacity: 1 !important; }
 .MuiCheckbox-root.Mui-checked, .MuiRadio-root.Mui-checked { color: var(--nb-a1) !important; }
 .emby-checkbox:checked + span + .checkboxOutline { background: var(--nb-grad) !important; border-color: transparent !important; }
 .emby-checkbox:checked + span + .checkboxOutline .checkboxIcon-checked { color: #fff !important; }
-.alphaPickerButton-selected, .alphaPickerButton:hover { background: var(--nb-grad) !important; color: #fff !important; }
+.alphaPickerButton-selected, .alphaPickerButton:hover { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; }
 .MuiTabs-indicator { background: var(--nb-grad) !important; }
 .MuiFilledInput-root.Mui-focused, .MuiOutlinedInput-root.Mui-focused, .emby-input:focus, .emby-select:focus { border-color: rgba(var(--nb-a1-rgb),.7) !important; box-shadow: 0 0 0 3px rgba(var(--nb-a1-rgb),.18); }
 ::selection { background: rgba(var(--nb-a1-rgb),.45); }
@@ -436,14 +437,14 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -2; pointer-even
 /* Menú: icono con acento al pasar */
 .MuiMenuItem-root:hover .MuiListItemIcon-root { color: var(--nb-a2) !important; }
 .MuiMenuItem-root:hover { background: rgba(var(--nb-a1-rgb),.14) !important; }
-.listItem-border:hover .listItemIcon { background: var(--nb-grad); color: #fff; }
+.listItem-border:hover .listItemIcon { background: var(--nb-grad); color: var(--nb-on-accent); }
 
 /* Avatar con anillo */
 .headerUserButtonRound, .MuiAppBar-root .MuiAvatar-root { box-shadow: 0 0 0 2px var(--nb-bg), 0 0 0 3.5px rgba(var(--nb-a1-rgb),.8); border-radius: 50%; }
 
 /* Reproductor */
-.videoOsdBottom .btnPause, .nowPlayingBar .playPauseButton { background: var(--nb-grad) !important; color: #fff !important; border-radius: 50% !important; }
-.skip-button, button.skip-button { background: var(--nb-grad) !important; color: #fff !important; }
+.videoOsdBottom .btnPause, .nowPlayingBar .playPauseButton { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; border-radius: 50% !important; }
+.skip-button, button.skip-button { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; }
 
 /* v3 fixes: estructura real de tarjetas (sin .cardFooter) */
 .cardBox > .cardText, .cardBox > .cardTextCentered { justify-content: flex-start !important; text-align: left !important; padding-left: .2em !important; padding-right: .2em !important; }
@@ -452,7 +453,7 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -2; pointer-even
 .section0 .cardBox > .cardText { justify-content: center !important; text-align: center !important; }
 .card:hover .cardBox > .cardText-first, .card:hover .cardText { color: #fff !important; opacity: 1 !important; }
 .card:hover .cardBox > .cardText-secondary { color: #b4b4c0 !important; }
-.cardIndicators .countIndicator, .countIndicator.indicator { background: var(--nb-grad) !important; color: #fff !important; }
+.cardIndicators .countIndicator, .countIndicator.indicator { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; }
 .cardIndicators .playedIndicator, .playedIndicator.indicator { background: rgba(16,185,129,.95) !important; color: #fff !important; }
 /* sombra que no oscurezca el título */
 .card:hover .cardScalable { box-shadow: 0 12px 26px -10px rgba(0,0,0,.7), 0 0 0 1px rgba(var(--nb-a1-rgb),.55), 0 0 28px rgba(var(--nb-a1-rgb),.25) !important; }
@@ -532,7 +533,7 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -2; pointer-even
   font-family: 'Material Icons'; font-size: 20px; line-height: 1; -webkit-font-smoothing: antialiased; font-feature-settings: 'liga';
   position: absolute; left: .7em; top: 50%; transform: translateY(-50%);
   width: 1.6em; height: 1.6em; display: grid; place-items: center; border-radius: 10px;
-  background: var(--nb-grad); color: #fff; box-shadow: 0 4px 14px rgba(var(--nb-a1-rgb),.35);
+  background: var(--nb-grad); color: var(--nb-on-accent); box-shadow: 0 4px 14px rgba(var(--nb-a1-rgb),.35);
 }
 .trackSelections .selectSourceContainer::before { content: "layers"; }
 .trackSelections .selectVideoContainer::before { content: "movie"; }
@@ -651,7 +652,7 @@ select { color-scheme: dark; }
 .videoOsdBottom .paper-icon-button-light:hover { background: rgba(255,255,255,.14) !important; transform: scale(1.08); }
 .videoOsdBottom .paper-icon-button-light:active { transform: scale(.92); }
 .videoOsdBottom .btnPause {
-  width: 3.4em !important; height: 3.4em !important; background: var(--nb-grad) !important;
+  width: 3.4em !important; height: 3.4em !important; background: var(--nb-grad) !important; color: var(--nb-on-accent) !important;
   box-shadow: 0 8px 26px rgba(var(--nb-a1-rgb),.5); margin: 0 .5em !important;
 }
 .videoOsdBottom .btnPause:hover { box-shadow: 0 10px 34px rgba(var(--nb-a2-rgb),.5); }
@@ -672,7 +673,7 @@ select { color-scheme: dark; }
   background: rgba(18,18,24,.85) !important; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
   border: 1px solid var(--nb-line) !important; border-radius: 18px !important; box-shadow: 0 20px 50px rgba(0,0,0,.6) !important; overflow: hidden;
 }
-.upNextContainer .btnStartNow { background: var(--nb-grad) !important; color: #fff !important; border-radius: 999px !important; }
+.upNextContainer .btnStartNow { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; border-radius: 999px !important; }
 .upNextContainer .btnHide { border-radius: 999px !important; }
 .upNextContainer-countdownText, .upNextDialog-countdownText { color: var(--nb-a2) !important; font-weight: 700; }
 
@@ -732,7 +733,7 @@ select { color-scheme: dark; }
   color: #fff !important; text-decoration: none !important; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.18);
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: transform .2s var(--nb-ease), background .2s ease, box-shadow .2s ease; }
 .nbHero-btn:hover { transform: translateY(-2px); background: rgba(255,255,255,.2); }
-.nbHero-btn--main { background: var(--nb-grad); border-color: transparent; box-shadow: 0 10px 30px rgba(var(--nb-a1-rgb),.45); }
+.nbHero-btn--main { background: var(--nb-grad); color: var(--nb-on-accent) !important; border-color: transparent; box-shadow: 0 10px 30px rgba(var(--nb-a1-rgb),.45); }
 .nbHero-btn--main:hover { background: var(--nb-grad); box-shadow: 0 12px 38px rgba(var(--nb-a2-rgb),.45); }
 .nbHero-btn .material-icons { font-size: 1.4em; }
 .nbHero-nav { position: absolute; top: 50%; z-index: 3; width: 3em; height: 3em; margin-top: -1.5em; border-radius: 50%; border: 1px solid rgba(255,255,255,.15);
@@ -790,7 +791,7 @@ select { color-scheme: dark; }
 .listItem-largeImage .listItemImageButton {
   position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%,-50%) scale(.8);
   z-index: 2; width: 3em; height: 3em; margin: 0 !important; opacity: 0;
-  background: var(--nb-grad) !important; color: #fff !important; box-shadow: 0 8px 24px rgba(var(--nb-a1-rgb),.5);
+  background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; box-shadow: 0 8px 24px rgba(var(--nb-a1-rgb),.5);
   transition: opacity .2s ease, transform .25s var(--nb-ease) !important;
 }
 .listItem-largeImage:hover .listItemImageButton { opacity: 1; transform: translate(-50%,-50%) scale(1); }
@@ -890,7 +891,7 @@ select { color-scheme: dark; }
   /* Menús desde abajo */
   .actionSheet.actionsheet-fullscreen, .actionsheet-not-fullscreen { border-radius: 20px 20px 0 0 !important; }
 }
-.listItem-largeImage .listItemImageButton.paper-icon-button-light, .listItem-largeImage .listItemImageButton.paper-icon-button-light:hover { background: var(--nb-grad) !important; color: #fff !important; }
+.listItem-largeImage .listItemImageButton.paper-icon-button-light, .listItem-largeImage .listItemImageButton.paper-icon-button-light:hover { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; }
 .listItem-largeImage .listItemImageButton.paper-icon-button-light:hover { box-shadow: 0 10px 30px rgba(var(--nb-a2-rgb),.55); }
 @media (max-width: 900px) {
   .layout-desktop .itemDetailPage .detailLogo { display: none !important; }
@@ -937,7 +938,7 @@ select { color-scheme: dark; }
 
 /* ---------- Televisión en vivo: guía ---------- */
 .guideDateTabs .guide-date-tab-button { border-radius: 14px !important; padding: .45em .8em !important; line-height: 1.25; }
-.guideDateTabs .emby-tab-button-active { background: var(--nb-grad) !important; color: #fff !important; box-shadow: 0 6px 18px rgba(var(--nb-a1-rgb),.4) !important; }
+.guideDateTabs .emby-tab-button-active { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; box-shadow: 0 6px 18px rgba(var(--nb-a1-rgb),.4) !important; }
 .timeslotHeaders, .guide-headerTimeslots { font-weight: 600; color: var(--nb-muted); }
 .guide-channelHeaderCell {
   border: 0 !important; margin: 3px 6px 3px 0; border-radius: 12px; background: rgba(255,255,255,.035) !important;
@@ -957,7 +958,7 @@ select { color-scheme: dark; }
   box-shadow: inset -3px 0 0 var(--nb-bg), inset 0 0 0 1px rgba(var(--nb-a1-rgb),.45) !important;
 }
 .guideProgramName { font-weight: 600; }
-.guideProgramIndicator, .newTvProgram { background: var(--nb-grad) !important; color: #fff !important; border-radius: 999px !important; padding: .1em .55em !important; font-weight: 700; letter-spacing: .03em; }
+.guideProgramIndicator, .newTvProgram { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; border-radius: 999px !important; padding: .1em .55em !important; font-weight: 700; letter-spacing: .03em; }
 .liveTvProgram { background: #ef4444 !important; color: #fff !important; border-radius: 999px !important; }
 .premiereTvProgram { background: #f59e0b !important; color: #000 !important; border-radius: 999px !important; }
 .guide-programNameCaret { color: var(--nb-a2); }
@@ -989,7 +990,7 @@ select { color-scheme: dark; }
 .MuiButton-outlined:hover { border-color: rgba(var(--nb-a1-rgb),.6) !important; background: rgba(var(--nb-a1-rgb),.1) !important; }
 .MuiLinearProgress-root { border-radius: 99px !important; background: rgba(255,255,255,.1) !important; height: 5px !important; }
 .MuiLinearProgress-bar { background: var(--nb-grad) !important; border-radius: 99px !important; }
-.MuiChip-colorPrimary { background: var(--nb-grad) !important; color: #fff !important; }
+.MuiChip-colorPrimary { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; }
 .MuiTableRow-root:hover { background: rgba(255,255,255,.035) !important; }
 .MuiTableCell-root { border-color: var(--nb-line) !important; }
 .MuiDataGrid-root { border-radius: 16px !important; border-color: var(--nb-line) !important; }
@@ -1075,13 +1076,13 @@ html.layout-desktop body:not(:has(.backdropImage.displayingBackdropImage)) .item
 .squareCard .visualCardBox .cardContent { display: grid; place-items: center; background: radial-gradient(circle at 50% 40%, rgba(var(--nb-a1-rgb),.14), transparent 70%) !important; }
 .visualCardBox-cardFooter { padding: .7em .8em .8em !important; }
 .visualCardBox-cardFooter .cardText:not(.cardText-secondary) { font-weight: 600; }
-.fab, .fab.submit { background: var(--nb-grad) !important; color: #fff !important; box-shadow: 0 8px 22px rgba(var(--nb-a1-rgb),.45) !important; border-radius: 50% !important; }
+.fab, .fab.submit { background: var(--nb-grad) !important; color: var(--nb-on-accent) !important; box-shadow: 0 8px 22px rgba(var(--nb-a1-rgb),.45) !important; border-radius: 50% !important; }
 .fab:hover { filter: brightness(1.12); transform: scale(1.06); }
 
 /* Barra de biblioteca: "Reproducir todo" + "Aleatorio" (MuiButtonGroup dentro del AppBar) */
 .MuiAppBar-root .MuiButtonGroup-root { gap: 8px; box-shadow: none !important; background: transparent !important; }
 .MuiAppBar-root .MuiButtonGroup-root .MuiButton-containedPrimary {
-  color: #fff !important; font-weight: 600 !important; border: 0 !important; border-radius: 999px !important;
+  color: var(--nb-on-accent) !important; font-weight: 600 !important; border: 0 !important; border-radius: 999px !important;
   background: var(--nb-grad) !important; box-shadow: 0 6px 18px rgba(var(--nb-a1-rgb),.35) !important;
   transition: filter .2s ease, transform .2s var(--nb-ease), box-shadow .2s ease !important;
 }

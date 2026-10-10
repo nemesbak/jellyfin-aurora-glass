@@ -3,4 +3,5 @@
   --nb-a1: #f59e0b; --nb-a1-rgb: 245,158,11;
   --nb-a2: #fde047; --nb-a2-rgb: 253,224,71;
   --nb-grad: linear-gradient(135deg, var(--nb-a1), var(--nb-a2));
+  --nb-on-accent: #1a1204;   /* texto oscuro: sobre amarillo se lee mejor */
 }
