@@ -1073,3 +1073,27 @@ html.layout-desktop body:not(:has(.backdropImage.displayingBackdropImage)) .item
 .visualCardBox-cardFooter .cardText:not(.cardText-secondary) { font-weight: 600; }
 .fab, .fab.submit { background: var(--ag-grad) !important; color: #fff !important; box-shadow: 0 8px 22px rgba(var(--ag-a1-rgb),.45) !important; border-radius: 50% !important; }
 .fab:hover { filter: brightness(1.12); transform: scale(1.06); }
+
+/* Barra de biblioteca: "Reproducir todo" + "Aleatorio" (MuiButtonGroup dentro del AppBar) */
+.MuiAppBar-root .MuiButtonGroup-root { gap: 8px; box-shadow: none !important; background: transparent !important; }
+.MuiAppBar-root .MuiButtonGroup-root .MuiButton-containedPrimary {
+  color: #fff !important; font-weight: 600 !important; border: 0 !important; border-radius: 999px !important;
+  background: var(--ag-grad) !important; box-shadow: 0 6px 18px rgba(var(--ag-a1-rgb),.35) !important;
+  transition: filter .2s ease, transform .2s var(--ag-ease), box-shadow .2s ease !important;
+}
+.MuiAppBar-root .MuiButtonGroup-root .MuiButton-containedPrimary .MuiButton-icon,
+.MuiAppBar-root .MuiButtonGroup-root .MuiButton-containedPrimary svg { color: #fff !important; }
+.MuiAppBar-root .MuiButtonGroup-root .MuiButton-containedPrimary:hover { filter: brightness(1.1); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(var(--ag-a2-rgb),.4) !important; }
+/* El segundo botón del grupo (aleatorio) como círculo de cristal */
+.MuiAppBar-root .MuiButtonGroup-root .MuiButton-containedPrimary:not(:first-child) {
+  min-width: 0 !important; width: 2.5em; padding: 0 !important;
+  background: rgba(255,255,255,.08) !important; border: 1px solid rgba(255,255,255,.14) !important; box-shadow: none !important;
+}
+.MuiAppBar-root .MuiButtonGroup-root .MuiButton-containedPrimary:not(:first-child):hover { background: rgba(var(--ag-a1-rgb),.35) !important; }
+.MuiAppBar-root .MuiButtonGroup-root .MuiButton-containedPrimary.Mui-disabled { opacity: .5; }
+
+/* Grupos de botones de texto (filtro, orden, vista, paginación): sin separadores-arco */
+.MuiButtonGroup-root .MuiButtonGroup-grouped, .MuiButtonGroup-root .MuiButton-text { border-right: 0 !important; border-left: 0 !important; }
+.MuiButtonGroup-text, .MuiButtonGroup-root:not(.MuiButtonGroup-contained) { gap: 2px; }
+.MuiAppBar-root .MuiButtonGroup-root .MuiButton-text { min-width: 2.5em !important; height: 2.5em; padding: 0 .6em !important; border-radius: 999px !important; }
+.MuiAppBar-root .MuiButtonGroup-root .MuiButton-text:hover { background: rgba(255,255,255,.08) !important; color: var(--ag-text) !important; }
