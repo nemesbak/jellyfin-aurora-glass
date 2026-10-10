@@ -255,22 +255,74 @@ El instalador lo hace todo solo:
 | 🐧 **Jellyfin/Emby instalado sin Docker** (Debian, Ubuntu, LXC de *helper-scripts*…) | La terminal de ese equipo, con `sudo` si no eres root: `curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/nebula.sh \| sudo bash` |
 
 <details>
-<summary>🐳 Uso Docker Compose o Portainer (Stacks)</summary>
+<summary>🐳 Uso Docker Compose o Portainer (si no sabes qué es esto, sáltalo)</summary>
 
-Añade este servicio a tu `docker-compose.yml` (o crea un *Stack* en Portainer con él) y ejecuta `docker compose up -d`. No hay que cambiar nada:
+**¿Qué es esto?** Es **otra forma de instalar lo mismo**. Si al montar tu Jellyfin o Emby usaste un archivo llamado `docker-compose.yml`, o lo creaste desde **Portainer**, quizá prefieras tener Nebula en ese mismo archivo, junto a lo demás. Si no te suena nada de esto, **no lo necesitas**: usa el comando de arriba.
 
+**¿Qué hace?** Crea un contenedor pequeñito llamado `nebula` que hace de «ayudante»: busca tu Jellyfin y tu Emby, les pone el carrusel y, si una actualización lo borra, lo vuelve a poner solo.
+
+#### 📝 Con un archivo `docker-compose.yml`
+
+1. Abre tu archivo `docker-compose.yml` (el mismo donde tienes Jellyfin o Emby).
+2. Busca la línea `services:`. Debajo verás tus programas (por ejemplo `jellyfin:`).
+3. Pega esto **al final del archivo**, respetando los espacios del principio:
+
+   ```yaml
+     nebula:
+       image: docker:cli
+       container_name: nebula
+       restart: unless-stopped
+       volumes:
+         - /var/run/docker.sock:/var/run/docker.sock
+       entrypoint: ["sh", "-c", "apk add -q --no-cache bash curl && curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/inject-docker.sh | bash -s -- auto --watch"]
+   ```
+
+   > ⚠️ Los espacios importan: `nebula:` tiene que quedar **alineado** con `jellyfin:` (o con el nombre de tus otros programas).
+
+4. Guarda el archivo y, en la terminal, en esa misma carpeta, escribe:
+   ```bash
+   docker compose up -d
+   ```
+5. Recarga Jellyfin/Emby con **Ctrl + F5**. ¡Listo!
+
+#### 🧭 Con Portainer
+
+1. Entra en Portainer → **Stacks** → **＋ Add stack**.
+2. En **Name** escribe `nebula`.
+3. En el cuadro grande (**Web editor**) pega esto tal cual:
+
+   ```yaml
+   services:
+     nebula:
+       image: docker:cli
+       container_name: nebula
+       restart: unless-stopped
+       volumes:
+         - /var/run/docker.sock:/var/run/docker.sock
+       entrypoint: ["sh", "-c", "apk add -q --no-cache bash curl && curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/inject-docker.sh | bash -s -- auto --watch"]
+   ```
+
+4. Abajo del todo pulsa **Deploy the stack**.
+5. Recarga Jellyfin/Emby con **Ctrl + F5**. ¡Listo!
+
+**Para quitarlo:** en Portainer, borra el stack `nebula`. Con el archivo, borra esas líneas y escribe `docker compose up -d --remove-orphans`. Después pega el comando de [quitar el carrusel](#-quitar-el-carrusel) para limpiar Jellyfin/Emby.
+
+<details>
+<summary>🤓 Para curiosos: qué significa cada línea</summary>
+
+- `image: docker:cli` → una imagen oficial de Docker, muy pequeña.
+- `container_name: nebula` → el nombre con el que lo verás en tu lista de contenedores.
+- `restart: unless-stopped` → se enciende solo cuando reinicias el servidor.
+- `volumes: …docker.sock…` → le deja «ver» tus otros contenedores para poder poner el carrusel dentro de Jellyfin/Emby. Por eso no hace falta decirle cómo se llaman.
+- `entrypoint: …` → al arrancar, descarga el instalador de este repositorio y se queda vigilando cada 10 minutos.
+
+¿Quieres que ponga también el tema él solo? Añade debajo de `restart:` estas líneas, con tu clave de API (pon solo la del servidor que tengas):
 ```yaml
-services:
-  nebula:
-    image: docker:cli
-    container_name: nebula
-    restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    entrypoint: ["sh", "-c", "apk add -q --no-cache bash curl && curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/inject-docker.sh | bash -s -- auto --watch"]
+    environment:
+      - JELLYFIN_API_KEY=tu_clave
+      - EMBY_API_KEY=tu_clave
 ```
-
-(Con las variables opcionales comentadas lo tienes en [`install/docker-compose.yml`](install/docker-compose.yml).)
+</details>
 </details>
 
 <details>
