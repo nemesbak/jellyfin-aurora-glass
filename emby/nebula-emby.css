@@ -318,6 +318,52 @@ html {
 .videoOsdPositionSlider + .emby-slider-background, .emby-slider-background { border-radius: 99px !important; }
 .videoOsdBottom-video { background: linear-gradient(to top, rgba(8,8,12,.9), rgba(8,8,12,.55) 60%, transparent) !important; }
 
+/* Emby pone «contain: paint» en cada tarjeta y recorta la elevación, el aro y la sombra: se quita solo en la tarjeta con el ratón encima */
+.card:hover, .card:focus-within { contain: inline-size layout style !important; z-index: 2; }
+/* ===== pulido de efectos ===== */
+/* botones de la ficha: transición suave, elevación, pulsación y color por acción */
+.detailButton, .raised, .emby-button.raised, .nbHero-btn, .headerButton, .videoosd-tab-button, .emby-tab-button {
+  transition: transform .22s var(--nb-ease), box-shadow .25s var(--nb-ease), background-color .2s, border-color .2s, color .2s, filter .2s !important;
+}
+.detailButton:active, .raised:active, .nbHero-btn:active, .headerButton:active, .cardOverlayButton-fab:active { transform: scale(.95) !important; transition-duration: .08s !important; }
+.btnPlay.detailButton, .btnResume.detailButton { box-shadow: 0 8px 24px rgba(var(--nb-a1-rgb),.35) !important; position: relative; overflow: hidden; }
+.btnPlay.detailButton::after, .btnResume.detailButton::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.35) 50%, transparent 65%); transform: translateX(-120%);
+}
+.btnPlay.detailButton:hover::after, .btnResume.detailButton:hover::after { animation: nbShine .9s var(--nb-ease) forwards; }
+.btnPlay.detailButton:hover, .btnResume.detailButton:hover { filter: brightness(1.08) saturate(1.1); }
+.detailButton.fab:hover { box-shadow: 0 8px 22px rgba(var(--nb-a1-rgb),.35) !important; }
+.detailButton.fab .md-icon { transition: transform .25s var(--nb-ease), color .2s !important; }
+.detailButton.fab:hover .md-icon { transform: scale(1.12); }
+.detailButton.fab.btnUserRating:hover { background: rgba(251,113,133,.18) !important; border-color: rgba(251,113,133,.5) !important; box-shadow: 0 8px 22px rgba(251,113,133,.3) !important; }
+.detailButton.fab.btnUserRating:hover .md-icon { color: #fb7185 !important; }
+.detailButton.fab.btnPlaystate:hover { background: rgba(52,211,153,.16) !important; border-color: rgba(52,211,153,.5) !important; box-shadow: 0 8px 22px rgba(52,211,153,.28) !important; }
+.detailButton.fab.btnPlaystate:hover .md-icon { color: #34d399 !important; }
+.detailButton.fab.btnDeleteItem:hover { background: rgba(239,68,68,.18) !important; border-color: rgba(239,68,68,.5) !important; box-shadow: 0 8px 22px rgba(239,68,68,.28) !important; }
+.detailButton.fab.btnDeleteItem:hover .md-icon { color: #f87171 !important; }
+/* ficha: aire bajo la cabecera de cristal */
+@media (min-width: 901px) { .itemView .detailMainContainer, .itemView .detailImageContainer { margin-top: 1.4em !important; } }
+/* reparto: aro de acento al pasar */
+.peopleSection .cardContent { transition: box-shadow .25s var(--nb-ease) !important; }
+.peopleSection .card-hoverable:hover .cardContent { box-shadow: 0 0 0 2px rgba(var(--nb-a1-rgb),.8), 0 10px 26px rgba(var(--nb-a1-rgb),.35) !important; }
+/* cabecera: botones con brillo de acento */
+.headerButton:hover, .skinHeader .paper-icon-button-light:hover { background: rgba(var(--nb-a1-rgb),.18) !important; color: #fff !important; }
+.headerUserButton:hover { box-shadow: 0 0 0 2px rgba(var(--nb-a2-rgb),.8), 0 0 18px rgba(var(--nb-a1-rgb),.5) !important; }
+/* menú lateral: activo con el degradado suave, no violeta plano */
+.navMenuOption-selected .listItem-content, .navMenuOption-selected .navMenuOption-listItem-content {
+  background: linear-gradient(135deg, rgba(var(--nb-a1-rgb),.42), rgba(var(--nb-a2-rgb),.18)) !important; border-radius: 12px !important;
+  box-shadow: inset 0 0 0 1px rgba(var(--nb-a1-rgb),.45) !important;
+}
+.navMenuOption .listItem-content { border-radius: 12px !important; transition: background-color .2s !important; }
+/* interruptores y casillas con el degradado */
+.emby-toggle:checked ~ .toggleSwitch { background: var(--nb-grad) !important; box-shadow: 0 0 12px rgba(var(--nb-a1-rgb),.4) !important; }
+.emby-select:focus, .emby-input:focus { box-shadow: 0 0 0 2px rgba(var(--nb-a1-rgb),.55) !important; }
+/* listas (búsquedas, ajustes): leve desplazamiento */
+.listItem-hoverable:not(.navMenuOption):hover .listItem-content { background: rgba(255,255,255,.05) !important; }
+/* tarjetas: botón de reproducir del hover con resplandor */
+.cardOverlayFab-primary:hover, .cardOverlayButton-fab:hover { box-shadow: 0 8px 24px rgba(var(--nb-a1-rgb),.5) !important; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
 }
