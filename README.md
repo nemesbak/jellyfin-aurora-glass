@@ -2,149 +2,153 @@
 
 # 🌌 Nebula
 
-**Un tema oscuro, redondeado y elegante para Jellyfin 12 y Emby**
+**A dark, rounded and elegant theme for Jellyfin 12 and Emby**
 
-Efecto cristal · degradado violeta → cian · animaciones suaves · carrusel de portada
+Glass effect · violet → cyan gradient · smooth animations · featured carousel
+
+**English** · [Español](README.es.md)
 
 ![Jellyfin 12](https://img.shields.io/badge/Jellyfin-12.x-8b5cf6?style=for-the-badge&logo=jellyfin&logoColor=white)
 ![Emby 4.9+](https://img.shields.io/badge/Emby-4.9+-52b54b?style=for-the-badge&logo=emby&logoColor=white)
-![Instalación](https://img.shields.io/badge/instalación-1_minuto-22d3ee?style=for-the-badge)
-![Licencia MIT](https://img.shields.io/badge/licencia-MIT-555?style=for-the-badge)
+![Install](https://img.shields.io/badge/install-1_minute-22d3ee?style=for-the-badge)
+![MIT License](https://img.shields.io/badge/license-MIT-555?style=for-the-badge)
 
-![Portada con Nebula](screenshots/inicio.jpg)
+![Home page with Nebula](screenshots/inicio.jpg)
 
 </div>
 
 ---
 
-## ✨ Antes y después
+## ✨ Before and after
 
-![Jellyfin normal frente a Nebula](screenshots/antes-despues.jpg)
+![Stock Jellyfin vs Nebula](screenshots/antes-despues.jpg)
 
 <table>
 <tr>
-<td width="50%"><img src="screenshots/ficha.jpg" alt="Ficha de película"><br><b>Ficha de película</b>: el logo sustituye al título, botones redondos, pistas de audio y subtítulos como tarjetas.</td>
-<td width="50%"><img src="screenshots/biblioteca.jpg" alt="Biblioteca"><br><b>Biblioteca</b>: tarjetas redondeadas, menús de cristal y filtros limpios.</td>
+<td width="50%"><img src="screenshots/ficha.jpg" alt="Movie page"><br><b>Movie page</b>: the logo replaces the title, round buttons, audio and subtitle tracks as cards.</td>
+<td width="50%"><img src="screenshots/biblioteca.jpg" alt="Library"><br><b>Library</b>: rounded cards, glass menus and clean filters.</td>
 </tr>
 <tr>
-<td width="50%"><img src="screenshots/temporada.jpg" alt="Temporada"><br><b>Episodios</b> como tarjetas, con marca «✓ Visto» y sinopsis corta.</td>
-<td width="50%" align="center"><img src="screenshots/movil.jpg" alt="Móvil" width="80%"><br><b>Móvil</b>: todo adaptado a pantallas pequeñas.</td>
+<td width="50%"><img src="screenshots/temporada.jpg" alt="Season"><br><b>Episodes</b> as cards, with a "✓ Watched" badge and a short overview.</td>
+<td width="50%" align="center"><img src="screenshots/movil.jpg" alt="Mobile" width="80%"><br><b>Mobile</b>: everything adapted to small screens.</td>
 </tr>
 </table>
 
-**Qué cambia, en resumen:**
+**What changes, in short:**
 
 | | |
 |---|---|
-| 🔘 **Todo redondeado** | Tarjetas, botones en píldora, menús y diálogos de cristal, scroll fino, fuente Inter |
-| 🎬 **Ficha de película** | Logo en vez de título, entrada animada, audio y subtítulos con desplegable propio, reparto en círculos |
-| 📺 **Episodios** | Tarjetas con «play» al pasar el ratón y marca de visto |
-| ▶️ **Reproductor** | Botón de pausa con degradado, barra de progreso que brilla, «saltar intro» de cristal |
-| 🔐 **Resto** | Login, búsqueda, guía de TV, favoritos y panel de administración a juego |
-| 📱 **Móvil** | Adaptado a pantallas estrechas |
+| 🔘 **Everything rounded** | Cards, pill buttons, glass menus and dialogs, thin scrollbars, Inter font |
+| 🎬 **Movie page** | Logo instead of title, animated entrance, custom audio/subtitle dropdowns, circular cast photos |
+| 📺 **Episodes** | Cards with a play button on hover and a watched badge |
+| ▶️ **Player** | Gradient pause button, glowing progress bar, glass "skip intro" |
+| 🔐 **Everything else** | Login, search, TV guide, favorites and admin dashboard to match |
+| 📱 **Mobile** | Adapted to narrow screens |
 
 ---
 
-## 🚀 Instalación del tema (1 minuto, sin instalar nada)
+## 🚀 Installing the theme (1 minute, nothing to install)
 
-> Solo hace falta copiar y pegar **una línea**. No tocas archivos, no reinicias nada, y si no te gusta lo quitas igual de fácil.
+> You only need to copy and paste **one line**. No files to touch, nothing to restart, and if you don't like it, removing it is just as easy.
 
-**1.** Entra en Jellyfin con una cuenta de **administrador**. Pulsa tu **foto de usuario** (arriba a la derecha) → **Panel de control**.
+**1.** Sign in to Jellyfin with an **administrator** account. Click your **user picture** (top right) → **Dashboard**.
 
-**2.** En el menú de la izquierda, abre **Personalización de apariencia**.
+**2.** In the left menu, open **Branding** (appearance customization).
 
-**3.** En el cuadro **«Código CSS personalizado»**, pega esta línea:
+**3.** In the **"Custom CSS code"** box, paste this line:
 
 ```css
 @import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/nebula.css');
 ```
 
-**4.** Pulsa **Guardar** abajo del todo.
+**4.** Click **Save** at the bottom.
 
-**5.** Recarga la página con **Ctrl + F5** (en Mac: **Cmd + Shift + R**). En el móvil, cierra la app o la pestaña y ábrela otra vez.
+**5.** Reload the page with **Ctrl + F5** (Mac: **Cmd + Shift + R**). On mobile, close the app or tab and open it again.
 
-¡Listo! 🎉 Se aplica a **todos los usuarios** y se actualiza solo cuando mejoro el tema.
+Done! 🎉 It applies to **all users** and updates itself whenever I improve the theme.
 
-> 💡 ¿Quieres además el **carrusel grande de la portada** (la imagen de arriba)? Está al final: [🎠 Carrusel destacado](#-carrusel-destacado-opcional).
+> 💡 Also want the **big home carousel** (the image at the top)? It's at the end: [🎠 Featured carousel](#-featured-carousel-optional).
 
 ---
 
-## 🎨 Opciones
+## 🎨 Options
 
-Cada opción es **una línea más** que pegas **debajo** de la del tema, en el mismo cuadro de «Código CSS personalizado» (*Panel de control → Personalización de apariencia*). Puedes combinar todas las que quieras.
+Each option is **one more line** that you paste **below** the theme line, in the same "Custom CSS code" box (*Dashboard → Branding*). Combine as many as you like.
 
-### 🌈 Color de acento
+> The option file names are in Spanish — just copy them as they are.
 
-Cambia el violeta → cian por otro color. Pon **solo una** de estas líneas:
+### 🌈 Accent color
 
-![Colores de acento](screenshots/opcion-acentos.png)
+Swap the violet → cyan for another color. Use **only one** of these lines:
+
+![Accent colors](screenshots/opcion-acentos.png)
 
 ```css
 @import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/opciones/acento-coral.css');
 ```
 
-Cambia `acento-coral` por el que quieras: `acento-coral` · `acento-esmeralda` · `acento-oceano` · `acento-rosa` · `acento-oro` · `acento-blanco`.
+Replace `acento-coral` with the one you want: `acento-coral` (coral) · `acento-esmeralda` (emerald) · `acento-oceano` (ocean) · `acento-rosa` (pink) · `acento-oro` (gold) · `acento-blanco` (white).
 
 <details>
-<summary>🎛️ ¿Quieres tu propio color exacto?</summary>
+<summary>🎛️ Want your own exact color?</summary>
 
-Pega esto debajo del tema y cambia los colores (cada uno en formato `#hex` y en números `R,G,B`):
+Paste this below the theme and change the colors (each one as `#hex` and as `R,G,B` numbers):
 
 ```css
 :root {
   --nb-a1: #ff6b6b; --nb-a1-rgb: 255,107,107;   /* color 1 */
   --nb-a2: #ffa94d; --nb-a2-rgb: 255,169,77;    /* color 2 */
-  --nb-on-accent: #fff;                          /* texto sobre el botón (pon #111 si tus colores son claros) */
+  --nb-on-accent: #fff;                          /* text on buttons (use #111 if your colors are light) */
 }
 ```
 </details>
 
-### 🧭 Barra superior
+### 🧭 Top bar
 
-Jellyfin 12 pone las bibliotecas arriba. Si prefieres una barra más limpia:
+Jellyfin 12 puts your libraries in the top bar. If you prefer a cleaner bar:
 
-![Opciones de la barra superior](screenshots/opcion-cabecera.png)
+![Top bar options](screenshots/opcion-cabecera.png)
 
-| Quiero… | Pega esta línea |
+| I want… | Paste this line |
 |---|---|
-| Barra **mínima** (solo logo, búsqueda y usuario) | `@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/opciones/cabecera-minima.css');` |
-| Quitar solo las **bibliotecas** | `@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/opciones/ocultar-bibliotecas-cabecera.css');` |
-| Quitar solo **Favoritos** | `@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/opciones/ocultar-favoritos-cabecera.css');` |
-| Quitar solo el menú **«Más»** | `@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/opciones/ocultar-menu-mas.css');` |
+| A **minimal** bar (just logo, search and user) | `@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/opciones/cabecera-minima.css');` |
+| Hide only the **libraries** | `@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/opciones/ocultar-bibliotecas-cabecera.css');` |
+| Hide only **Favorites** | `@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/opciones/ocultar-favoritos-cabecera.css');` |
+| Hide only the **"More"** menu | `@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/opciones/ocultar-menu-mas.css');` |
 
-> No pierdes nada: las bibliotecas siguen en «Mis contenidos» de la portada y en el menú ☰.
+> You don't lose anything: libraries are still under "My Media" on the home page and in the ☰ menu.
 
-### 🏷️ Título en texto en vez del logo
+### 🏷️ Text title instead of the logo
 
-Por defecto la ficha muestra el **logo** de la película. Si prefieres el nombre escrito:
+By default the item page shows the movie's **logo**. If you prefer the written name:
 
-![Logo o título en texto](screenshots/opcion-titulo.jpg)
+![Logo or text title](screenshots/opcion-titulo.jpg)
 
 ```css
 @import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/opciones/titulo-en-texto.css');
 ```
 
-### 🃏 Texto de las tarjetas centrado
+### 🃏 Centered card text
 
-Nebula alinea el título y el año a la izquierda. Para centrarlos como en Jellyfin normal:
+Nebula left-aligns the title and year. To center them like stock Jellyfin:
 
-![Texto de tarjetas](screenshots/opcion-tarjetas.jpg)
+![Card text](screenshots/opcion-tarjetas.jpg)
 
 ```css
 @import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/opciones/tarjetas-texto-centrado.css');
 ```
 
-### 🐢 Sin animaciones
+### 🐢 No animations
 
-Para equipos lentos, televisores o si simplemente no te gustan los efectos. Todo aparece al instante:
+For slow devices, TVs, or if you just don't like the effects. Everything appears instantly:
 
 ```css
 @import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/opciones/sin-animaciones.css');
 ```
 
-### 📋 Ejemplo completo
+### 📋 Full example
 
-Así quedaría el cuadro con el tema + color coral + barra mínima:
+This is what the box would look like with the theme + coral accent + minimal bar:
 
 ```css
 @import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/nebula.css');
@@ -152,120 +156,122 @@ Así quedaría el cuadro con el tema + color coral + barra mínima:
 @import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/opciones/cabecera-minima.css');
 ```
 
-> ⚠️ Las líneas `@import` tienen que ir **al principio** del cuadro, antes de cualquier otro CSS que tengas.
+> ⚠️ `@import` lines must go **at the very top** of the box, before any other CSS you have.
 
 ---
 
-## 📺 Nebula para Emby
+## 📺 Nebula for Emby
 
-¿Usas **Emby**? Nebula también está para Emby 4.9 / 4.10, con la misma estética y el mismo carrusel.
+Using **Emby**? Nebula is also available for Emby 4.9 / 4.10, with the same look and the same carousel.
 
 <table>
 <tr>
-<td width="50%"><img src="screenshots/emby-inicio.jpg" alt="Emby: portada con carrusel"><br><b>Portada</b> con el carrusel destacado y pestañas en píldora.</td>
-<td width="50%"><img src="screenshots/emby-ficha.jpg" alt="Emby: ficha"><br><b>Ficha</b> con botones de cristal, pistas en píldora y reparto en círculos.</td>
+<td width="50%"><img src="screenshots/emby-inicio.jpg" alt="Emby: home with carousel"><br><b>Home</b> with the featured carousel and pill tabs.</td>
+<td width="50%"><img src="screenshots/emby-ficha.jpg" alt="Emby: item page"><br><b>Item page</b> with glass buttons, pill tracks and circular cast.</td>
 </tr>
 <tr>
-<td width="50%"><img src="screenshots/emby-reproductor.jpg" alt="Emby: reproductor"><br><b>Reproductor</b> con el botón central en degradado, la barra de progreso violeta→cian y controles más legibles.</td>
-<td width="50%"><img src="screenshots/emby-capitulos.jpg" alt="Emby: capítulos en el reproductor"><br><b>Capítulos</b> y demás pestañas del reproductor en píldora.</td>
+<td width="50%"><img src="screenshots/emby-reproductor.jpg" alt="Emby: player"><br><b>Player</b> with a gradient center button, violet→cyan progress bar and more readable controls.</td>
+<td width="50%"><img src="screenshots/emby-capitulos.jpg" alt="Emby: chapters in the player"><br><b>Chapters</b> and the other player tabs as pills.</td>
 </tr>
 </table>
 
-**1. El tema (1 minuto):** en Emby pulsa el engranaje **⚙ (Gestionar Emby Server) → Panel de control → General**, y en **«Personalizar CSS»** pega:
+**1. The theme (1 minute):** in Emby click the gear **⚙ (Manage Emby Server) → Dashboard → General**, and in **"Custom CSS"** paste:
 
 ```css
 @import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/emby/nebula-emby.css');
 ```
 
-Guarda y recarga con **Ctrl + F5**.
+Save and reload with **Ctrl + F5**.
 
-**2. El carrusel (opcional):** se instala con el **mismo comando** que en Jellyfin ([ver abajo](#-carrusel-destacado-opcional)). El instalador encuentra solo tu Emby (y tu Jellyfin, si tienes los dos).
+**2. The carousel (optional):** installed with the **same command** as for Jellyfin ([see below](#-featured-carousel-optional)). The installer finds your Emby on its own (and your Jellyfin, if you have both).
 
-> En Emby el carrusel admite los mismos ajustes `--nb-hero-*` (pégalos en «Personalizar CSS» debajo del `@import`). Las opciones de la carpeta `opciones/` son para la barra superior de Jellyfin 12 y no se aplican a Emby.
-
----
-
-## ❓ Preguntas frecuentes
-
-<details>
-<summary><b>He pegado la línea y no cambia nada</b></summary>
-
-1. Asegúrate de haber pulsado **Guardar**.
-2. Recarga con **Ctrl + F5** (el navegador guarda la versión vieja).
-3. Comprueba que la línea está **la primera** del cuadro y sin espacios raros delante.
-</details>
-
-<details>
-<summary><b>¿Funciona en la app de mi tele / móvil?</b></summary>
-
-Funciona en todo lo que usa la **web** de Jellyfin: el navegador (PC y móvil), la app **Jellyfin Media Player** y la app oficial de **Android** (que por dentro es la web). Las apps «nativas» como **Android TV, Swiftfin (iPhone/Apple TV) o Findroid** no cargan CSS, así que ahí no se ve.
-</details>
-
-<details>
-<summary><b>¿Tengo que actualizar algo cuando saque mejoras?</b></summary>
-
-No. La línea siempre apunta a la última versión. Puede tardar unas horas en llegarte por la caché; un **Ctrl + F5** ayuda.
-</details>
-
-<details>
-<summary><b>¿Funciona con Jellyfin 10.x?</b></summary>
-
-Está hecho para **Jellyfin 12**. En 10.x funciona a medias (la barra superior y los ajustes de la 12 son distintos).
-</details>
-
-<details>
-<summary><b>¿Cómo lo quito?</b></summary>
-
-Borra las líneas del cuadro «Código CSS personalizado» (*Panel de control → Personalización de apariencia*), guarda y recarga. Jellyfin vuelve a ser como antes. (Si instalaste el carrusel, mira [cómo quitarlo](#-quitar-el-carrusel).)
-</details>
+> On Emby the carousel supports the same `--nb-hero-*` settings (paste them in "Custom CSS" below the `@import`). The files in `opciones/` are for the Jellyfin 12 top bar and don't apply to Emby.
 
 ---
 
-## 🎠 Carrusel destacado (opcional)
+## ❓ FAQ
 
-El carrusel es la **imagen grande de la portada** que va pasando sola: títulos recientes que aún no has visto, con su logo, año, nota, géneros, sinopsis y dos botones: **Ver ahora** (empieza a reproducir) y **Más info**. Se pausa al pasar el ratón y en el móvil se desliza con el dedo.
+<details>
+<summary><b>I pasted the line and nothing changed</b></summary>
 
-![Con y sin carrusel](screenshots/opcion-carrusel.jpg)
+1. Make sure you clicked **Save**.
+2. Reload with **Ctrl + F5** (the browser caches the old version).
+3. Check that the line is the **first one** in the box, with no stray characters before it.
+</details>
 
-> 🤔 **¿Por qué es aparte?** Jellyfin solo deja poner CSS (colores y formas). El carrusel es un pequeño programa (JavaScript), y para añadirlo hay que darle permiso a Jellyfin una vez. De paso, también aplica el tema al **panel de administración**, que en Jellyfin 12 ignora el CSS personalizado.
+<details>
+<summary><b>Does it work on my TV / phone app?</b></summary>
 
-### ⚡ Instalación: un solo comando
+It works everywhere Jellyfin's **web client** is used: browsers (desktop and mobile), **Jellyfin Media Player** and the official **Android** app (which is the web client inside). "Native" apps like **Android TV, Swiftfin (iPhone/Apple TV) or Findroid** don't load custom CSS, so you won't see it there.
+</details>
 
-Abre la **terminal del equipo donde está Jellyfin o Emby**, pega esto y pulsa Enter:
+<details>
+<summary><b>Do I need to update anything when you release improvements?</b></summary>
+
+No. The line always points to the latest version. It can take a few hours to reach you because of caching; a **Ctrl + F5** helps.
+</details>
+
+<details>
+<summary><b>Does it work with Jellyfin 10.x?</b></summary>
+
+It's built for **Jellyfin 12**. On 10.x it partly works (the top bar and settings pages are different in 12).
+</details>
+
+<details>
+<summary><b>How do I remove it?</b></summary>
+
+Delete the lines from the "Custom CSS code" box (*Dashboard → Branding*), save and reload. Jellyfin goes back to how it was. (If you installed the carousel, see [how to remove it](#-removing-the-carousel).)
+</details>
+
+---
+
+## 🎠 Featured carousel (optional)
+
+The carousel is the **big image on the home page** that rotates on its own: recent titles you haven't watched yet, with their logo, year, rating, genres, overview and two buttons: **Play now** and **More info**. It pauses on hover, and on mobile you can swipe it.
+
+![With and without carousel](screenshots/opcion-carrusel.jpg)
+
+> 🤔 **Why is it separate?** Jellyfin only allows CSS (colors and shapes). The carousel is a small program (JavaScript), and adding it requires giving Jellyfin permission once. As a bonus, it also applies the theme to the **admin dashboard**, which ignores custom CSS in Jellyfin 12.
+
+### ⚡ Install: one command
+
+Open a **terminal on the machine where Jellyfin or Emby runs**, paste this and press Enter:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/nebula.sh | bash
 ```
 
-Recarga Jellyfin/Emby con **Ctrl + F5**. ¡Ya está! 🎉
+Reload Jellyfin/Emby with **Ctrl + F5**. That's it! 🎉
 
-El instalador lo hace todo solo:
-- 🔍 **Encuentra** todos tus Jellyfin y Emby, estén en Docker o instalados directamente. No tienes que saber cómo se llama nada.
-- 🎠 **Pone** el carrusel en cada uno.
-- 🔁 **Lo vuelve a poner** solo cuando actualizas Jellyfin/Emby (las actualizaciones lo borran) y tras reiniciar el servidor.
+The installer does everything by itself:
+- 🔍 **Finds** all your Jellyfin and Emby servers, whether in Docker or installed directly. You don't need to know what anything is called.
+- 🎠 **Adds** the carousel to each one.
+- 🔁 **Re-adds it** automatically when you update Jellyfin/Emby (updates wipe it) and after a server reboot.
 
-#### 📍 ¿Dónde pego el comando?
+> The installer's messages are in Spanish, but there's nothing to answer — it runs on its own.
 
-| Tengo… | Dónde está la terminal |
+#### 📍 Where do I paste the command?
+
+| I have… | Where the terminal is |
 |---|---|
-| 🟠 **Unraid** | Arriba a la derecha, el icono **`>_`** (Terminal). Pega y listo. |
-| 🟤 **Proxmox** (LXC o VM) | Pégalo **dentro** del LXC o la VM donde está Jellyfin/Emby: selecciónalo en la lista de la izquierda → **Console**. *No* en la consola del propio Proxmox. |
-| 🐳 **Docker en Linux** (Ubuntu, Debian, Raspberry Pi…) | Cualquier terminal o SSH. Si pide permisos, usa `… \| sudo bash`. |
-| 🔵 **Synology / QNAP** | Activa **SSH** (Synology: *Panel de control → Terminal y SNMP*), entra con PuTTY o la terminal, escribe `sudo -i` y pega. |
-| 🐧 **Jellyfin/Emby instalado sin Docker** (Debian, Ubuntu, LXC de *helper-scripts*…) | La terminal de ese equipo, con `sudo` si no eres root: `curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/nebula.sh \| sudo bash` |
+| 🟠 **Unraid** | Top right, the **`>_`** icon (Terminal). Paste and done. |
+| 🟤 **Proxmox** (LXC or VM) | Paste it **inside** the LXC or VM where Jellyfin/Emby runs: select it in the left list → **Console**. *Not* in the Proxmox host shell. |
+| 🐳 **Docker on Linux** (Ubuntu, Debian, Raspberry Pi…) | Any terminal or SSH. If it asks for permissions, use `… \| sudo bash`. |
+| 🔵 **Synology / QNAP** | Enable **SSH** (Synology: *Control Panel → Terminal & SNMP*), log in with PuTTY or a terminal, type `sudo -i` and paste. |
+| 🐧 **Jellyfin/Emby installed without Docker** (Debian, Ubuntu, *helper-scripts* LXC…) | That machine's terminal, with `sudo` if you're not root: `curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/nebula.sh \| sudo bash` |
 
 <details>
-<summary>🐳 Uso Docker Compose o Portainer (si no sabes qué es esto, sáltalo)</summary>
+<summary>🐳 I use Docker Compose or Portainer (if you don't know what this is, skip it)</summary>
 
-**¿Qué es esto?** Es **otra forma de instalar lo mismo**. Si al montar tu Jellyfin o Emby usaste un archivo llamado `docker-compose.yml`, o lo creaste desde **Portainer**, quizá prefieras tener Nebula en ese mismo archivo, junto a lo demás. Si no te suena nada de esto, **no lo necesitas**: usa el comando de arriba.
+**What is this?** It's **another way to install the same thing**. If you set up Jellyfin or Emby with a `docker-compose.yml` file, or from **Portainer**, you may prefer to keep Nebula in that same file alongside everything else. If none of this rings a bell, **you don't need it**: use the command above.
 
-**¿Qué hace?** Crea un contenedor pequeñito llamado `nebula` que hace de «ayudante»: busca tu Jellyfin y tu Emby, les pone el carrusel y, si una actualización lo borra, lo vuelve a poner solo.
+**What does it do?** It creates a tiny container called `nebula` that acts as a "helper": it finds your Jellyfin and Emby, adds the carousel, and if an update removes it, adds it back on its own.
 
-#### 📝 Con un archivo `docker-compose.yml`
+#### 📝 With a `docker-compose.yml` file
 
-1. Abre tu archivo `docker-compose.yml` (el mismo donde tienes Jellyfin o Emby).
-2. Busca la línea `services:`. Debajo verás tus programas (por ejemplo `jellyfin:`).
-3. Pega esto **al final del archivo**, respetando los espacios del principio:
+1. Open your `docker-compose.yml` (the same one where Jellyfin or Emby is).
+2. Find the `services:` line. Below it you'll see your apps (e.g. `jellyfin:`).
+3. Paste this **at the end of the file**, keeping the leading spaces:
 
    ```yaml
      nebula:
@@ -277,19 +283,19 @@ El instalador lo hace todo solo:
        entrypoint: ["sh", "-c", "apk add -q --no-cache bash curl && curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/inject-docker.sh | bash -s -- auto --watch"]
    ```
 
-   > ⚠️ Los espacios importan: `nebula:` tiene que quedar **alineado** con `jellyfin:` (o con el nombre de tus otros programas).
+   > ⚠️ Indentation matters: `nebula:` must be **aligned** with `jellyfin:` (or your other apps' names).
 
-4. Guarda el archivo y, en la terminal, en esa misma carpeta, escribe:
+4. Save the file and, in a terminal in that same folder, run:
    ```bash
    docker compose up -d
    ```
-5. Recarga Jellyfin/Emby con **Ctrl + F5**. ¡Listo!
+5. Reload Jellyfin/Emby with **Ctrl + F5**. Done!
 
-#### 🧭 Con Portainer
+#### 🧭 With Portainer
 
-1. Entra en Portainer → **Stacks** → **＋ Add stack**.
-2. En **Name** escribe `nebula`.
-3. En el cuadro grande (**Web editor**) pega esto tal cual:
+1. Open Portainer → **Stacks** → **＋ Add stack**.
+2. In **Name** type `nebula`.
+3. In the big box (**Web editor**) paste this as is:
 
    ```yaml
    services:
@@ -302,118 +308,118 @@ El instalador lo hace todo solo:
        entrypoint: ["sh", "-c", "apk add -q --no-cache bash curl && curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/inject-docker.sh | bash -s -- auto --watch"]
    ```
 
-4. Abajo del todo pulsa **Deploy the stack**.
-5. Recarga Jellyfin/Emby con **Ctrl + F5**. ¡Listo!
+4. At the bottom, click **Deploy the stack**.
+5. Reload Jellyfin/Emby with **Ctrl + F5**. Done!
 
-**Para quitarlo:** en Portainer, borra el stack `nebula`. Con el archivo, borra esas líneas y escribe `docker compose up -d --remove-orphans`. Después pega el comando de [quitar el carrusel](#-quitar-el-carrusel) para limpiar Jellyfin/Emby.
+**To remove it:** in Portainer, delete the `nebula` stack. With the file, delete those lines and run `docker compose up -d --remove-orphans`. Then paste the [remove the carousel](#-removing-the-carousel) command to clean up Jellyfin/Emby.
 
 <details>
-<summary>🤓 Para curiosos: qué significa cada línea</summary>
+<summary>🤓 For the curious: what each line means</summary>
 
-- `image: docker:cli` → una imagen oficial de Docker, muy pequeña.
-- `container_name: nebula` → el nombre con el que lo verás en tu lista de contenedores.
-- `restart: unless-stopped` → se enciende solo cuando reinicias el servidor.
-- `volumes: …docker.sock…` → le deja «ver» tus otros contenedores para poder poner el carrusel dentro de Jellyfin/Emby. Por eso no hace falta decirle cómo se llaman.
-- `entrypoint: …` → al arrancar, descarga el instalador de este repositorio y se queda vigilando cada 10 minutos.
+- `image: docker:cli` → an official, very small Docker image.
+- `container_name: nebula` → the name you'll see in your container list.
+- `restart: unless-stopped` → starts on its own when you reboot the server.
+- `volumes: …docker.sock…` → lets it "see" your other containers so it can put the carousel inside Jellyfin/Emby. That's why you don't need to tell it their names.
+- `entrypoint: …` → on start, downloads the installer from this repository and keeps checking every 10 minutes.
 
-¿Quieres que ponga también el tema él solo? Añade debajo de `restart:` estas líneas, con tu clave de API (pon solo la del servidor que tengas):
+Want it to apply the theme too? Add these lines below `restart:`, with your API key (only for the server you have):
 ```yaml
     environment:
-      - JELLYFIN_API_KEY=tu_clave
-      - EMBY_API_KEY=tu_clave
+      - JELLYFIN_API_KEY=your_key
+      - EMBY_API_KEY=your_key
 ```
 </details>
 </details>
 
 <details>
-<summary>🎁 Extra: que ponga también el tema él solo</summary>
+<summary>🎁 Extra: let it apply the theme too</summary>
 
-Con tu clave de API, el instalador pega también la línea del tema en «CSS personalizado» (solo si aún no está; nunca borra lo que tengas):
+With your API key, the installer also pastes the theme line into "Custom CSS" (only if it isn't there yet; it never deletes what you have):
 
-1. Crea una clave: Jellyfin → *Panel de control → Claves API → ＋* · Emby → *Panel de control → Claves API → Nueva*.
-2. Pega el comando así, con tu clave (pon solo la del servidor que tengas):
+1. Create a key: Jellyfin → *Dashboard → API Keys → ＋* · Emby → *Dashboard → API Keys → New*.
+2. Paste the command like this, with your key (only for the server you have):
    ```bash
-   curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/nebula.sh | JELLYFIN_API_KEY=tu_clave EMBY_API_KEY=tu_clave bash
+   curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/nebula.sh | JELLYFIN_API_KEY=your_key EMBY_API_KEY=your_key bash
    ```
-3. Opcional, solo Jellyfin: añade `NEBULA_OPTIONS=acento-coral,cabecera-minima` antes de `bash`.
+3. Optional, Jellyfin only: add `NEBULA_OPTIONS=acento-coral,cabecera-minima` before `bash`.
 </details>
 
 <details>
-<summary>🧩 Sin terminal: plugin «JavaScript Injector» (solo Jellyfin)</summary>
+<summary>🧩 No terminal: "JavaScript Injector" plugin (Jellyfin only)</summary>
 
-1. Instala un plugin de inyección de JavaScript para Jellyfin (por ejemplo **JavaScript Injector**) desde *Panel de control → Complementos → Catálogo*. Si no aparece, añade antes su repositorio siguiendo las instrucciones del propio plugin.
-2. Reinicia Jellyfin.
-3. En la página del plugin, crea un script nuevo y pega el contenido de [`install/cargador.js`](install/cargador.js).
-4. Guarda y recarga con **Ctrl + F5**.
+1. Install a JavaScript injection plugin for Jellyfin (e.g. **JavaScript Injector**) from *Dashboard → Plugins → Catalog*. If it's not listed, first add its repository following the plugin's own instructions.
+2. Restart Jellyfin.
+3. On the plugin's page, create a new script and paste the contents of [`install/cargador.js`](install/cargador.js).
+4. Save and reload with **Ctrl + F5**.
 </details>
 
 <details>
-<summary>🛠️ A mano (avanzado)</summary>
+<summary>🛠️ Manually (advanced)</summary>
 
-Copia [`nebula-home.js`](nebula-home.js) (Emby: [`emby/nebula-emby-home.js`](emby/nebula-emby-home.js)) dentro de la carpeta web (Jellyfin: `jellyfin-web` · Emby: `dashboard-ui`) y añade justo antes de `</body>` en su `index.html`:
+Copy [`nebula-home.js`](nebula-home.js) (Emby: [`emby/nebula-emby-home.js`](emby/nebula-emby-home.js)) into the web folder (Jellyfin: `jellyfin-web` · Emby: `dashboard-ui`) and add this right before `</body>` in its `index.html`:
 
 ```html
 <script defer src="nebula-home.js"></script>
 ```
 
-> Las actualizaciones sobrescriben `index.html`: tendrás que repetirlo tras cada una (el comando de arriba lo hace solo).
+> Updates overwrite `index.html`: you'll have to redo this after each one (the command above does it for you).
 </details>
 
-### 🎛️ Personalizar el carrusel
+### 🎛️ Customizing the carousel
 
-Se ajusta desde el **mismo cuadro de «Código CSS personalizado»**, debajo de las líneas del tema. Pon solo lo que quieras cambiar:
+Configured from the **same "Custom CSS code" box**, below the theme lines. Only add what you want to change:
 
-| Ajuste | Qué hace | Por defecto |
+| Setting | What it does | Default |
 |---|---|---|
-| `--nb-hero-count` | Cuántos títulos salen (`0` = sin carrusel) | `8` |
-| `--nb-hero-interval` | Segundos por diapositiva (`0` = no avanza solo) | `8` |
-| `--nb-hero-source` | De dónde salen: `recent` (recientes) · `toprated` (mejor valorados) · `random` (al azar) · `favorites` (favoritos de cada usuario) | `recent` |
-| `--nb-hero-types` | `"Movie"` (pelis), `"Series"` o ambos | `"Movie,Series"` |
-| `--nb-hero-library` | Solo de estas bibliotecas, por su nombre: `"Películas"` o `"Películas,Anime"` | todas |
-| `--nb-hero-days` | Con `recent`: añadidos en los últimos N días (`0` = sin límite) | `120` |
-| `--nb-hero-unwatched` | `1` = solo lo que aún no has visto | `1` |
-| `--nb-hero-logo` | `1` = solo títulos con logo · `0` = también sin logo (escribe el nombre) | `1` |
-| `--nb-hero-overview` / `-genres` / `-rating` | Mostrar sinopsis / géneros / nota (`1` sí, `0` no) | `1` |
-| `--nb-hero-buttons` | Botones «Ver ahora» y «Más info» | `1` |
-| `--nb-hero-play` | `1` = «Ver ahora» reproduce · `0` = solo abre la ficha | `1` |
-| `--nb-hero-height` | Alto en ordenador | `min(68vh, 640px)` |
-| `--nb-hero-height-mobile` | Alto en móvil | `62vh` |
+| `--nb-hero-count` | How many titles are shown (`0` = no carousel) | `8` |
+| `--nb-hero-interval` | Seconds per slide (`0` = doesn't auto-advance) | `8` |
+| `--nb-hero-source` | Where titles come from: `recent` · `toprated` · `random` · `favorites` (each user's favorites) | `recent` |
+| `--nb-hero-types` | `"Movie"`, `"Series"` or both | `"Movie,Series"` |
+| `--nb-hero-library` | Only these libraries, by name: `"Movies"` or `"Movies,Anime"` | all |
+| `--nb-hero-days` | With `recent`: added in the last N days (`0` = no limit) | `120` |
+| `--nb-hero-unwatched` | `1` = only things you haven't watched yet | `1` |
+| `--nb-hero-logo` | `1` = only titles with a logo · `0` = also without (shows the name as text) | `1` |
+| `--nb-hero-overview` / `-genres` / `-rating` | Show overview / genres / rating (`1` yes, `0` no) | `1` |
+| `--nb-hero-buttons` | "Play now" and "More info" buttons | `1` |
+| `--nb-hero-play` | `1` = "Play now" starts playback · `0` = just opens the item page | `1` |
+| `--nb-hero-height` | Height on desktop | `min(68vh, 640px)` |
+| `--nb-hero-height-mobile` | Height on mobile | `62vh` |
 
-**Ejemplos** (copia el que te guste):
+**Examples** (copy the one you like):
 
 ```css
-/* Las 10 mejor valoradas de la biblioteca «Películas», cambiando cada 12 segundos */
-:root { --nb-hero-count: 10; --nb-hero-source: toprated; --nb-hero-library: "Películas"; --nb-hero-interval: 12; }
+/* The 10 top-rated from the "Movies" library, changing every 12 seconds */
+:root { --nb-hero-count: 10; --nb-hero-source: toprated; --nb-hero-library: "Movies"; --nb-hero-interval: 12; }
 ```
 
 ```css
-/* Solo series al azar, sin sinopsis y más bajito */
+/* Random series only, no overview and shorter */
 :root { --nb-hero-types: "Series"; --nb-hero-source: random; --nb-hero-overview: 0; --nb-hero-height: 50vh; }
 ```
 
 ```css
-/* Los favoritos de cada usuario (aunque ya los haya visto) */
+/* Each user's favorites (even if already watched) */
 :root { --nb-hero-source: favorites; --nb-hero-unwatched: 0; }
 ```
 
-> ¿Solo quieres esconder el carrusel un tiempo, sin desinstalarlo? Pega `@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/opciones/sin-carrusel.css');`
+> Just want to hide the carousel for a while without uninstalling it? Paste `@import url('https://cdn.jsdelivr.net/gh/nemesbak/jellyfin-nebula@main/opciones/sin-carrusel.css');`
 
-### 🧹 Quitar el carrusel
+### 🧹 Removing the carousel
 
-Pega en la misma terminal donde lo instalaste:
+Paste this in the same terminal where you installed it:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/nemesbak/jellyfin-nebula/main/install/nebula.sh | bash -s -- --uninstall
 ```
 
-Quita el carrusel de todos tus Jellyfin/Emby y el contenedor o la tarea que lo vigilaba. El tema (CSS) no se toca. Si lo instalaste con **Compose**, borra además el servicio `nebula` de tu archivo. Si usaste el plugin, borra allí el script.
+It removes the carousel from all your Jellyfin/Emby servers, plus the container or task that was watching it. The theme (CSS) is left untouched. If you installed it with **Compose**, also delete the `nebula` service from your file. If you used the plugin, delete the script there.
 
 ---
 
 <div align="center">
 
-Hecho con 💜 para la comunidad de Jellyfin · Licencia [MIT](LICENSE)
+Made with 💜 for the Jellyfin community · [MIT](LICENSE) License
 
-Si te gusta, ⭐ dale una estrella al repositorio, ¡ayuda mucho!
+If you like it, ⭐ star the repository — it really helps!
 
 </div>
