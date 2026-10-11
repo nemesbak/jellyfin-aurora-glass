@@ -1235,3 +1235,18 @@ html.layout-desktop body:not(:has(.backdropImage.displayingBackdropImage)) .item
    Se mantiene la contención completa en reposo (rendimiento) y se quita solo el recorte en la tarjeta activa. */
 /* Solo la tarjeta bajo el ratón pierde el recorte (todas a la vez hacían el scroll pesado en bibliotecas grandes). */
 .card:hover, .card:focus-within { contain: layout style !important; z-index: 2; }
+
+/* Compatibilidad: plugin Media Bar (Enhanced) reutiliza .detailButton/.btnPlay en sus
+   botones; se les devuelve su forma original (píldora «Reproducir» y círculos de 50px). */
+.button-container .detailButton.play-button {
+  width: auto !important; height: auto !important; border-radius: 8px !important; margin: 0 !important;
+  padding: 8px 16px !important; font-family: "Archivo Narrow", sans-serif !important;
+  background: #fff !important; color: #000 !important; border: 0 !important; box-shadow: none !important;
+}
+.button-container .detailButton.detail-button, .button-container .favorite-button {
+  width: 50px !important; height: 50px !important; margin: 0 !important; padding: 0 !important;
+  background: #fff !important; border: 0 !important; box-shadow: none !important;
+  backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+}
+.button-container .detailButton.detail-button { color: #000 !important; }
+.button-container .detailButton:hover { transform: none !important; opacity: .8; }
