@@ -1250,3 +1250,13 @@ html.layout-desktop body:not(:has(.backdropImage.displayingBackdropImage)) .item
 }
 .button-container .detailButton.detail-button { color: #000 !important; }
 .button-container .detailButton:hover { transform: none !important; opacity: .8; }
+
+/* iOS (app de Jellyfin / WKWebView): el proceso web se caía y la portada recargaba en bucle.
+   Sin content-visibility, sin desenfoques de cristal, sin capa fija y sin zoom del carrusel. */
+@supports (-webkit-touch-callout: none) {
+  .homeSectionsContainer > .verticalSection, .detailVerticalSection { content-visibility: visible !important; contain-intrinsic-size: none !important; }
+  *, *::before, *::after { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+  .skinHeader, .MuiAppBar-root { background: rgba(14,14,18,.94) !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+  body::before { position: absolute !important; }
+  .nbHero-bg { transform: none !important; transition: none !important; }
+}

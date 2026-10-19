@@ -2,6 +2,8 @@
    Se carga desde index.html (ver install/inject-docker.sh). Solo lee la API con la sesión del usuario. */
 (function () {
   'use strict';
+  /* La app de Jellyfin para iOS (WKWebView) puede entrar en un bucle de recargas con el carrusel: en iOS no se carga. */
+  if (/iPhone|iPad|iPod/.test(navigator.userAgent) || (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1)) return;
   /* Ajustes: se leen de variables CSS (ponlas en «CSS personalizado», ver README) o de window.NebulaHero.
      Ejemplo:  :root { --nb-hero-count: 10; --nb-hero-source: toprated; --nb-hero-library: "Películas"; } */
   var DEF = {
